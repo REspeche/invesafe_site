@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en-US" ng-app="mainApp">
+<head>
+    <base href="/">
+    <!-- SEO Meta -->
+    <title>INVESAFE | Backoffice</title>
+    <meta name="dc.language" content="en" meta-property="language">
+    <meta name="googlebot" content="none">
+    <meta name="bingbot" content="none">
+    <meta name="robots" content="none">
+    <meta name="version" content="1.0.0" meta-property="version">
+    <meta name="author" content="Incloux">
+    <!-- Cache and other settings -->
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+    <!-- start: META -->
+    <!--[if IE]><meta http-equiv='X-UA-Compatible' content="IE=edge,IE=9,IE=8,chrome=1" /><![endif]-->
+    <meta http-equiv="Expires" content="0">
+    <meta http-equiv="Last-Modified" content="0">
+    <meta http-equiv="Cache-Control" content="no-cache, mustrevalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png">
+    <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png">
+    <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png">
+    <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png">
+    <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png">
+    <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png">
+    <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png">
+    <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="msapplication-TileColor" content="#ffffff">
+    <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
+    <meta name="theme-color" content="#ffffff">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimum-scale=1.0, maximum-scale=1.0">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <!-- end: META -->
+
+    <!-- Font Awesome -->
+    <link rel="preload" href="content/framework/css/fontawesome.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="content/framework/css/fontawesome.css"></noscript>
+
+    <!-- inject:framework -->
+    <!-- endinject -->
+
+    <!-- start: MAIN CSS -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- end: MAIN CSS -->
+</head>
+
+<body class="{{bodyClasses}}" ng-controller="dashboardController" elem-ready="loadDashboard()" ng-strict-di ng-cloak>
+  <div id="load_screen" class="transitionPage bg-buildings">
+    <div class="spinner"></div>
+    <div class="label" translate="LOADING_PAGE">Wait a few seconds, loading information...</div>
+  </div>
+  <header>
+    <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar" ng-hide="userInfo.isLogin">
+        <div class="container">
+
+            <!-- Brand and collapse menu -->
+            <ul class="navbar-nav nav-flex-icons">
+              <li class="nav-item">
+                <a class="navbar-brand" href="#" ng-click="clickSite()" data-toggle="collapse" data-target=".navbar-collapse.show">
+                    <img src="/content/assets/img/logoW.png" class="logo" />
+                </a>
+              </li>
+            </ul>
+
+            <!-- Right icons only on desktop -->
+            <div class="d-md-block navbar-right" ng-show="viewChangeLanguage">
+              <flags-language></flags-language>
+            </div>
+
+        </div>
+    </nav>
+    <nav-bar ng-if="userInfo.isLogin"></nav-bar>
+    <div id="slide-out" class="side-nav fixed wide sn-bg-4" elem-ready="loadSideNav()">
+      <div class="mt-4">
+        <div id="header-content" class="pl-3">
+          <img ng-src="{{(userInfo.avatar)?(path + userInfo.avatar):'/content/assets/img/not-available-avatar.png'}}" alt="avatar" class="rounded-circle img-fluid mb-3" style="max-width: 50px;">
+
+          <h4>
+            <span style="white-space: nowrap;">{{userInfo.name}}</span>
+          </h4>
+          <p>{{userInfo.email}}</p>
+        </div>
+        <hr class="mb-0">
+      </div>
+      <ul class="custom-scrollbar">
+        <!-- Side navigation links -->
+        <li>
+          <ul class="collapsible collapsible-accordion">
+
+            <!-- Simple link -->
+            <li ng-class="{ 'selected' : itemRoute=='home' }">
+              <a href="#" class="collapsible-header waves-effect link-menu" ng-click="clickItemMenu(1)">
+                <i class="w-fa fas fa-tachometer-alt"></i><span translate="MNU_DASHBOARD">Dashboard</span>
+              </a>
+            </li>
+            <li ng-show="userInfo.role==2">
+              <a class="collapsible-header waves-effect arrow-r"><i class="fas fa-cogs"></i><span translate="MNU_GENERAL_SETTINGS">General Settings</span><i class="fa fa-angle-down rotate-icon"></i></a>
+              <div class="collapsible-body">
+                <ul class="sub-menu">
+                  <li ng-class="{ 'selected' : itemRoute=='settings/general' }"><a class="waves-effect link-menu" ng-click="clickItemMenu(12)"><i class="fas fa-cog"></i><span translate="MNU_GENERAL">General</span></a></li>
+                  <li ng-class="{ 'selected' : itemRoute=='settings/limits' }"><a class="waves-effect link-menu" ng-click="clickItemMenu(13)"><i class="fas fa-border-style"></i><span translate="MNU_LIMITS">Limits</span></a></li>
+                  <li ng-class="{ 'selected' : itemRoute=='settings/payment' }"><a class="waves-effect link-menu" ng-click="clickItemMenu(14)"><i class="fas fa-credit-card"></i><span translate="MNU_PAYMENT">Payment</span></a></li>
+                  <li ng-class="{ 'selected' : itemRoute=='settings/social' }"><a class="waves-effect link-menu" ng-click="clickItemMenu(15)"><i class="fas fa-share-alt"></i><span translate="MNU_PROFILE_SOCIAL">Profile Social</span></a></li>
+                  <li ng-class="{ 'selected' : itemRoute=='settings/pages' }"><a class="waves-effect link-menu" ng-click="clickItemMenu(16)"><i class="fas fa-file"></i><span translate="MNU_PAGES">Pages</span></a></li>
+                  <li ng-class="{ 'selected' : itemRoute=='settings/sponsors' }"><a class="waves-effect link-menu" ng-click="clickItemMenu(26)"><i class="fas fa-donate"></i><span translate="MNU_SPONSORS">Sponsors</span></a></li>
+                </ul>
+              </div>
+            </li>
+            <li ng-show="userInfo.type==1" ng-class="{ 'selected' : itemRoute=='account/id-verification' }">
+              <a href="#" class="collapsible-header waves-effect link-menu" ng-click="clickItemMenu(27)">
+                <i class="w-fa fas fa-user-check"></i><span translate="MNU_IDVERIFICATION">Id Verification</span>
+              </a>
+            </li>
+            <li ng-show="userInfo.role==2" ng-class="{ 'selected' : itemRoute=='categories' }">
+              <a href="#" class="collapsible-header waves-effect link-menu" ng-click="clickItemMenu(11)">
+                <i class="w-fa fas fa-list-ul"></i><span translate="MNU_CATEGORIES">Categories</span>
+              </a>
+            </li>
+            <li ng-show="userInfo.type==1" ng-class="{ 'selected' : itemRoute=='portfolio' }">
+              <a href="#" class="collapsible-header waves-effect link-menu" ng-click="clickItemMenu(28)">
+                <i class="w-fa fas fa-cubes"></i><span translate="MNU_PORTFOLIO">Portfolio</span>
+              </a>
+            </li>
+            <li ng-show="userInfo.type==2" ng-class="{ 'selected' : itemRoute=='projects' }">
+              <a href="#" class="collapsible-header waves-effect link-menu" ng-click="clickItemMenu(10)">
+                <i class="w-fa fas fa-edit"></i><span translate="MNU_PROJECTS">Projects</span>
+              </a>
+            </li>
+            <li ng-show="userInfo.type==1" ng-class="{ 'selected' : itemRoute=='purchase' }">
+              <a href="#" class="collapsible-header waves-effect link-menu" ng-click="clickItemMenu(18)">
+                <i class="fas fa-shopping-basket"></i> <span translate="MNU_PURCHASED_PROJECTS">Purchased Projects</span>
+              </a>
+            </li>
+            <li ng-class="{ 'selected' : itemRoute=='favorite' }">
+              <a href="#" class="collapsible-header waves-effect link-menu" ng-click="clickItemMenu(17)">
+                <i class="fas fa-star"></i> <span translate="MNU_FAVORITE_PROJECTS">Favorite Projects</span>
+              </a>
+            </li>
+            <li ng-show="userInfo.type==2" ng-class="{ 'selected' : itemRoute=='deals' }">
+              <a href="#" class="collapsible-header waves-effect link-menu" ng-click="clickItemMenu(23)">
+                <i class="fab fa-amazon-pay"></i> <span translate="MNU_DEAL_PROJECTS">Deal Projects</span>
+              </a>
+            </li>
+            <li ng-show="userInfo.type==2" ng-class="{ 'selected' : itemRoute=='invested' }">
+              <a href="#" class="collapsible-header waves-effect link-menu" ng-click="clickItemMenu(25)">
+                <i class="fas fa-hand-holding-usd"></i> <span translate="MNU_INVESTED_PROJECTS">Invested Projects</span>
+              </a>
+            </li>
+            <li ng-show="userInfo.role==2 && userInfo.type!=3" ng-class="{ 'selected' : itemRoute=='reported' }">
+              <a href="#" class="collapsible-header waves-effect link-menu" ng-click="clickItemMenu(20)">
+                <i class="fas fa-exclamation-triangle text-danger"></i> <span translate="MNU_REPORTED_PROJECTS">Reported Projects</span>
+              </a>
+            </li>
+            <li ng-class="{ 'selected' : itemRoute=='questions' }">
+              <a href="#" class="collapsible-header waves-effect link-menu" ng-click="clickItemMenu(21)">
+                <i class="fas fa-question-circle"></i> <span translate="MNU_QUESTIONS_ANSWERS">Questions/Answers</span>
+              </a>
+            </li>
+            <li ng-show="userInfo.type==2" ng-class="{ 'selected' : itemRoute=='tosponsor' }">
+              <a href="#" class="collapsible-header waves-effect link-menu" ng-click="clickItemMenu(22)">
+                <i class="fas fa-award"></i> <span translate="MNU_PROJECTS_SPONSOR">Projects to Sponsor</span>
+              </a>
+            </li>
+            <li ng-show="userInfo.role==2" ng-class="{ 'selected' : itemRoute=='members' }">
+              <a href="#" class="collapsible-header waves-effect link-menu" ng-click="clickItemMenu(19)">
+                <i class="w-fa fas fa-user-friends"></i><span translate="MNU_MEMBERS">Members</span>
+              </a>
+            </li>
+            <li ng-show="userInfo.type==2" ng-class="{ 'selected' : itemRoute=='events' }">
+              <a href="#" class="collapsible-header waves-effect link-menu" ng-click="clickItemMenu(24)">
+                <i class="far fa-calendar-alt"></i> <span translate="MNU_EVENTS">Events</span>
+              </a>
+            </li>
+          </ul>
+          <hr class="m-0">
+          <ul class="collapsible collapsible-accordion">
+
+            <!-- Simple link -->
+            <li>
+              <a href="#" class="collapsible-header waves-effect link-menu" ng-click="clickSite()">
+                <i class="w-fa fas fa-arrow-left"></i><span translate="MNU_SITE">Go to Site</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="collapsible-header waves-effect link-menu" ng-click="clickItemMenu(6)">
+                <i class="w-fa fas fa-user"></i><span translate="MNU_MY_PROFILE">My Profile</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="collapsible-header waves-effect link-menu" ng-click="clickItemMenu(29)">
+                <i class="w-fa fas fa-lock"></i><span translate="MNU_SECURITY">Security</span>
+              </a>
+            </li>
+            <li ng-show="userInfo.role==2">
+              <a href="#" class="collapsible-header waves-effect link-menu" ng-click="clickItemMenu(21)">
+                <i class="w-fa fas fa-user-slash"></i><span translate="MNU_QUESTIONS">Questions</span>
+              </a>
+            </li>
+            <li>
+              <a href="#" class="collapsible-header waves-effect link-menu" ng-click="logout()">
+                <i class="w-fa fas fa-user-slash"></i><span translate="MNU_CLOSE_SESSION">Close Session</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+        <!-- Side navigation links -->
+
+      </ul>
+      <div class="sidenav-bg mask-strong"></div>
+    </div>
+  </header>
+
+  <!-- Main layout -->
+  <ui-view class="page"></ui-view>
+  <!-- Main layout -->
+
+  <!-- Footer -->
+  <footer class="page-footer pt-0">
+    <div class="footer-copyright py-2 text-center">
+      <div class="container-fluid">
+        <small>© 2020 Copyright  - <a href="javascript:void(0)" ng-click="clickSite()">invesafe.com</a></small>
+      </div>
+    </div>
+  </footer>
+  <!-- Footer -->
+
+  <progress-bar class="progress-page" ng-show="isBusy"></progress-bar>
+  <!-- start: MAIN JAVASCRIPTS -->
+  <!-- inject:js -->
+  <!-- endinject -->
+  <!-- end: MAIN JAVASCRIPTS -->
+</body>
+
+</html>

@@ -1,0 +1,91 @@
+<main ng-controller="settingsGeneralFormController" ng-init="loadFormGeneral()" class="form mx-lg-5">
+  <div class="container-fluid">
+    <!--First column-->
+    <div class="header">
+        <h2 translate="TIT_GENERAL_SETTINGS">General Settings</h2>
+    </div>
+
+    <div ng-hide="loadForm" translate="LOADING">Loading...</div>
+    <form id="frmGeneral" name="frmGeneral" class="needs-validation" ng-submit="submitForm()" novalidate autocomplete="off" ng-show="loadForm">
+
+      <div class="card p-3">
+
+          <div class="card-body p-3">
+
+              <div class="row">
+                  <div class="col-lg-6 col-md-6">
+                    <label for="txtEmailNoReply" translate="LBL_EMAIL_NR">Email no-Reply</label>
+                    <input type="text" class="form-control" id="txtEmailNoReply" name="txtEmailNoReply"
+                           ng-model="formData.emailNoReply" minlength="2" maxlength="200"
+                           ng-change="isEditingForm()" required>
+                    <div class="invalid-feedback" ng-show="invalidForm">{{msgInvalid}}</div>
+                  </div>
+                  <div class="col-lg-6 col-md-6">
+                    <label for="txtEmailAdmin" translate="LBL_EMAIL_ADMIN">Email Admin</label>
+                    <input type="text" class="form-control" id="txtEmailAdmin" name="txtEmailAdmin"
+                           ng-model="formData.emailAdmin" minlength="2" maxlength="200"
+                           ng-change="isEditingForm()" required>
+                    <div class="invalid-feedback" ng-show="invalidForm">{{msgInvalid}}</div>
+                  </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-lg-4 col-md-4">
+                    <label translate="LBL_AUTO_APPROVE_PROJECT">Auto Approve Projects</label>
+                    <div class="row">
+                      <div class="form-check col-md-6">
+                        <input type="radio" class="form-check-input" id="chkAutoAppProject1" name="chkAutoAppProject1" ng-value="1" ng-model="formData.autoApprove" ng-click="isEditingForm()">
+                        <label class="form-check-label" for="chkAutoAppProject1" translate="VAL_YES">Yes</label>
+                      </div>
+                      <div class="form-check col-md-6">
+                        <input type="radio" class="form-check-input" id="chkAutoAppProject2" name="chkAutoAppProject2" ng-value="2" ng-model="formData.autoApprove" ng-click="isEditingForm()">
+                        <label class="form-check-label" for="chkAutoAppProject2" translate="VAL_NO">No</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-4 col-md-4">
+                    <label translate="LBL_CAPTCHA">Captcha</label>
+                    <div class="row">
+                      <div class="form-check col-md-6">
+                        <input type="radio" class="form-check-input" id="chkCaptcha1" name="chkCaptcha1" ng-value="1" ng-model="formData.captcha" ng-click="isEditingForm()">
+                        <label class="form-check-label" for="chkCaptcha1" translate="VAL_YES">Yes</label>
+                      </div>
+                      <div class="form-check col-md-6">
+                        <input type="radio" class="form-check-input" id="chkCaptcha2" name="chkCaptcha2" ng-value="2" ng-model="formData.captcha" ng-click="isEditingForm()">
+                        <label class="form-check-label" for="chkCaptcha2" translate="VAL_NO">No</label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="col-lg-4 col-md-4">
+                    <label translate="LBL_EMAIL_VERIFICATION">Email Verification</label>
+                    <div class="row">
+                      <div class="form-check col-md-6">
+                        <input type="radio" class="form-check-input" id="chkEmailVerification1" name="chkEmailVerification1" ng-value="1" ng-model="formData.emailVerification" ng-click="isEditingForm()">
+                        <label class="form-check-label" for="chkEmailVerification1" translate="VAL_YES">Yes</label>
+                      </div>
+                      <div class="form-check col-md-6">
+                        <input type="radio" class="form-check-input" id="chkEmailVerification2" name="chkEmailVerification2" ng-value="2" ng-model="formData.emailVerification" ng-click="isEditingForm()">
+                        <label class="form-check-label" for="chkEmailVerification2" translate="VAL_NO">No</label>
+                      </div>
+                    </div>
+                  </div>
+              </div>
+
+          </div>
+
+          <!--Footer-->
+          <div class="modal-footer mx-3 p-0 pt-3">
+            <button type="submit" class="btn btn-success ml-0" ng-disabled="!editForm" translate="BTN_SAVE_SETTINGS">Save Settings</button>
+          </div>
+
+      </div>
+
+    </form>
+  </div>
+</main>

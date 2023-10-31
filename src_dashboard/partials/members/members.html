@@ -1,0 +1,52 @@
+<main ng-controller="membersController" elem-ready="loadMembers()" class="list mx-lg-5">
+  <div class="container-fluid">
+    <!--First column-->
+    <div class="header">
+        <h2 translate="TIT_MEMBERS">Members</h2>
+        <a type="button" class="btn-floating btn-info float-right mr-0"><i class="fas fa-sync" aria-hidden="true" ng-click="refreshList()" ng-disabled="loadList"></i></a>
+    </div>
+
+    <!--Table-->
+    <div ng-hide="loadList" translate="LOADING">Loading...</div>
+    <div class="alert alert-primary" role="alert" ng-show="members.length==0"><span translate="INF_EMPTY_MEMBERS">There aren't currently charged members.</span></div>
+    <table id="dtTable" class="table table-bordered table-hover" ng-hide="members.length==0">
+        <!--Table head-->
+        <thead class="mdb-color darken-1">
+            <tr class="text-white">
+                <th class="d-none d-sm-block d-lg-table-cell" translate="COL_ID">ID</th>
+                <th translate="COL_USER">User</th>
+                <th translate="COL_TYPE">Type</th>
+                <th class="d-none d-sm-block d-lg-table-cell" translate="COL_ROLE">Role</th>
+                <th class="d-none d-sm-block d-lg-table-cell" translate="COL_PROJECTS">Projects</th>
+                <th class="d-none d-sm-block d-lg-table-cell" translate="COL_DATE">Date</th>
+                <th class="text-center" translate="COL_ACTIONS">Actions</th>
+            </tr>
+        </thead>
+        <!--Table head-->
+        <!--Table body-->
+        <tbody class="grid-list">
+            <tr ng-repeat="item in members">
+                <td class="d-none d-sm-block d-lg-table-cell">{{item.id}}</td>
+                <td>{{item.name}}</td>
+                <td>
+                  <badge-status id="{{item.type}}" type="userType"></badge-status>
+                </td>
+                <td class="d-none d-sm-block d-lg-table-cell">
+                  <badge-status id="{{item.role}}" type="userRole"></badge-status>
+                </td>
+                <td class="d-none d-sm-block d-lg-table-cell">{{item.projects}}</td>
+                <td class="d-none d-sm-block d-lg-table-cell">{{item.date}}</td>
+                <td class="buttons text-center">
+                  <div ng-hide="item.id == userInfo.id">
+                    <a class="icons-sm text-primary" ng-click="clickEdit(item)" title="{{ 'BTN_EDIT' | translate }}"><i class="fas fa-edit"></i></a>
+                    <a class="icons-sm ml-2 text-danger" ng-click="clickRemove(item)" title="{{ 'BTN_DELETE' | translate }}"><i class="fas fa-trash"></i></a>
+                  </div>
+                </td>
+            </tr>
+        </tbody>
+        <!--Table body-->
+
+    </table>
+    <!--Table-->
+  </div>
+</main>

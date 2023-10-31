@@ -1,0 +1,15 @@
+<div class="modal-body">
+  <div translate="MSG_CONFIRM_LOGOUT"></div>
+  <div class="row">
+    <div class="form-check col-12 mt-3">
+      <input class="form-check-input" type="checkbox" value="1" id="invalidCheck2" ng-model="modalOptions.goToSite" required>
+      <label class="form-check-label grey-text" for="invalidCheck2">{{ 'LBL_CLOSE_SESSION' | translate }}</label>
+    </div>
+  </div>
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn"
+          data-ng-click="modalOptions.close()" translate="BTN_NO">No</button>
+  <button class="btn btn-primary"
+          data-ng-click="modalOptions.ok();" translate="BTN_YES">Yes</button>
+</div>

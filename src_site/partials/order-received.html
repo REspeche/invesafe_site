@@ -1,0 +1,104 @@
+<main ng-controller="orderReceivedController" ng-init="loadOrderReceived()">
+
+    <banner-page title="{{'CHECKOUT_SLIDE_TITLE' | translate}}" text="{{'CHECKOUT_SLIDE_TEXT' | translate}}" image="back_checkout"/>
+
+    <div class="container">
+        <div class="container py-4">
+
+          <div class="alert alert-info mt-2" role="alert"><i class="fas fa-info-circle mr-2"></i>{{ 'INF_THANKYOU_ORDER' | translate }}</div>
+          <div class="card mt-5 p-3">
+              <div class="row">
+                  <div class="col-3">
+                      <label class="form-check-label" translate="LBL_ORDER_NUMBER">Order Number</label>
+                      <div class="font-weight-bold">{{orderData.ordId}}</div>
+                  </div>
+                  <div class="col-3">
+                      <label class="form-check-label" translate="LBL_ORDER_DATE">Date</label>
+                      <div class="font-weight-bold">{{orderData.createdAtStr}}</div>
+                  </div>
+                  <div class="col-3">
+                      <label class="form-check-label" translate="LBL_ORDER_TOTAL">Total</label>
+                      <div class="font-weight-bold">{{orderData.total | customCurrency}}</div>
+                  </div>
+                  <div class="col-3">
+                      <label class="form-check-label" translate="LBL_ORDER_MODE_PAY">Mode Pay</label>
+                      <div class="font-weight-bold">{{ (orderData.modePay=='crypto')?'LBL_CRYPTO':'LBL_CREDIT' | translate }}</div>
+                  </div>
+              </div>
+          </div>
+          <div class="card my-4 p-3">
+              <div class="row">
+                  <div class="col-12">
+                      <h4 class="font-weight-bold mb-3" translate="TIT_KYC_VERIFICATION">Your KYC Verification</h4>
+                      <p class="mb-1" translate="TXT_INFO_KYC1">U.S. law requires you to complete "Know-Your-Customer" verification before we can dispense your tokens.</p>
+                      <small><span translate="TXT_INFO_KYC2">To begin this process, or to check on your current KYC status,</span>&nbsp;<a href="#" ng-click="goToKycVerification()" translate="LNK_KYC_VERIFY">Visit your ID Verification page</a></small>
+                  </div>
+              </div>
+          </div>
+
+          <hr class="my-3"/>
+
+          <section class="mt-5" ng-show="lstItems.length">
+              <h4 class="font-weight-bold mb-3" translate="TIT_ORDER_DETAILS">Order Details</h4>
+              <div class="row header-table px-2">
+                  <div class="col-lg-1">
+
+                  </div>
+                  <div class="col-lg-9">
+                      <span>Product</span>
+                  </div>
+                  <div class="col-lg-1">
+                      <span>Quantity</span>
+                  </div>
+                  <div class="col-lg-1">
+                      <span>Subtotal</span>
+                  </div>
+              </div>
+              <div class="card mt-2 px-2">
+                  <div class="row flex item-cart" ng-repeat="item in lstItems">
+                      <div class="col-lg-1">
+                          <div class="view">
+                              <img class="d-block w-100" ng-src="{{(item.image)?(pathProject + item.image + '&size=large'):'/assets/img/not-available.png'}}" alt="{{item.title}}">
+                          </div>
+                      </div>
+                      <div class="col-lg-9">
+                          <a href="#" ng-click="clickAction(104, {id: item.id})">
+                              <span>{{item.title}}</span>
+                          </a>
+                      </div>
+                      <div class="col-lg-1">
+                          <span>{{item.tokenPurchase}}</span>
+                      </div>
+                      <div class="col-lg-1">
+                          <span>{{(item.assetTokenPrice + item.fees) * item.tokenPurchase | customCurrency}}</span>
+                      </div>
+                  </div>
+              </div>
+              <div class="row mt-3 pr-3">
+                  <div class="col-lg-7">
+                  </div>
+                  <div class="col-lg-4">
+                      <h5>Total</h5>
+                  </div>
+                  <div class="col-lg-1">
+                      <h5 class="num-total">{{sumTotalCart() | customCurrency}}</h5>
+                  </div>
+              </div>
+          </section>
+
+          <section class="mt-4" ng-show="orderData.modePay=='crypto' && orderData.coinbaseCode">
+              <h4 class="font-weight-bold mb-3" translate="TIT_COINBASE_CODE">Coinbase Commerce Data</h4>
+              <p><span translate="LBL_COINBASE_REFERENCE">Coinbase Commerce Reference</span> <span class="font-weight-bold">#{{orderData.coinbaseCode}}</span></p>
+          </section>
+
+          <div class="row my-3">
+              <div class="col-12 text-center">
+                  <button type="button" class="btn btn-outline-primary btn-rounded"
+                  data-mdb-ripple-color="dark" ng-click="clickAction(105)" translate="BTN_RETURN_SHOP"></button>
+              </div>
+          </div>
+
+        </div>
+    </div>
+
+</main>

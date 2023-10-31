@@ -1,0 +1,155 @@
+<main ng-controller="marketplaceController" ng-init="loadMarketplace()">
+
+  <banner-page title="{{'PROJECTS_SLIDE_TITLE' | translate}}" text="{{'PROJECTS_SLIDE_TEXT' | translate}}" image="back_projects1"/>
+
+  <!--Section: Projects -->
+  <section class="p-100" id="projects">
+      <div class="container">
+          <div class="row justify-content-center text-center section-intro">
+              <div class="col-12 col-md-9 col-lg-8">
+                  <span class="title-decorative" translate="PROJECTS_SECTION1_SUBTITLE">Proyectos de inversión</span>
+                  <h2 class="display-4" translate="PROJECTS_SECTION1_TITLE">Elige una Oportunidad</h2>
+                  <p class="mb-3" translate="PROJECTS_SECTION1_TEXT">Todos los proyectos pasan por un exhaustivo análisis de viabilidad inmobiliaria, financiera y legal para minimizar los riesgos en la inversión.</p>
+              </div>
+          </div>
+
+          <!--Projects-->
+          <div class="container py-4">
+
+            <!--First row-->
+            <div class="row mb-5">
+
+              <div ng-hide="loadList" translate="LOADING">Loading...</div>
+
+              <!-- Project Card-->
+              <div class="card mt-3 mb-3 col-12" ng-repeat="item in lstProjects">
+                <div class="row g-0">
+                  <div class="col-12 text-center py-1 text-white font-weight-bold text-uppercase" ng-class="{'bg-info': item.progress==1,'bg-warning': item.progress==2,'bg-danger': item.progress==3,'bg-success': item.progress==4}">
+                    <span title="{{item.estimatedAvailabilityStr}}" data-toggle="tooltip" data-placement="top" ng-show="item.progress==1" translate="VAL_COMING_SOON"></span>
+                    <span ng-hide="item.progress==1">{{ ((item.progress==2)?'VAL_PROGRESS':((item.progress==3)?'VAL_SOLD_OUT':((item.progress==4)?'VAL_READY_SALE':''))) | translate}}</span>
+                    <count-down seconds="{{item.secondsToAvailability}}" ng-if="item.progress==1"></count-down>
+                  </div>
+                </div>
+                <div class="row g-0">
+                  <div class="col-sm-6 col-md-4 col-lg-7 px-0">
+                    <div class="sold-out-image" ng-show="item.progress==3">
+                      <img src="/content/assets/img/sold-out.png" alt="A Sold Out stamp">
+                    </div>
+                    <div id="img-{{item.id}}" class="img-asset" ng-style="{{item.imgBg}}" ng-click="clickAction(104, {id: item.id})"></div>
+                  </div>
+                  <div class="col-sm-6 col-md-8 col-lg-5">
+                    <div class="card-body">
+                      <h5 class="card-title">{{item.address}}</h5>
+                      <div class="row">
+                        <div class="col-6 col-left">
+                            <div class="high-paired-heading" translate="COL_TOTAL_PRICE">Total Price</div>
+                            <div class="high-paired-value">{{item.assetPrice | customCurrency}}</div>
+                        </div>
+                        <div class="col-6 col-right">
+                            <div class="high-paired-heading" translate="COL_TOKEN_PRICE">Token Price</div>
+                            <div class="high-paired-value">{{item.assetTokenPrice | customCurrency}}</div>
+                        </div>
+                      </div>
+                      <div class="row">
+                        <div class="col-12 list-row style1">
+                            <div class="row">
+                                <div class="list-paired-heading col-6" translate="COL_EXPECTED_YIELD">Expected Yield</div>
+                                <div class="list-paired-value col-6">{{item.assetAnnualReturn | number : 2}}%</div>
+                            </div>
+                        </div>
+                        <div class="col-12 list-row">
+                            <div class="row">
+                                <div class="list-paired-heading col-6" translate="COL_GROSS_RENT">Gross Rent</div>
+                                <div class="list-paired-value col-6">{{item.grossRentAnual | customCurrency : 0}} / year</div>
+                            </div>
+                        </div>
+                        <div class="col-12 list-row mb-3">
+                            <div class="row">
+                                <div class="list-paired-heading col-6" translate="COL_RENT_PER_TOKEN">Rent per Token</div>
+                                <div class="list-paired-value col-6">{{item.assetRentPerToken | customCurrency}} / year</div>
+                            </div>
+                        </div>
+                      </div>
+                      <section ng-show="item.progress==2">
+                        <form name="frmPurchase{{item.id}}">
+                          <div class="row">
+                              <div class="col-2 p-0">
+                                  <input type="number" class="form-control form-control-lg quantityPurchase"
+                                      minlength="1" maxlength="3" min="1" max="{{item.maxTokenPurchase}}" step="1"
+                                      ng-change="quantityChange($index)" ng-model="item.tokenPurchase"/>
+                              </div>
+                              <div class="col-10 pr-0">
+                                  <button type="button" class="btn btn-add-cart m-0"
+                                    ng-click="addCart(item)" data-mdb-ripple-color="dark" translate="BTN_ADD_CART"></button>
+                              </div>
+                            </div>
+                            <div class="row style3">
+                              <div class="col-6 text-left pl-0">
+                                  <small class="font-weight-bold"><span translate="LBL_MAX"></span>: {{item.maxTokenPurchase}}</small>
+                              </div>
+                              <div class="col-6 text-right pr-0">
+                                  <small class="font-weight-bold"><span translate="LBL_STOCK"></span>: {{item.tokenStock}}</small>
+                              </div>
+                          </div>
+                        </form>
+                      </section>
+                      <section ng-hide="item.progress==2">
+                        <div class="row">
+                            <div class="col-12 px-0">
+                                <button type="button" class="btn btn-outline-info btn-view_property m-0"
+                                ng-click="clickAction(104, {id: item.id})" data-mdb-ripple-color="dark" translate="BTN_VIEW_PROPERTY"></button>
+                            </div>
+                          </div>
+                      </section>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /Project Card-->
+
+              <!-- Soon -->
+              <div class="card mt-3 mb-3 col-12 card-fix bg-gray opacity-90" ng-show="lstProjects.length==0 && loadList">
+                <div class="row g-0">
+                  <div class="col-12 text-center py-1 text-white font-weight-bold text-uppercase bg-warning">
+                    <span translate="PROJECT_CARD_SOON_TITLE"></span>
+                  </div>
+                </div>
+                <div class="row g-0">
+                  <div class="col-sm-6 col-md-4 col-lg-7 pl-0">
+                    <div class="img-asset" style="background-image: url('/content/assets/img/theme/project-evaluation.jpg')"></div>
+                  </div>
+                  <div class="col-sm-6 col-md-8 col-lg-5">
+                    <div class="card-body">
+                      <h5 translate="PROJECT_CARD_SOON_LABEL">Proceso de Evaluación</h5>
+                      <div class="_s-row pt-3">
+                          <span class="_s-text-secondary" translate="PROJECT_CARD_SOON_TEXT">Estamos analizando algunos proyectos de empresas desarrollistas y constructoras. Sé de los primeros en convertirte en inversor inmobiliario en Invesafe.</span>
+                      </div>
+
+                      <div class="row" ng-hide="userInfo.isLogin">
+                          <div class="col-12 px-0">
+                            <div class="btn btn-fucsia btn-view_property m-0" ng-click="clickSignUp()" translate="BUTTON_SIGNUP">Regístrate</div>
+                          </div>
+                        </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- /Soon -->
+
+              <!--Grid column-->
+              <div class="col-lg-12 col-md-12 px-4 text-center mt-4">
+
+                  <a class="btn btn-linea-celeste btn-lg" ng-click="showPreviousProperties()" translate="BTN_PREVIOUS_PROPERTIES">Ver Más Proyectos</a>
+
+              </div>
+              <!--/Grid column-->
+
+            </div>
+            <!--/First row-->
+
+          </div>
+          <!--/Projects-->
+  </section>
+  <!--Section: Projects -->
+
+</main>

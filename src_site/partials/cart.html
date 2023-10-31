@@ -1,0 +1,146 @@
+<main ng-controller="cartController" ng-init="loadCart()">
+
+  <banner-page title="{{'CART_SLIDE_TITLE' | translate}}" text="{{'CART_SLIDE_TEXT' | translate}}" image="back_cart"/>
+
+  <section class="p-100" id="cart">
+    <div class="container">
+        <div class="container">
+
+            <div class="alert alert-info mt-2" role="alert" ng-hide="lstItems.length"><i class="fas fa-info-circle mr-2"></i><span ng-bind-html="('INFO_CART_EMPTY' | translate) | unsafe"></span></div>
+
+            <div class="row mb-4">
+                <div class="col-lg-12 text-right">
+                  <button type="button" class="btn btn-outline-primary btn-rounded mr-0"
+                  data-mdb-ripple-color="dark" ng-click="clickAction(105)">{{ ((lstItems.length==0)?'BTN_RETURN_SHOP':'BTN_CONTINUE_SHOPPING') | translate}}</button>
+                </div>
+            </div>
+            <section ng-show="lstItems.length">
+                <div class="d-none d-md-block">
+                  <div class="row mt-2 header-table px-2">
+                      <div class="col-lg-1">
+
+                      </div>
+                      <div class="col-lg-5">
+                          <span translate="COL_PRODUCT">Product</span>
+                      </div>
+                      <div class="col-lg-1">
+                          <span translate="COL_TOKEN_PRICE">Token Price</span>
+                      </div>
+                      <div class="col-lg-1">
+                          <span translate="COL_TOTAL_FEES">Total Fees</span>
+                      </div>
+                      <div class="col-lg-1">
+                          <span translate="COL_PURCHASE_PRICE">Purchase Price</span>
+                      </div>
+                      <div class="col-lg-1">
+                          <span translate="COL_QUANTITY">Quantity</span>
+                      </div>
+                      <div class="col-lg-1">
+                          <span translate="COL_SUBTOTAL">Subtotal</span>
+                      </div>
+                      <div class="col-lg-1"></div>
+                  </div>
+                </div>
+                <div class="card mt-2 px-2">
+                    <div class="row flex item-cart" ng-repeat="item in lstItems">
+                        <div class="col-lg-1">
+                            <div class="view">
+                                <img class="d-block w-100" ng-src="{{(item.image)?(pathProject + item.image + '&size=large'):'/assets/img/not-available.png'}}" alt="{{item.title}}">
+                            </div>
+                        </div>
+                        <div class="col-lg-5">
+                            <div class="d-block d-md-none mt-2">
+                              <span class="header-table">
+                                <span translate="COL_PRODUCT">Product</span>:&nbsp;
+                              </span>
+                              <a href="#" ng-click="clickAction(104, {id: item.id})">
+                                  <span>{{item.title}}</span>
+                              </a>
+                            </div>
+                            <a class="d-none d-md-block" href="#" ng-click="clickAction(104, {id: item.id})">
+                                <span>{{item.title}}</span>
+                            </a>
+                        </div>
+                        <div class="col-lg-1">
+                            <div class="d-block d-md-none">
+                              <span class="header-table">
+                                <span translate="COL_TOKEN_PRICE">Token Price</span>:&nbsp;
+                              </span>
+                              <span>{{item.assetTokenPrice | customCurrency}}</span>
+                            </div>
+                            <span class="d-none d-md-block">{{item.assetTokenPrice | customCurrency}}</span>
+                        </div>
+                        <div class="col-lg-1">
+                            <div class="d-block d-md-none">
+                              <span class="header-table">
+                                <span translate="COL_TOTAL_FEES">Token Fees</span>:&nbsp;
+                              </span>
+                              <span ng-show="item.fees">{{item.fees | customCurrency}}</span>
+                              <span ng-hide="item.fees">-</span>
+                            </div>
+                            <div class="d-none d-md-block">
+                              <span ng-show="item.fees">{{item.fees | customCurrency}}</span>
+                              <span ng-hide="item.fees">-</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-1">
+                            <div class="d-block d-md-none">
+                              <span class="header-table">
+                                <span translate="COL_PURCHASE_PRICE">Purchase Price</span>:&nbsp;
+                              </span>
+                              <span>{{item.assetTokenPrice + item.fees | customCurrency}}</span>
+                            </div>
+                            <div class="d-none d-md-block">
+                              <span>{{item.assetTokenPrice + item.fees | customCurrency}}</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-1">
+                            <div class="d-block d-md-none">
+                              <span class="header-table">
+                                <span translate="COL_QUANTITY">Quantity</span>:&nbsp;
+                              </span>
+                              <input type="number" class="form-control quantityPurchase ml-2"
+                                  minlength="1" maxlength="3" min="1" max="{{item.maxTokenPurchase}}" step="1"
+                                  ng-change="quantityChange($index)" ng-model="item.tokenPurchase"
+                                  style="display: inline-block;width: auto;"/>
+                            </div>
+                            <div class="d-none d-md-block">
+                              <input type="number" class="form-control quantityPurchase"
+                                  minlength="1" maxlength="3" min="1" max="{{item.maxTokenPurchase}}" step="1"
+                                  ng-change="quantityChange($index)" ng-model="item.tokenPurchase"/>
+                            </div>
+                        </div>
+                        <div class="col-lg-1">
+                            <div class="d-block d-md-none">
+                              <span class="header-table">
+                                <span translate="COL_SUBTOTAL">Subtotal</span>:&nbsp;
+                              </span>
+                              <span>{{(item.assetTokenPrice + item.fees) * item.tokenPurchase | customCurrency}}</span>
+                            </div>
+                            <div class="d-none d-md-block">
+                              <span>{{(item.assetTokenPrice + item.fees) * item.tokenPurchase | customCurrency}}</span>
+                            </div>
+                        </div>
+                        <div class="col-lg-1 icon-cell text-right">
+                          <i class="fas fa-trash" ng-click="clickRemove(item)"></i>
+                        </div>
+                    </div>
+                </div>
+                <div class="row mt-3 pr-3">
+                    <div class="col-12 text-right">
+                        <h5>Total<span class="ml-2 num-total">{{sumTotalCart() | customCurrency}}</span></h5>
+                    </div>
+                </div>
+                <div class="row mt-2">
+                    <div class="col-lg-12 text-right">
+                      <button type="button" class="btn btn-fucsia btn-rounded mr-0"
+                      data-mdb-ripple-color="dark" ng-click="goToCheckout()" translate="BTN_PROCEED_CHECKOUT">Proceed to Checkout</button>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </div>
+  </section>
+
+</main>

@@ -1,0 +1,36 @@
+.link-cart {
+  span.badge {
+    position: absolute;
+    right: 1px;
+    opacity: .9;
+  }
+}
+
+.catalog-list {
+  list-style: none;
+  font-size: 90%;
+
+  li {
+    border-bottom: 2px solid #d3d3d3;
+  }
+  li:last-child {
+    border-bottom: none;
+  }
+}
+.catalog-paired-value {
+  margin-bottom: 15px;
+
+  .catalog-value {
+    display: block;
+  }
+}
+.catalog-column {
+  display: inline-block;
+  a {
+    font-weight: bold;
+  }
+  .catalog-paired-heading {
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+}

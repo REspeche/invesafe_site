@@ -1,0 +1,41 @@
+<main ng-controller="investedProjectsController" elem-ready="loadInvestedProjects()" class="list mx-lg-5">
+    <div class="container-fluid">
+      <!--First column-->
+      <div class="header">
+          <h2 translate="TIT_INVESTED_PROJECTS">Invested Projects</h2>
+          <a type="button" class="btn-floating btn-info float-right mr-0"><i class="fas fa-sync" aria-hidden="true" ng-click="refreshList()" ng-disabled="loadList"></i></a>
+      </div>
+  
+      <!--Table-->
+      <div ng-hide="loadList" translate="LOADING">Loading...</div>
+      <div class="alert alert-primary" role="alert" ng-show="projects.length==0"><span translate="INF_EMPTY_QUESTIONS_PROJECT">There aren't currently project to any projects.</span></div>
+      <table id="dtTable" class="table table-bordered table-hover" ng-hide="projects.length==0">
+          <!--Table head-->
+          <thead class="mdb-color darken-1">
+              <tr class="text-white">
+                  <th class="d-none d-sm-block d-lg-table-cell" translate="COL_ID">ID</th>
+                  <th class="d-none d-sm-block d-lg-table-cell" translate="COL_USER">User</th>
+                  <th translate="COL_MESSAGE">Message</th>
+                  <th translate="COL_TITLE">Project</th>
+                  <th class="d-none d-sm-block d-lg-table-cell" translate="COL_DATE">Date</th>
+              </tr>
+          </thead>
+          <!--Table head-->
+          <!--Table body-->
+          <tbody class="grid-list">
+              <tr ng-repeat="item in projects">
+                  <td class="d-none d-sm-block d-lg-table-cell">{{item.id}}</td>
+                  <td class="d-none d-sm-block d-lg-table-cell">{{item.user}}</td>
+                  <td>{{item.message}}</td>
+                  <td>{{item.project}}<a type="button" class="text-primary ml-2" title="Detalle"
+                    ng-click="clickViewDetail(item)" data-toggle="tooltip"><i class="fas fa-search-plus"></i></a></td>
+                  <td class="d-none d-sm-block d-lg-table-cell">{{item.date}}</td>
+              </tr>
+          </tbody>
+          <!--Table body-->
+  
+      </table>
+      <!--Table-->
+    </div>
+  </main>
+  

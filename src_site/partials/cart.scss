@@ -1,0 +1,45 @@
+.cart-page {
+    .header-table {
+        font-weight: bold;
+        font-size: 80%;
+    }
+    .item-cart {
+        padding: .5rem;
+        margin-top: 1rem;
+        padding-top: 0;
+        padding-bottom: 1rem;
+        margin-bottom: 0;
+        border-bottom: 1px solid #d9d9d9;
+
+        span {
+            line-height: 2rem;
+        }
+        .view {
+            display: flex;
+
+            @media only screen and (max-width: 768px) {
+              .fas {
+                position: absolute;
+                z-index: 1;
+                left: 0;
+                top: 0;
+                background-color: rgba(255,255,255,.8);
+                padding: 1rem;
+              }
+            }
+        }
+        .icon-cell {
+          .fas {
+            line-height: 2rem;
+            color: red;
+            cursor: pointer;
+          }
+        }
+    }
+    .item-cart:last-child {
+        border-bottom: none;
+    }
+    .num-total {
+        font-weight: bold;
+    }
+}

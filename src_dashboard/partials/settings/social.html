@@ -1,0 +1,86 @@
+<main ng-controller="settingsSocialFormController" ng-init="loadFormSocial()" class="form mx-lg-5">
+  <div class="container-fluid">
+    <!--First column-->
+    <div class="header">
+        <h2 translate="TIT_PROFILE_SOCIAL">Profile Social</h2>
+    </div>
+
+    <div ng-hide="loadForm" translate="LOADING">Loading...</div>
+    <form id="frmSocial" name="frmSocial" class="needs-validation" ng-submit="submitForm()" novalidate autocomplete="off" ng-show="loadForm">
+
+      <div class="card p-3 col-lg-8 col-md-8 col-sm-12">
+
+          <div class="card-body p-3">
+
+              <div class="row">
+                  <div class="col-12 col-md-12">
+                    <label for="txtFacebook" translate="LBL_FACEBOOK">Facebook</label>
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" id="basic-facebook">https://www.facebook.com/</span>
+                      <input type="text" class="form-control" aria-describedby="basic-facebook" id="txtFacebook" name="txtFacebook"
+                            ng-model="formData.facebook" minlength="1" maxlength="255"
+                            ng-change="isEditingForm()" required/>
+                    </div>
+                  </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-12 col-md-12">
+                    <label for="txtTwitter" translate="LBL_TWITTER">Twitter</label>
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" id="basic-twitter">https://www.twitter.com/</span>
+                      <input type="text" class="form-control" aria-describedby="basic-twitter" id="txtTwitter" name="txtTwitter"
+                            ng-model="formData.twitter" minlength="1" maxlength="255"
+                            ng-change="isEditingForm()" required/>
+                    </div>
+                  </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-12 col-md-12">
+                    <label for="txtLinkedin" translate="LBL_LINKEDIN">Linkedin</label>
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" id="basic-linkedin">https://www.linkedin.com/</span>
+                      <input type="text" class="form-control" aria-describedby="basic-linkedin" id="txtLinkedin" name="txtLinkedin"
+                            ng-model="formData.linkedin" minlength="1" maxlength="255"
+                            ng-change="isEditingForm()" required/>
+                    </div>
+                  </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-12 col-md-12">
+                    <label for="txtInstagram" translate="LBL_INSTAGRAM">Instagram</label>
+                    <div class="input-group mb-3">
+                      <span class="input-group-text" id="basic-instagram">https://www.instagram.com/</span>
+                      <input type="text" class="form-control" aria-describedby="basic-instagram" id="txtInstagram" name="txtInstagram"
+                            ng-model="formData.instagram" minlength="1" maxlength="255"
+                            ng-change="isEditingForm()" required/>
+                    </div>
+                  </div>
+              </div>
+
+              <div class="row">
+                <div class="col-12 col-md-12">
+                  <label for="txtYoutube" translate="LBL_YOUTUBE">Youtube</label>
+                  <div class="input-group mb-3">
+                    <span class="input-group-text" id="basic-youtube">https://www.youtube.com/</span>
+                    <input type="text" class="form-control" aria-describedby="basic-youtube" id="txtYoutube" name="txtYoutube"
+                          ng-model="formData.youtube" minlength="1" maxlength="255"
+                          ng-change="isEditingForm()" required/>
+                  </div>                     
+                </div>
+             </div>
+
+          </div>
+
+          <!--Footer-->
+          <div class="modal-footer mx-3 p-0 pt-3">
+            <button type="submit" class="btn btn-success ml-0" ng-disabled="!editForm" translate="BTN_SAVE_SETTINGS">Save Settings</button>
+          </div>
+
+      </div>
+
+    </form>
+  </div>
+</main>

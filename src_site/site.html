@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html class="no-js" lang="{{ lang }}" ng-app="mainApp">
+<!--<![endif]-->
+<head>
+    <base href="/">
+    <!-- SEO Meta -->
+    <title>INVESAFE</title>
+    <meta name="description" meta-property="description" content="Web platform for smart investors in Real Estate.">
+    <meta name="keywords" content="tokenized, financiacion, financiamento, internet, campañas, campaign, Crowdfunding, real estate.">
+    <meta name="dc.language" content="en" meta-property="language">
+    <meta name="googlebot" content="index, follow">
+    <meta name="bingbot" content="index, follow">
+    <meta name="robots" content="index, follow">
+    <meta name="version" content="1.0.0" meta-property="version">
+    <meta name="author" content="Incloux">
+    <!-- Open Graph Protocol Tags -->
+    <meta property="og:url" content="invesafe.com">
+    <meta property="og:title" content="INVESAFE" meta-property="title">
+    <meta property="og:description" content="Web platform for smart investors in Real Estate." meta-property="description">
+    <meta property="og:type" content="website">
+    <meta property="og:image" content="https://invesafe.com/content/assets/img/invesafe.og.jpg">
+    <meta property="og:image:type" content="image/jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <!-- Twitter Card Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="INVESAFE" meta-property="title">
+    <meta name="twitter:description" content="Web platform for smart investors in Real Estate." meta-property="description">
+    <meta name="twitter:site" content="@invesafe">
+    <meta name="twitter:image:src" content="https://invesafe.com/content/assets/img/invesafe.twiiter.jpg">
+    <!-- Cache and other settings -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta http-equiv="cache-control" content="max-age=0" />
+    <meta http-equiv="cache-control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="expires" content="0" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="/apple-touch-icon-57x57.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="/apple-touch-icon-114x114.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="/apple-touch-icon-72x72.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="/apple-touch-icon-144x144.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="60x60" href="/apple-touch-icon-60x60.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="/apple-touch-icon-120x120.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="76x76" href="/apple-touch-icon-76x76.png" />
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="/apple-touch-icon-152x152.png" />
+    <link rel="icon" type="image/png" href="/favicon-196x196.png" sizes="196x196" />
+    <link rel="icon" type="image/png" href="/favicon-96x96.png" sizes="96x96" />
+    <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32" />
+    <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16" />
+    <link rel="icon" type="image/png" href="/favicon-128.png" sizes="128x128" />
+    <link rel="alternate" href="invesafe.com.ar" hreflang="es-es">
+    <!-- Font Awesome -->
+    <link rel="preload" href="content/framework/css/fontawesome.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="content/framework/css/fontawesome.css"></noscript>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;700&display=swap" rel="stylesheet">
+    <script src="content/framework/js/modernizr-custom.js"></script>
+
+    <!-- start: MAIN CSS -->
+    <!-- inject:css -->
+    <!-- endinject -->
+    <!-- end: MAIN CSS -->
+
+    <!-- Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-98211330-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() { dataLayer.push(arguments); }
+      gtag('js', new Date());
+
+      gtag('config', 'UA-98211330-1');
+    </script>
+    <!-- End Google Analytics -->
+
+    <!-- Dinamically Tags -->
+</head>
+
+<body class="{{bodyClasses}}" ng-controller="siteController" ng-init="loadSite()" ng-strict-di ng-cloak>
+    <!--/Loading-->
+    <div id="load_screen" class="transitionPage bg-buildings">
+        <div class="spinner"></div>
+        <div class="label" translate="LOADING">Espere unos segundos, cargando información...</div>
+    </div>
+    <!--/.Loading-->
+
+    <!--/Header-->
+    <header>
+        <!-- Navbar -->
+        <nav class="navbar fixed-top navbar-expand-lg navbar-dark scrolling-navbar">
+            <div class="container">
+
+                <!-- Brand and collapse menu -->
+                <ul class="navbar-nav nav-flex-icons">
+                  <li class="nav-item">
+                    <!-- Collapse -->
+                    <button class="navbar-toggler pl-0" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                  </li>
+                  <li class="nav-item">
+                    <a class="navbar-brand" href="#" ng-click="clickAction(101)" data-toggle="collapse" data-target=".navbar-collapse.show">
+                        <img src="/content/assets/img/logoW.png" class="logo" />
+                    </a>
+                  </li>
+                </ul>
+
+                <!-- Right icons only on mobile -->
+                <div class="d-block d-md-none">
+                  <right-icons></right-icons>
+                </div>
+
+                <!-- Links -->
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+                    <!-- menu Left -->
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+                            <a class="nav-link" href="#" ng-click="clickAction(109)" translate="MENU_OPERATIVE">>Cómo Funciona?</a>
+                        </li>
+                        <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+                            <a class="nav-link" href="#" ng-click="clickAction(105)" translate="MENU_PROJECTS">Proyectos</a>
+                        </li>
+                        <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+                          <a class="nav-link" href="#" ng-click="clickAction(113)" translate="MENU_DEVELOPERS">Soy Desarrollador</a>
+                        </li>
+                        <li class="nav-item dropdown" data-toggle="collapse" data-target=".navbar-collapse.show">
+                            <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <span class="font-weight-bold">+</span> <span translate="MENU_MORE_INFO">Info</span>
+                            </a>
+                            <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink" data-popper-placement="null" data-mdb-popper="none">
+                              <li>
+                                <a class="dropdown-item" href="#" ng-click="clickAction(110)" translate="MENU_ABOUT">Sobre Nosotros</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="#" ng-click="clickAction(111)" translate="MENU_CONTACT">Contacto</a>
+                              </li>
+                              <li><hr class="dropdown-divider"></li>
+                              <li>
+                                <a class="dropdown-item" href="http://help.invesafe.com/{{lang}}" target="_blank" translate="MENU_HELP">Centro de Ayuda</a>
+                              </li>
+                              <li>
+                                <a class="dropdown-item" href="http://blog.invesafe.com/{{lang}}" target="_blank" translate="MENU_BLOG">Blog</a>
+                              </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item" ng-hide="userInfo.isLogin">
+                          <a href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse.show" ng-click="clickSignUp()" class="nav-link waves-effect text-info">
+                            <span translate="MNU_SIGN_UP">Sign Up</span>
+                          </a>
+                        </li>
+                    </ul>
+
+                    <!-- Right icons only on desktop -->
+                    <div class="d-none d-md-block navbar-right">
+                      <right-icons></right-icons>
+                    </div>
+
+                </div>
+
+            </div>
+        </nav>
+        <!--/.Navbar-->
+    </header>
+    <!--/.Header-->
+
+    <!--Main layout-->
+    <ui-view></ui-view>
+    <!--/Main layout-->
+
+    <!--Footer-->
+    <footer class="page-footer font-small wow fadeIn">
+
+        <!-- Social icons -->
+        <div class="container pt-5 pb-4 text-light">
+            <div class="row">
+                <div class="col-12 col-md-3">
+                    <a href="/"><img alt="Invesafe" src="/content/assets/img/logoW.png" class="logo mb-1"></a>
+                    <p class="text-muted">
+                        Orlando - United States<br>
+                    </p>
+                    <ul class="list-inline">
+                        <li class="list-inline-item"> <a href="https://www.facebook.com/invesafe/"><i class="fab fa-facebook-f mr-2"></i></a> </li>
+                        <li class="list-inline-item"> <a href="https://www.linkedin.com/company/invesafe"><i class="fab fa-linkedin mr-2"></i></a> </li>
+                        <li class="list-inline-item"> <a href="https://twitter.com/Invesafe"><i class="fab fa-twitter mr-2"></i></a> </li>
+                        <li class="list-inline-item"> <a href="https://instagram.com/Invesafe.us"><i class="fab fa-instagram mr-2"></i></a> </li>
+                    </ul>
+                </div>
+                <div class="col-12 col-md-9">
+                    <div class="h5 mb-2 logo-cnv" translate="FOOTER_TITLE">
+                        Plataforma de crowdfunding inmobiliario
+                    </div>
+                    <div class="row no-gutters">
+                        <div class="col-6 col-lg-3">
+                            <h6 translate="FOTTER_SECTION1">La empresa</h6>
+                            <ul class="list-unstyled">
+                                <li> <a href="#" ng-click="clickAction(110)" translate="MENU_ABOUT">Sobre Nosotros</a> </li>
+                                <li> <a href="#" ng-click="clickAction(111)" translate="MENU_CONTACT">Contacto</a> </li>
+                            </ul>
+                        </div>
+                        <div class="col-6 col-lg-3">
+                            <h6 translate="FOTTER_SECTION2">Financiación</h6>
+                            <ul class="list-unstyled">
+                                <li> <a href="#" ng-click="clickAction(113)" translate="MENU_DEVELOPERS">Soy Desarrollador</a> </li>
+                            </ul>
+                        </div>
+                        <div class="col-6 col-lg-3">
+                            <h6 translate="FOTTER_SECTION3">Invierte</h6>
+                            <ul class="list-unstyled">
+                                <li> <a href="#" ng-click="clickAction(109)" translate="MENU_OPERATIVE">¿Cómo Funciona?</a> </li>
+                                <li> <a href="#" ng-click="clickAction(105)" translate="MENU_PROJECTS">Proyectos</a> </li>
+                            </ul>
+                        </div>
+                        <div class="col-6 col-lg-3">
+                            <h6 translate="FOTTER_SECTION4">Infórmate</h6>
+                            <ul class="list-unstyled">
+                                <li> <a href="http://blog.invesafe.com/{{lang}}" target="_blank" translate="MENU_BLOG">Blog</a> </li>
+                                <li> <a href="http://help.invesafe.com/{{lang}}" target="_blank" translate="MENU_HELP">Centro de Ayuda</a> </li>
+                                <li> <a href="#" ng-click="clickAction(112)" translate="MENU_CHANGE_CONTROL">Control de Cambios</a> </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Social icons -->
+        <!--Copyright-->
+        <div class="footer-copyright p-3">
+          <div class="container">
+            <p class="opacity-70">This information is not an offer to invest in any token, Fund or other opportunity and is provided for information only. Performance results are shown net of all fees, costs, and expenses associated with the token. Should an investor choose to redeem a token through Invesafe or on a secondary market, other processing fees may be assessed that are not factored into the returns presented. Past performance does not guarantee future results. Returns are calculated based on the rental payments distributed throughout the year and the appreciation in value of the underlying property. The appreciation in value is based on the difference between purchase price and annual property reappraisals. Individual investor returns may vary based on the timing of their investments and redemptions.</p>
+            <p class="opacity-70">This site is operated by InvToken Inc., which is not a registered broker-dealer or investment advisor. InvToken Inc. does not give investment advice, endorsement, analysis or recommendations with respect to any securities. Nothing on this website should be construed as an offer to sell, solicitation of an offer to buy or a recommendation for any security by InvToken Inc. or any third party. You are solely responsible for determining whether any investment, investment strategy, security or related transaction is appropriate for you based on your personal investment objectives, financial circumstances and risk tolerance. You should consult with licensed legal professionals and investment advisors for any legal, tax, insurance or investment advice. All securities listed here are being offered by, and all information included on this site is the responsibility of, the applicable issuer of such securities. InvToken Inc. does not guarantee any investment performance, outcome or return of capital for any investment opportunity posted on this site. By accessing this site and any pages thereof, you agree to be bound by the <a href="#" ng-click="clickAction(102)" translate="MENU_TERMS">Terms of Service</a> and <a href="#" ng-click="clickAction(103)" translate="MENU_PRIVACY">Privacy Policy</a>. Please <a href="#" ng-click="viewDisclaimer()" translate="MENU_DISCLAIMER">view our general disclaimer</a> and <a href="#" ng-click="clickAction(115)">accessibility statement</a> as well.</p>
+            <p class="text-center mb-0">
+              © 2018 <a href="/">Invesafe</a> LLC <span translate="FOOTER_COPY">Todos los derechos reservados</span> - <a href="http://www.incloux.com" target="_blank" rel="noopener"><img id="incloux" src="https://incloux.com/img/iconIncloux25.png" alt="Incloux"></a>
+            </p>
+          </div>
+        </div>
+        <!--/.Copyright-->
+    </footer>
+    <!--/.Footer-->
+
+    <!-- start: MAIN JAVASCRIPTS -->
+    <!-- inject:js -->
+    <!-- endinject -->
+    <!-- end: MAIN JAVASCRIPTS -->
+</body>
+
+</html>

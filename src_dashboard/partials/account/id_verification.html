@@ -1,0 +1,33 @@
+<main ng-controller="idVerificationController" ng-init="loadIdVerification()" class="form mx-lg-5">
+    <div class="container-fluid">
+      
+      <!--First column-->
+      <div class="header">
+          <h2 translate="TIT_ID_VERIFICATION">My Account</h2>
+      </div>
+  
+      <div ng-hide="loadForm" translate="LOADING">Loading...</div>
+      <form id="frmIdVerification" name="frmIdVerification" class="needs-validation" ng-submit="submitForm()" novalidate autocomplete="off" ng-show="loadForm">
+        
+        <div class="card p-3 col-lg-6 col-md-12 col-sm-12">
+            <div class="card-body p-3">
+              <div class="row">
+                <div class="text-left mb-2 mt-4 col-md-12 col-12">
+                    <h5><span translate="TIT_KYC_VERIFICATION">KYC Verification</span>: <span translate="LBL_SUCCESSFUL">Successful</span><i class="fas fa-check ml-2 text-success"></i></h5>
+                    <hr class="mt-1">
+                </div>
+              </div>
+  
+              <div class="row">
+                  <div class="col-12">
+                    <p class="font-weight-bold">Application Submitted: 8/13/2021, 5:54:08 PM</p>
+                    <p>Your application was submitted, and we have received a successful validation from our validation service.</p>
+                </div>
+              </div>
+            </div>
+        </div>
+
+      </form>
+    </div>
+  </main>
+  

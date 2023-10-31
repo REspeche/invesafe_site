@@ -1,0 +1,61 @@
+<main ng-controller="projectsController" elem-ready="loadProjects()" class="list mx-lg-5">
+  <div class="container-fluid">
+    <!--First column-->
+    <div class="header">
+        <h2 translate="TIT_PROJECTS">Projects</h2>
+        <a type="button" class="btn-floating btn-info float-right mr-0" ng-disabled="loadList"><i class="fas fa-sync" aria-hidden="true" ng-click="refreshList()"></i></a>
+        <a type="button" class="btn-floating pink" ng-show="userInfo.role==2 && !userInfo.forceProfile"><i class="fas fa-plus" aria-hidden="true" ng-click="clickNew()"></i></a>
+    </div>
+
+    <!--Table-->
+    <div ng-hide="loadList" translate="LOADING">Loading...</div>
+    <div class="alert alert-primary" role="alert" ng-show="!userInfo.forceProfile && projects.length==0"><span translate="INF_EMPTY_PROJECT">You have not yet loaded a project</span><span ng-show="userInfo.type==1">&nbsp;(<a href="#" ng-click="clickNew()" translate="LNK_NEW_PROJECT">New Project</a>)</span>.</div>
+    <div class="alert alert-danger" role="alert" ng-show="userInfo.forceProfile"><i class="fas fa-exclamation-circle mr-2"></i><span translate="INF_BLOCK_PROFILE">You cannot load a new project until you complete the profile data</span>&nbsp;(<a href="#" ng-click="clickItemMenu(6)" translate="LNK_COMPLETE_PROFILE">Complete Profile</a>)</div>
+    <table id="dtTable" class="table table-bordered table-hover" ng-hide="projects.length==0">
+        <!--Table head-->
+        <thead class="mdb-color darken-1">
+            <tr class="text-white">
+                <th class="d-none d-sm-block d-lg-table-cell" translate="COL_ID">ID</th>
+                <th translate="COL_TITLE">Title</th>
+                <th class="d-none d-sm-block d-lg-table-cell" translate="COL_USER" ng-show="userInfo.role==2">User</th>
+                <th class="d-none d-sm-block d-lg-table-cell" translate="COL_COLLECTED">Collected</th>
+                <th class="d-none d-sm-block d-lg-table-cell" translate="COL_PROGRESS">Progress</th>
+                <th translate="COL_STATUS">Status</th>
+                <th class="d-none d-sm-block d-lg-table-cell" translate="COL_DATE">Date</th>
+                <th class="text-center" translate="COL_ACTIONS">Actions</th>
+            </tr>
+        </thead>
+        <!--Table head-->
+        <!--Table body-->
+        <tbody class="grid-list">
+            <tr ng-repeat="item in projects">
+                <td class="d-none d-sm-block d-lg-table-cell">{{item.id}}</td>
+                <td>
+                  {{(item.title)?item.title:item.address}}
+                  <a type="button" class="text-primary ml-2" title="Detalle" ng-click="clickViewDetail(item)" data-toggle="tooltip">
+                    <i class="fas fa-search-plus"></i>
+                  </a>
+                </td>
+                <td class="d-none d-sm-block d-lg-table-cell" ng-show="userInfo.role==2">{{item.user}}</td>
+                <td class="d-none d-sm-block d-lg-table-cell"><span ng-show="item.deals>0">{{item.deals}} Deals: {{item.collected | customCurrency}}</span><span class="text-muted" ng-show="item.deals==0">Not Deals</span></td>
+                <td class="d-none d-sm-block d-lg-table-cell"><badge-status id="{{item.progress}}" type="progress"></badge-status></td>
+                <td>
+                  <badge-status id="{{item.status}}" type="project" ng-show="(userInfo.role==1 && item.status>2) || userInfo.role==2"></badge-status>
+                  <div class="custom-control custom-switch" ng-hide="(userInfo.role==1 && item.status>2) || userInfo.role==2">
+                    <input type="checkbox" class="custom-control-input" ng-checked="item.status==2" id="chk{{item.id}}" ng-click="changeStatusProject(item)">
+                    <label class="custom-control-label" for="chk{{item.id}}">{{(item.status==1)?('VAL_DRAFT' | translate):('VAL_PENDING' | translate)}}</label>
+                  </div>
+                </td>
+                <td class="d-none d-sm-block d-lg-table-cell">{{item.date}}</td>
+                <td class="buttons text-center">
+                  <a class="icons-sm text-primary" ng-click="clickEdit(item)" title="{{ 'BTN_EDIT' | translate }}"><i class="fa-edit" ng-class="{'fas':item.status!=3,'far':item.status==3}"></i></a>
+                  <a class="icons-sm ml-2 text-danger" ng-click="clickRemove(item)" title="{{ 'BTN_DELETE' | translate }}"><i class="fas fa-trash"></i></a>
+                </td>
+            </tr>
+        </tbody>
+        <!--Table body-->
+
+    </table>
+    <!--Table-->
+  </div>
+</main>

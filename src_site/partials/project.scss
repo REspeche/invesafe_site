@@ -1,0 +1,101 @@
+/* Project page */
+
+.project-page {
+    .back-top {
+      background-color: #ddd;
+      padding-bottom: 2rem;
+    }
+
+    .breadcrumb {
+      font-size: 80%;
+    }
+
+    img.bg-image {
+      filter: grayscale(90%);
+      -webkit-filter: grayscale(90%);
+      filter: blur(8px);
+      -webkit-filter: blur(8px);
+    }
+
+    .status-project div.badge {
+      border-radius: 5px;
+      font-size: 1.2rem;
+      font-weight: bold;
+      padding: .7rem !important;
+      box-shadow: none;
+      border: 1px solid #CCC;
+      text-transform: uppercase;
+      min-width: 12rem;
+    }
+
+    .card-body {
+      margin-bottom: -1rem;
+
+      .card-text {
+        padding-bottom: .5rem;
+        margin-bottom: .5rem;
+        border-bottom: 1px solid #ccc;
+        text-transform: capitalize;
+
+        .text-meta {
+          font-weight: bold;
+        }
+        .value-meta {
+          float: right;
+        }
+      }
+      .card-text.sum {
+        border-bottom: 2px solid #294378;
+      }
+      .card-text:last-child {
+        border-bottom: none;
+      }
+      .refer-info {
+        font-style: italic;
+        font-size: 90%;
+      }
+      .style1 {
+        color: #294378;
+        font-size: 1.2rem;
+        font-weight: bolder;
+      }
+      .style2 {
+        color: #d88e03;
+        font-size: 1rem;
+        font-weight: bolder;
+      }
+      .style3 {
+        color: #294378;
+      }
+    }
+    .text-about {
+      font-size: 90%;
+    }
+    .reverse-count {
+      top: -23px;
+      left: calc(50% - 6rem + 1px);
+      right: auto;
+      min-width: calc(12rem - 2px);
+    }
+    .quantityPurchase {
+      display: inline-block;
+      max-width: 5rem;
+      border-bottom-right-radius: 0;
+      border-top-right-radius: 0;
+      border: 2px solid #4285f4;
+      height: calc(1.5em + 1rem);
+      margin-right: 0;
+    }
+    .btn-add-cart {
+      display: inline-block;
+      border-radius: 0.3rem;
+      border-bottom-left-radius: 0;
+      border-top-left-radius: 0;
+      margin-top: 0px;
+      margin-left: -5px;
+    }
+
+    #floatingSocialShare .top-left {
+      top: calc(50% - 115px);
+    }
+  }

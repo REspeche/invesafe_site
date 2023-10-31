@@ -1,0 +1,15 @@
+<main ng-controller="portfolioController" elem-ready="loadPortfolio()" class="list mx-lg-5">
+    <div class="container-fluid">
+      <!--First column-->
+      <div class="header">
+          <h2 translate="TIT_PORTFOLIO">Portfolio</h2>
+          <a type="button" class="btn-floating btn-info float-right mr-0" ng-disabled="loadList"><i class="fas fa-sync" aria-hidden="true" ng-click="refreshList()"></i></a>
+      </div>
+  
+      <!--Table-->
+      <div ng-hide="loadList" translate="LOADING">Loading...</div>
+      <div class="alert alert-primary" role="alert" ng-show="!userInfo.forceProfile && portfolioItems.length==0"><span translate="INF_EMPTY_PORTFOLIO">You don't currently own any RealT assets. To get started, visit:</span>&nbsp;(<a href="#" ng-click="goToMarketplace()" translate="LNK_MARKETPLACE">Projects</a>).</div>
+    
+    </div>
+  </main>
+  

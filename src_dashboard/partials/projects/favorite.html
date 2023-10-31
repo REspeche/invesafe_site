@@ -1,0 +1,42 @@
+<main ng-controller="favoriteProjectsController" elem-ready="loadFavoriteProjects()" class="list mx-lg-5">
+  <div class="container-fluid">
+    <!--First column-->
+    <div class="header">
+        <h2 translate="TIT_FAVORITE_PROJECTS">Favorite Projects</h2>
+        <a type="button" class="btn-floating btn-info float-right mr-0"><i class="fas fa-sync" aria-hidden="true" ng-click="refreshList()" ng-disabled="loadList"></i></a>
+    </div>
+
+    <!--Table-->
+    <div ng-hide="loadList" translate="LOADING">Loading...</div>
+    <div class="alert alert-primary" role="alert" ng-show="projects.length==0"><span translate="INF_EMPTY_FAVORITE_PROJECT">You don't have any project mark like favorite.</span></div>
+    <table id="dtTable" class="table table-bordered table-hover" ng-hide="projects.length==0">
+        <!--Table head-->
+        <thead class="mdb-color darken-1">
+            <tr class="text-white">
+                <th class="d-none d-sm-block d-lg-table-cell" translate="COL_ID">ID</th>
+                <th translate="COL_TITLE">Project</th>
+                <th translate="COL_USER" ng-show="userInfo.role==2">User</th>
+                <th class="d-none d-sm-block d-lg-table-cell" translate="COL_DATE">Date</th>
+                <th class="text-center" translate="COL_ACTIONS">Actions</th>
+            </tr>
+        </thead>
+        <!--Table head-->
+        <!--Table body-->
+        <tbody class="grid-list">
+            <tr ng-repeat="item in projects">
+                <td class="d-none d-sm-block d-lg-table-cell">{{item.id}}</td>
+                <td>{{item.project}}<a type="button" class="text-primary ml-2" title="Detalle"
+                  ng-click="clickViewDetail(item)" data-toggle="tooltip"><i class="fas fa-search-plus"></i></a></td>
+                <td ng-show="userInfo.role==2">{{item.user}}</td>
+                <td class="d-none d-sm-block d-lg-table-cell">{{item.date}}</td>
+                <td class="buttons text-center">
+                  <a class="icons-sm text-danger" ng-click="clickRemove(item)" title="{{ 'BTN_DELETE' | translate }}" ng-show="userInfo.id == item.usrId"><i class="fas fa-trash"></i></a>
+                </td>
+            </tr>
+        </tbody>
+        <!--Table body-->
+
+    </table>
+    <!--Table-->
+  </div>
+</main>

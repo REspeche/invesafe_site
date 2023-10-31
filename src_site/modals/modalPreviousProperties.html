@@ -1,0 +1,46 @@
+<div class="modal-header text-center">
+    <h4 class="modal-title w-100 font-weight-bold" translate="TIT_PREVIOUSPROPERTIES">Previous Properties</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" data-ng-click="modalOptions.close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+    <ul class="catalog-list col-12">
+        <li class="row pt-2" ng-repeat="item in modalOptions.lstProjects">
+          <div class="catalog-column col-3">
+            <a href="#" ng-click="modalOptions.clickAction(modalOptions, item)">
+              <span class="catalog-paired-value">
+                <span class="catalog-value">{{(item.title)?item.title:item.address}}</span>
+              </span>
+            </a>
+          </div>
+          <div class="catalog-column col-3">
+            <div class="catalog-paired-heading" translate="COL_TOKEN_PRICE">Token Price</div>
+            <div class="catalog-paired-value">{{item.assetTokenPrice | customCurrency}}</div>
+          </div>
+          <div class="catalog-column col-3">
+            <div class="catalog-paired-heading" translate="COL_TOKENS">Tokens</div>
+            <div class="catalog-paired-value">{{item.assetTotalTokens | number : 0}}</div>
+          </div>
+          <div class="catalog-column col-3">
+            <div class="catalog-paired-heading" translate="COL_TOTAL_PRICE">Total Price</div>
+            <div class="catalog-paired-value">{{item.assetPrice | customCurrency}}</div>
+          </div>
+          <!-- row -->
+          <div class="catalog-column col-3">
+            <div class="catalog-paired-heading" translate="COL_EXPECTED_YIELD">Expected Yield</div>
+            <div class="catalog-paired-value">{{item.assetAnnualReturn | number : 2}}%</div>
+          </div>
+          <div class="catalog-column col-3">
+            <div class="catalog-paired-heading" translate="COL_RENT_TOKEN">Rent / Token</div>
+            <div class="catalog-paired-value">{{item.netRentMonthly | customCurrency}}</div>
+          </div>
+          <div class="catalog-column col-6">
+            <div class="catalog-paired-value">
+              <a href="https://etherscan.io/token/{{item.etherscanAddress}}" target="_blank" type="button" class="btn btn-outline-info btn-sm" data-mdb-ripple-color="dark" translate="COL_ETHERSCAN">Etherscan</a>
+            </div>
+          </div>
+        </li>
+      </ul>
+  </div>
+  

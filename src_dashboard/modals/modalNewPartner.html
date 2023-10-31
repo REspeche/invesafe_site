@@ -1,0 +1,40 @@
+<div class="modal-header text-center">
+  <h4 class="modal-title w-100 font-weight-bold" translate="TIT_NEW_MENTOR">New Partner</h4>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close" data-ng-click="modalOptions.close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body form">
+  <form id="frmPartner" name="frmPartner" class="needs-validation" novalidate autocomplete="off">
+    <div class="row">
+        <div class="col-12 col-md-12">
+          <div class="autocomplete-box">
+            <label for="txtPartner"><span translate="LBL_MENTOR_PARTNER">Name of Partner</span> *</label> <small class="text-muted">(<span translate="LBL_MENTOR_INFO">if not exist, entry sponsor contact's email</span>)</small>
+            <input type="search" id="txtPartner" class="form-control mdb-autocomplete" maxlength="100" ng-model="modalOptions.frmDataPartner.partner">
+            <button class="mdb-autocomplete-clear button-2">
+              <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="https://www.w3.org/2000/svg">
+                <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                <path d="M0 0h24v24H0z" fill="none" />
+              </svg>
+            </button>
+          </div>
+        </div>
+    </div>
+
+    <div class="row" ng-show="(modalOptions.frmDataPartner.partner.indexOf('@')>0)">
+        <div class="col-12 col-md-12">
+          <label for="txtMessage" translate="LBL_MESSAGE">Message</label> <small class="text-muted">(<span translate="LBL_OPTIONAL">Optional</span>)</small>
+          <textarea id="txtMessage" class="form-control rounded-0" rows="4" ng-model="modalOptions.frmDataPartner.message" ng-change="isEditingFormDeal()"></textarea>
+        </div>
+    </div>
+
+    <small class="text-muted">Los campos marcados con * son obligatorios</small>
+  </form>
+</div>
+<progress-bar ng-show="isBusy"></progress-bar>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary ml-0" data-ng-click="modalOptions.ok();" translate="BTN_ADD">Add</button>
+    <div class="options text-center text-md-right mt-1 ml-auto">
+      <p class="font-small grey-text d-flex justify-content-end"><a href="#" class="blue-text" ng-click="modalOptions.close();" translate="BTN_CANCEL">Cancel</a></p>
+    </div>
+</div>

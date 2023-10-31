@@ -1,0 +1,131 @@
+<main ng-controller="eventFormController" ng-init="loadFormEvent()" class="form mx-lg-5">
+    <div class="container-fluid">
+      <!--First column-->
+      <div class="header">
+          <h2><span translate="LBL_EDIT" ng-show="paramAction=='edit'">Edit</span><span translate="LBL_NEW" ng-show="paramAction=='new'">New</span> {{ 'LBL_EVENT' | translate}}</h2>
+          <a type="button" class="btn-floating light-blue"><i class="fas fa-list" aria-hidden="true" ng-click="clickCancelForm()"></i></a>
+          <a type="button" class="btn-floating btn-danger ml-0" ng-show="paramAction!='new'"><i class="fas fa-trash" aria-hidden="true" ng-click="clickRemove()"></i></a>
+      </div>
+  
+      <div class="alert alert-warning" role="alert" translate="INF_EVENT_TO_APPROVE" ng-show="paramAction!='view'"></div>
+
+      <div ng-hide="loadForm" translate="LOADING">Loading...</div>
+      <form id="frmEvent" name="frmEvent" class="needs-validation" ng-submit="submitForm()" novalidate autocomplete="off" ng-show="loadForm">
+        <fieldset ng-disabled="paramAction=='view'">
+            <div class="card p-3">
+    
+                <div class="card-body p-3">
+    
+                    <div class="row">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+    
+                            <div class="row">
+                                <div class="col-12 col-md-12">
+                                    <label for="txtTitle"><span translate="LBL_TITLE">Title</span> *</label>
+                                    <input type="text" class="form-control" id="txtTitle" name="txtTitle"
+                                        ng-model="formData.title" minlength="2" maxlength="100"
+                                        ng-change="isEditingForm()" required>
+                                    <div class="invalid-feedback" ng-show="invalidForm">{{msgInvalid}}</div>
+                                </div>
+                            </div>
+        
+                            <div class="row">
+                                <div class="col-lg-4 col-md-4">
+                                    <label for="cmbCountry"><span translate="LBL_COUNTRY">Country</span> *</label>
+                                    <select id="cmbCountry" class="browser-default custom-select"
+                                        ng-model="formData.couId" ng-change="selectCountry(true)" ng-options="item.id as item.label for item in lstCountry" required>
+                                    </select>
+                                </div>
+                                <div class="col-lg-4 col-md-4">
+                                    <label for="cmbState"><span translate="LBL_STATE">State</span></label>
+                                    <select id="cmbState" class="browser-default custom-select"
+                                        ng-model="formData.staId" ng-change="isEditingForm()" ng-disabled="(lstState.length==0)"
+                                        ng-options="item.id as item.label for item in lstState" required>
+                                    </select>
+                                </div>
+                                <div class="col-lg-4 col-md-4">
+                                    <label for="txtName"><span translate="LBL_CITY">City</span> *</label>
+                                    <input type="text" name="txtCity" id="txtCity" class="form-control" 
+                                        ng-model="formData.city" maxlength="100" ng-change="isEditingForm()" required>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6">
+                                    <label for="txtTimeZone"><span translate="LBL_TIME_ZONE">Time Zone</span> *</label>
+                                    <select id="cmbTimeZone" class="browser-default custom-select"
+                                    ng-model="formData.tmzId" ng-change="isEditingForm()" ng-disabled="(lstTimeZones.length==0)"
+                                    ng-options="item.id as item.label for item in lstTimeZones" required>
+                                    </select>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <label for="txtDateEvent"><span translate="LBL_EVENT_DATE">Event Date</span> *</label>
+                                    <date-time name="txtDateEvent" value="formData.dateEvent" change="isEditingForm()"
+                                    hide-time="false"></date-time>
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="col-lg-12 col-md-12">
+                                    <label><span translate="LBL_DESCRIPTION">Description</span></label> <small class="text-muted">(<span translate="LBL_OPTIONAL">Optional</span>)</small>
+                                    <textarea class="form-control" id="txtDescription" name="txtDescription" rows="6" maxlength="400"
+                                            ng-model="formData.description" ng-change="isEditingForm()" style="resize: none;max-height: 140px;"></textarea>
+                                    <small class="text-muted">{{( 'LBL_EXTRACT_EVENT_INFO' | translate : { 'count' : formData.description.length } )}}</small>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                        <ng-file label="{{ 'LBL_MAIN_IMAGE' | translate }}" value="formData.image" value-return="imageNew" type="event"
+                            link="formData.image" is-change="isEditingForm()"></ng-file>
+                        </div>
+    
+                    </div>
+    
+                    <div class="row">
+                        <div class="col-6 col-md-6">
+                            <label for="txtWebSite" translate="LBL_WEBSITE">Web Site</label>
+                            <input type="text" name="txtWebSite" id="txtWebSite" class="form-control" ng-model="formData.webSite" maxlength="255" ng-change="isEditingForm()">
+                        </div>
+                        <div class="col-6 col-md-6">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6">
+                                    <label for="txtEmail"><span translate="LBL_CONTACT_EMAIL">Contact Email</span> *</label>
+                                    <input type="email" class="form-control" id="txtEmail" name="txtEmail"
+                                            ng-model="formData.email" required>
+                                </div>
+                                <div class="col-lg-6 col-md-6">
+                                    <label translate="LBL_ACTIVE">Active</label>
+                                    <div class="row">
+                                    <div class="form-check col-md-6">
+                                        <input type="radio" class="form-check-input" id="chkMode2" name="chkMode2" ng-value="1" ng-model="formData.active" ng-click="isEditingForm()">
+                                        <label class="form-check-label" for="chkMode2" translate="VAL_ON">On</label>
+                                    </div>
+                                    <div class="form-check col-md-6">
+                                        <input type="radio" class="form-check-input" id="chkMode1" name="chkMode1" ng-value="2" ng-model="formData.active" ng-click="isEditingForm()">
+                                        <label class="form-check-label" for="chkMode1" translate="VAL_OFF">Off</label>
+                                    </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <small class="text-muted" translate="MSG_FIELDS_MANDATORY">Fields marked with * are mandatory</small>
+                </div>
+    
+                <!--Footer-->
+                <div class="modal-footer mx-3 p-0 pt-3">
+                <button type="submit" class="btn btn-success ml-0" ng-disabled="!editForm" 
+                translate="BTN_SAVE_EVENT" ng-hide="paramAction=='view'">Save Event</button>
+                <div class="options text-center text-md-right mt-1 ml-auto">
+                    <p class="font-small grey-text d-flex justify-content-end"><a href="#" class="blue-text" ng-click="clickCancelForm()" translate="BTN_CANCEL">Cancel</a></p>
+                </div>
+                </div>
+    
+            </div>
+        </fieldset>
+      </form>
+    </div>
+  </main>
+  

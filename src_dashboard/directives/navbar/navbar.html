@@ -1,0 +1,44 @@
+<nav class="navbar fixed-top navbar-expand-lg scrolling-navbar double-nav navbar-dark info-color">
+  <a href="#" data-activates="slide-out" class="p-1 pb-0 m-0 button-collapse" elem-ready="loadTopBar()">
+    <i class="fas fa-bars"></i>
+  </a>
+
+  <!-- Breadcrumb -->
+  <div class="breadcrumb-dn mr-auto pl-4 text-white">
+    <a href="#" ng-click="clickItemMenu(1)"><i class="fa fas fa-home mr-2"></i></a>
+    <span translate="SUBTITLE"></span>
+  </div>
+
+  <div class="d-flex change-mode">
+
+    <div class="ml-auto mb-0 mr-3 change-mode-wrapper">
+    </div>
+
+    <!-- Navbar links -->
+    <ul class="nav navbar-nav nav-flex-icons ml-auto" ng-class="{'mr-5':!isMobile.any()}">
+      <!-- Dropdown -->
+      <li class="nav-item" ng-show="viewChangeLanguage">
+        <flags-language></flags-language>
+      </li>
+      <li class="nav-item dropdown notifications-nav">
+        <a class="nav-link dropdown-toggle waves-effect" id="navbarDropdownMenuLink" data-toggle="dropdown"
+          aria-haspopup="true" aria-expanded="false" ng-click="getListAlerts()">
+          <div class="badge red" ng-show="(alerts.notifications>0)" ng-bind="alerts.notifications"></div>
+          <i class="fas fa-bell"></i><span class="d-none d-md-inline-block" translate="MNU_ALERTS">Alerts</span>
+        </a>
+        <div class="dropdown-menu dropdown-primary dropdown-alerts" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="#" ng-repeat="item in lstAlerts" ng-click="setViewedAlert(item)"
+            ng-class="{'not-viewed': !item.viewed}">
+            <div><i class="far mr-2" aria-hidden="true" ng-class="{'fa-envelope-open': item.viewed, 'fa-envelope': !item.viewed}"></i></div>
+            <div class="ale-message" ng-bind="item.name"></div>
+            <span class="float-right"><i class="far fa-clock" aria-hidden="true"></i> <span ng-bind="getTime(item.time)"></span></span>
+          </a>
+          <a class="dropdown-item text-center" href="#" ng-click="viewAllAlerts()" translate="MNU_VIEW_ALL_ALERTS">View all alerts</a>
+        </div>
+      </li>
+    </ul>
+    <!-- Navbar links -->
+
+  </div>
+
+</nav>

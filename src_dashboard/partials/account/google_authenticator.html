@@ -1,0 +1,50 @@
+<main ng-controller="googleAuthenticatorController" ng-init="loadGoogleAuthenticator()" class="form mx-lg-5">
+    <div class="container-fluid">
+      
+        <!--First column-->
+        <div class="header">
+            <h2><a href="#" ng-click="clickItemMenu(29)"><span translate="TIT_SECURITY"></span></a> | <span translate="TIT_GOOGLE_AUTHENTICATOR"></span></h2>
+        </div>
+        
+        <div ng-hide="loadForm" translate="LOADING">Loading...</div>
+
+        <div class="card p-3 col-lg-6 col-md-6 col-sm-12" ng-show="loadForm">
+            <div class="card-body p-3">
+                <div class="row">
+                    <div class="text-left mb-2 mt-4 col-md-12 col-12">
+                        <h5 translate="TIT_GOOGLE_AUTHENTICATOR_BOX"></h5>
+                        <hr class="mt-1">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="text-left mb-2 col-md-12 col-12">
+                        <div class="row">
+                            <div class="col-12">
+                                <p translate="TXT_QR_SCAN"></p>
+                                <div class="text-center">
+                                    <img src="{{dataQR.image}}" style="border:1px solid #ccc;"/>
+                                </div>
+                                <p class="mt-3 mb-0" translate="TXT_QR_ENTER_CODE"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12">
+                        <ng-digit-code name="txtDigit1" ng-model="code"></ng-digit-code>
+                    </div>
+                </div>
+            </div>
+
+            <!--Footer-->
+            <div class="modal-footer mx-3 p-0 pt-3" ng-hide="paramAction=='view'">
+                <button type="button" class="btn btn-success ml-0" ng-click="enableAuthenticationTwoFactor()" translate="BTN_ENABLE">Enable</button>
+                <div class="options text-center text-md-right mt-1 ml-auto"></div>
+            </div>
+        </div>
+  
+    </div>
+  </main>
+  

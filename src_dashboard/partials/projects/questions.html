@@ -1,0 +1,57 @@
+<main ng-controller="questionsProjectsController" elem-ready="loadQuestionsProjects()" class="list mx-lg-5">
+  <div class="container-fluid">
+    <!--First column-->
+    <div class="header">
+        <h2 translate="TIT_QUESTIONS_ANSWERS">Questions/Answers</h2>
+        <a type="button" class="btn-floating btn-info float-right mr-0"><i class="fas fa-sync" aria-hidden="true" ng-click="refreshList()" ng-disabled="loadList"></i></a>
+    </div>
+
+    <!--Table-->
+    <div ng-hide="loadList" translate="LOADING">Loading...</div>
+    <div class="alert alert-primary" role="alert" ng-show="projects.length==0"><span translate="INF_EMPTY_QUESTIONS_PROJECT">There aren't currently project to any projects.</span></div>
+    <table id="dtTable" class="table table-bordered table-hover" ng-hide="projects.length==0">
+        <!--Table head-->
+        <thead class="mdb-color darken-1">
+            <tr class="text-white">
+                <th class="d-none d-sm-block d-lg-table-cell" translate="COL_ID">ID</th>
+                <th class="d-none d-sm-block d-lg-table-cell" translate="COL_USER" ng-show="userInfo.type==1">User</th>
+                <th translate="COL_QUESTION">Question</th>
+                <th translate="COL_TITLE">Project</th>
+                <th class="d-none d-sm-block d-lg-table-cell" translate="COL_DATE">Date</th>
+                <th class="d-none d-sm-block d-lg-table-cell" ng-show="userInfo.type==1"><span translate="COL_ACTIVE">Active</span>?</th>
+                <th class="text-center" translate="COL_ACTIONS">Actions</th>
+            </tr>
+        </thead>
+        <!--Table head-->
+        <!--Table body-->
+        <tbody class="grid-list">
+            <tr ng-repeat="item in projects">
+                <td class="d-none d-sm-block d-lg-table-cell">{{item.id}}</td>
+                <td class="d-none d-sm-block d-lg-table-cell" ng-show="userInfo.type==1">{{item.user}}</td>
+                <td>
+                  <p>{{item.question}}</p>
+                  <div ng-show="item.answer">
+                    <i class="far fa-comment mr-2"></i><small class="text-muted">{{item.answer | trimString}}</small>
+                  </div>
+                </td>
+                <td>{{item.project}}<a type="button" class="text-primary ml-2" title="Detalle"
+                  ng-click="clickViewDetail(item)" data-toggle="tooltip"><i class="fas fa-search-plus"></i></a></td>
+                <td class="d-none d-sm-block d-lg-table-cell">{{item.date}}</td>
+                <td class="d-none d-sm-block d-lg-table-cell" ng-show="userInfo.type==1">
+                  <div class="custom-control custom-switch">
+                    <input type="checkbox" class="custom-control-input" ng-checked="item.active==2" id="chk{{item.id}}" ng-click="changeActiveQuestion(item)">
+                    <label class="custom-control-label" for="chk{{item.id}}">{{(item.active==1)?('VAL_NO' | translate):('VAL_YES' | translate)}}</label>
+                  </div>
+                </td>
+                <td class="buttons text-center">
+                  <a class="icons-sm text-info" ng-click="clickAnswer(item)" ng-show="item.isMeProject" title="{{ 'BTN_ANSWER' | translate }}"><i class="fas fa-headset"></i></a>
+                  <a class="icons-sm text-danger" ng-class="{'ml-2':item.isMeProject}" ng-click="clickRemove(item)" ng-show="item.isMeQuestion" title="{{ 'BTN_REMOVE' | translate }}"><i class="fas fa-trash"></i></a>
+                </td>
+            </tr>
+        </tbody>
+        <!--Table body-->
+
+    </table>
+    <!--Table-->
+  </div>
+</main>

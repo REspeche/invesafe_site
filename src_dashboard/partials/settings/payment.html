@@ -1,0 +1,117 @@
+<main ng-controller="settingsPaymentFormController" ng-init="loadFormPayment()" class="form mx-lg-5">
+  <div class="container-fluid">
+    <!--First column-->
+    <div class="header">
+        <h2 translate="TIT_PAYMENT_SETTINGS">Payment Settings</h2>
+    </div>
+
+    <div ng-hide="loadForm" translate="LOADING">Loading...</div>
+    <form id="frmPayment" name="frmPayment" class="needs-validation" ng-submit="submitForm()" novalidate autocomplete="off" ng-show="loadForm">
+
+      <div class="card p-3 col-lg-6 col-md-6 col-sm-12">
+
+          <div class="card-body p-3">
+              <div class="row">
+                <div class="text-left mb-2 mt-4 col-md-12 col-12">
+                    <h5 translate="TIT_PAYMENT_SETTINGS">Payment Settings</h5>
+                    <hr class="mt-1">
+                </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-12 col-md-12">
+                     <label><span translate="LBL_CURRENCY_CODE">Currency Code</span></label>
+                     <select class="browser-default custom-select" ng-model="formData.currencyCode"
+                             ng-options="item.id as item.label for item in lstCurrencyCode"
+                             ng-change="isEditingForm()">
+                     </select>
+                  </div>
+              </div>
+
+              <div class="row">
+                  <div class="col-12 col-md-12">
+                     <label><span translate="LBL_PAYMENT_GATEWAY">Payment Gateway</span></label>
+                     <select class="browser-default custom-select" ng-model="formData.paymentGateway"
+                             ng-options="item.id as item.label for item in lstPaymentGateway"
+                             ng-change="isEditingForm()">
+                     </select>
+                  </div>
+              </div>
+
+              <section ng-show="formData.paymentGateway==1">
+
+                <div class="row mt-4">
+                  <div class="text-left mb-2 mt-4 col-md-12 col-12">
+                      <h5 translate="TIT_PAYPAL">Paypal</h5>
+                      <hr class="mt-1">
+                  </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 col-md-12">
+                      <label for="txtPaypalAccount" translate="LBL_PAYPAL_ACCOUNT">Paypal Account</label>
+                      <input type="text" class="form-control" id="txtPaypalAccount" name="txtPaypalAccount"
+                             ng-model="formData.paypalAccount" minlength="3" maxlength="200"
+                             ng-change="isEditingForm()">
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 col-md-12">
+                      <label translate="LBL_PAYPAL_SANDBOX">Paypal Sandbox</label>
+                      <div class="row">
+                        <div class="form-check col-md-6">
+                          <input type="radio" class="form-check-input" id="chkSandbox1" name="chkSandbox1" ng-value="1" ng-model="formData.paypalSandbox" ng-click="isEditingForm()">
+                          <label class="form-check-label" for="chkSandbox1" translate="VAL_ON">On</label>
+                        </div>
+                        <div class="form-check col-md-6">
+                          <input type="radio" class="form-check-input" id="chkSandbox2" name="chkSandbox2" ng-value="2" ng-model="formData.paypalSandbox" ng-click="isEditingForm()">
+                          <label class="form-check-label" for="chkSandbox2" translate="VAL_OFF">Off</label>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+
+              </section>
+
+              <section ng-show="formData.paymentGateway==2">
+
+                <div class="row mt-4">
+                  <div class="text-left mb-2 mt-4 col-md-12 col-12">
+                      <h5 translate="TIT_STRIPE">Stripe</h5>
+                      <hr class="mt-1">
+                  </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 col-md-12">
+                      <label for="txtStripeSecret" translate="LBL_STRIPE_SECRET_KEY">Stripe Secret Key</label>
+                      <input type="text" class="form-control" id="txtStripeSecret" name="txtStripeSecret"
+                             ng-model="formData.stripeSecret" minlength="3" maxlength="200"
+                             ng-change="isEditingForm()">
+                      <small class="text-muted" ng-bind-html="'LBL_STRIPE_INFO' | translate">To create account go to <a href='https://stripe.com/dashboard'>https://stripe.com/dashboard</a></small>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-12 col-md-12">
+                      <label for="txtStripePublishable" translate="LBL_STRIPE_PUBLISHABLE_KEY">Stripe Publishable Key</label>
+                      <input type="text" class="form-control" id="txtStripePublishable" name="txtStripePublishable"
+                             ng-model="formData.stripePublishable" minlength="3" maxlength="200"
+                             ng-change="isEditingForm()">
+                    </div>
+                </div>
+
+              </section>
+          </div>
+
+          <!--Footer-->
+          <div class="modal-footer mx-3 p-0 pt-3">
+            <button type="submit" class="btn btn-success ml-0" ng-disabled="!editForm" translate="BTN_SAVE_SETTINGS">Save Settings</button>
+          </div>
+
+      </div>
+
+    </form>
+  </div>
+</main>

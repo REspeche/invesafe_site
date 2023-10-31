@@ -1,0 +1,105 @@
+<div class="modal-header text-center">
+  <h4 class="modal-title w-100 font-weight-bold"><span translate="TIT_SIGNUP">Sign Up</span></h4>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close" data-ng-click="modalOptions.close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body modal-sign-up">
+
+  <!-- Form with header -->
+  <form id="frmSignup" name="frmSignup" ng-submit="signUp()" novalidate autocomplete="off">
+    <input autocomplete="false" name="hidden" type="text" style="display:none;">
+
+    <div class="row flex">
+
+      <div class="col-lg-12 col-md-12 col-sm-12" 
+        ng-class="{'pt-1':isMobile.any()}" ng-show="modalOptions.formDataSignUp.type>0">
+        <div class="black-text pt-1">
+          <span translate="TXT_INVESTOR">Sus datos personales se utilizarán para respaldar su experiencia en este sitio web, para administrar el acceso a su cuenta y para otros fines descritos en nuestra política de privacidad.</span>
+        </div>
+
+        <!-- Body -->
+        <div class="md-form">
+          <div class="form-row">
+            <div class="col">
+              <i class="fas fa-user-tag prefix grey-text"></i>
+              <input type="text" name="field-firstName" id="field-firstName" class="form-control"
+                ng-model="modalOptions.formDataSignUp.firstName" maxlength="100" required>
+              <label for="field-firstName" ng-class="{'active':modalOptions.formDataSignUp.firstName}" translate="LBL_FIRST_NAME">First Name</label>
+            </div>
+            <div class="col">
+              <input type="text" name="field-lastName" id="field-lastName" class="form-control"
+                ng-model="modalOptions.formDataSignUp.lastName" maxlength="100"  required>
+              <label for="field-lastName" ng-class="{'active':modalOptions.formDataSignUp.lastName}" translate="LBL_LAST_NAME">Last Name</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="md-form">
+          <div class="form-row">
+            <div class="col">
+              <i class="fas fa-phone prefix grey-text"></i>
+              <input type="text" id="field-phone" class="form-control" ng-model="modalOptions.formDataSignUp.phone" required maxlength="32">
+              <label for="field-email" ng-class="{'active':modalOptions.formDataSignUp.email}" translate="LBL_PHONE">Phone</label>
+            </div>
+            <div class="col">
+              <i class="fas fa-envelope prefix grey-text"></i>
+              <input type="email" id="field-email" class="form-control" ng-model="modalOptions.formDataSignUp.email" ng-disabled="blockEmail" required maxlength="45">
+              <label for="field-email" ng-class="{'active':modalOptions.formDataSignUp.email}" translate="LBL_EMAIL">Email</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="md-form">
+          <div class="form-row">
+            <div class="col">
+              <i class="fas fa-lock prefix grey-text"></i>
+              <input type="password" id="fieldPassword" name="fieldPassword" class="form-control ok-password mb-0" 
+                ng-class="(frmSignup.fieldPassword.$dirty && frmSignup.fieldPassword.$invalid) ? 'error' : ''"
+                ng-model="modalOptions.formDataSignUp.password" required maxlength="20" autocomplete="new-password" aria-autocomplete="list">
+              <label for="field-password" translate="LBL_PASS">Password</label>
+              <div class="badge password-count" ng-class="password.length > 7 ? 'bg-success' : 'bg-danger'" ng-cloak>{{ modalOptions.formDataSignUp.password | passwordCount:7 }}</div>
+              <div class="strength-meter">
+                <div class="strength-meter-fill" data-strength="{{passwordStrength}}"></div>
+              </div>
+            </div>
+            <div class="col">
+              <input type="password" id="field-passwordR" class="form-control" ng-model="modalOptions.formDataSignUp.passwordR" required maxlength="20">
+              <label for="field-passwordR" translate="LBL_CONF_PASS">Confirm Password</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="form-check pl-0">
+            <label translate="TXT_USA_CITIZEN">Are you a resident or citizen of the united states or its territories?</label>
+            <div class="row col-6" style="margin:0 auto;">
+              <div class="form-check col-md-6">
+                <input type="radio" class="form-check-input" id="chkAutoAppProject1" name="chkAutoAppProject1" ng-value="3" ng-model="modalOptions.formDataSignUp.usaCitizen">
+                <label class="form-check-label" for="chkAutoAppProject1" translate="VAL_YES">Yes</label>
+              </div>
+              <div class="form-check col-md-6">
+                <input type="radio" class="form-check-input" id="chkAutoAppProject2" name="chkAutoAppProject2" ng-value="2" ng-model="modalOptions.formDataSignUp.usaCitizen">
+                <label class="form-check-label" for="chkAutoAppProject2" translate="VAL_NO">No</label>
+              </div>
+            </div>
+            <div class="alert alert-warning mt-2" role="alert" ng-show="modalOptions.formDataSignUp.usaCitizen==3"><i class="fas fa-hand-paper mr-2"></i><span translate="INF_USA_CITIZEN">You cannot load a new project until you complete the profile data</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+  </form>
+  <!-- Form with header -->
+
+</div>
+<progress-bar ng-show="isBusy"></progress-bar>
+<div class="modal-footer">
+  <div class="col-md-3 col-md-6">
+      <button type="button" class="btn btn-pink btn-rounded z-depth-1a" data-ng-click="modalOptions.ok();" translate="BTN_SIGN_UP" ng-show="modalOptions.formDataSignUp.type>0">Sign Up</button>
+  </div>
+  <div class="col-md-6 pt-2">
+      <p class="font-small grey-text d-flex justify-content-end">{{ 'LNK_HAVE_SIGNIN' | translate }} <a href="#" ng-click="modalOptions.hideAndShowLogin(modalOptions)" class="blue-text ml-1">{{ 'LNK_WISH_SIGNIN2' | translate }}</a></p>
+  </div>
+</div>

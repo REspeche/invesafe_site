@@ -1,0 +1,59 @@
+<main ng-controller="securityController" ng-init="loadSecurity()" class="form mx-lg-5">
+    <div class="container-fluid">
+      
+      <!--First column-->
+      <div class="header">
+        <h2 translate="TIT_SECURITY">Security</h2>
+      </div>
+
+      <div ng-hide="loadForm" translate="LOADING">Loading...</div>
+      <div ng-show="loadForm">
+        <!--Two factor-->
+        <div class="row mt-4">
+          <div class="col-12">
+              <h4 translate="TIT_TWO_FACTOR"></h4>
+          </div>
+        </div>
+        
+        <hr/>
+
+        <div class="row mt-4">
+          <div class="col-8">
+              <h5 class="font-weight-bold"><i class="fas fa-user-clock mr-2"></i><span translate="TIT_GOOGLE_AUTHENTICATOR"></span> (<span translate="LBL_RECOMMENDED"></span>)</h5>
+              <p translate="TXT_GOOGLE_AUTHENTICATOR"></p>
+          </div>
+          <div class="col-4 text-right">
+              <div ng-show="listOptions.securityTwoFactor">
+                <button type="button" class="btn btn-info" translate="BTN_CHANGE">Change</button>
+                <button type="button" class="btn btn-danger" translate="BTN_REMOVE">Remove</button>
+              </div>
+              <div ng-hide="listOptions.securityTwoFactor">
+                <button type="button" class="btn btn-success" translate="BTN_CREATE" ng-click="clickItemMenu(30)">Create</button>
+              </div>
+          </div>
+        </div>
+
+        <!--Two factor-->
+        <div class="row mt-5">
+          <div class="col-12">
+              <h4 translate="TIT_ADVANCE_SECURITY"></h4>
+          </div>
+        </div>
+        
+        <hr/>
+
+        <div class="row mt-4">
+          <div class="col-8">
+              <h5 class="font-weight-bold"><i class="fas fa-sign-in-alt mr-2"></i><span translate="TIT_LOGIN_PASSWORD"></span></h5>
+              <p translate="TXT_LOGIN_PASSWORD"></p>
+          </div>
+          <div class="col-4 text-right">
+              <button type="button" class="btn btn-info" ng-click="clickItemMenu(7)" translate="BTN_CHANGE">Change</button>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </main>
+  

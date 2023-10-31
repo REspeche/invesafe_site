@@ -1,0 +1,327 @@
+<main ng-controller="profileController" ng-init="loadProfile()" class="form mx-lg-5">
+  <div class="container-fluid">
+    <div class="header">
+        <h2><span translate="TIT_PROFILE">Perfil</span></h2>
+    </div>
+
+    <div ng-hide="loadForm" translate="LOADING">Loading...</div>
+    <div class="alert alert-warning" role="alert" ng-show="userInfo.forceProfile"><i class="fas fa-exclamation-triangle mr-2"></i><span translate="MSG_INFO_PROFILE">Please, in order to access the different Dashboard options, you must complete your advanced profile.</span></div>
+
+    <form id="frmProfile" name="frmProfile" class="needs-validation" ng-submit="submitForm()" novalidate autocomplete="off" ng-show="loadForm">
+      <div class="card p-3">
+          <div class="card-body p-3">
+
+            <div class="row">
+              <div class="col-sm-12 col-md-6 col-lg-6 text-left mb-2 mt-4">
+                  <h5 translate="TIT_BASIC_DATA">Basic Data</h5>
+                  <hr class="mt-1">
+
+                  <div class="row">
+                    <div class="col-12 col-md-12">
+                      <label for="txtEmail">Email</label>
+                      <input type="email" class="form-control" id="txtEmail" name="txtEmail"
+                             ng-model="formData.email" readonly>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-12 col-md-12">
+                      <div class="form-row">
+                        <div class="col-6">
+                          <label for="txtFirstName" ng-class="{'active':formData.firstName}"><span translate="LBL_FIRST_NAME">First Name</span> *</label>
+                          <input type="text" name="txtFirstName" id="txtFirstName" class="form-control"
+                            ng-model="formData.firstName" maxlength="100" ng-change="writeName()" required>
+                        </div>
+                        <div class="col-6">
+                          <label for="txtLastName" ng-class="{'active':formData.lastName}"><span translate="LBL_LAST_NAME">Last Name</span> *</label>
+                          <input type="text" name="txtLastName" id="txtLastName" class="form-control"
+                            ng-model="formData.lastName" maxlength="100"  ng-change="writeName()" required>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-12 col-md-12">
+                      <div class="form-row">
+                        <div class="col-6">
+                          <label for="txtName"><span translate="LBL_USER_NAME">User Name</span> *</label>
+                          <input type="text" name="txtName" id="txtName" class="form-control" ng-model="formData.name" maxlength="100" 
+                            ng-change="isEditingForm()" required>
+                        </div>
+                        <div class="col-6">
+                          <label for="cmbTypeDetail">{{lblTypeDetail[formData.type-1]}} *</label>
+                          <select id="cmbTypeDetail" class="browser-default custom-select"
+                            ng-model="typeDetail" ng-change="isEditingForm()" required
+                            ng-options="item.id as item.label for item in lstTypeDetail">
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+               
+                  <div class="row style-border" ng-show="showCompany()">
+                    <div ng-class="{ 'col-12 col-md-12':formData.type!=3,  'col-6 col-md-6':formData.type==3}">
+                      <label for="form-company" ng-class="{'active':formData.company}"><span translate="LBL_BUSINESS_NAME">Business Name</span> *</label>
+                      <input type="search" id="form-company" class="form-control mdb-autocomplete" maxlength="100" ng-model="formData.company" ng-change="isEditingForm()">
+                      <button class="mdb-autocomplete-clear">
+                        <svg fill="#000000" height="24" viewBox="0 0 24 24" width="24" xmlns="https://www.w3.org/2000/svg">
+                          <path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z" />
+                          <path d="M0 0h24v24H0z" fill="none" />
+                        </svg>
+                      </button>
+                    </div>
+                    <div class="col-6 col-md-6" ng-show="formData.type==3">
+                      <label for="txtYourPosition" translate="LBL_YOUR_POSITION">Your Position</label>
+                      <input type="text" name="txtYourPosition" id="txtYourPosition" class="form-control" ng-model="formData.position" maxlength="45" ng-change="isEditingForm()">
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-12 col-md-12">
+                      <ng-file label="{{ 'LBL_AVATAR_IMAGE' | translate }}" value="formData.avatar" value-return="avatarNew" type="profile"
+                        link="formData.avatar" is-change="isEditingForm()"></ng-file>
+                    </div>
+                  </div>
+                  
+                  <section class="mt-4" ng-show="formData.type==2">
+                    <h5 translate="TIT_ADVANCE_DATA">Advance Data</h5>
+                    <hr class="mt-1">
+
+                    <div class="row">
+                      <div class="col-12 col-md-12">
+                        <label for="txtWebSite" translate="LBL_WEBSITE">Web Site</label>
+                        <input type="text" name="txtWebSite" id="txtWebSite" class="form-control" 
+                          ng-model="formData.webSite" maxlength="255" ng-change="isEditingForm()"
+                          placeholder="http://domain.com" 
+                          pattern="[Hh][Tt][Tt][Pp][Ss]?:\/\/(?:(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)(?:\.(?:[a-zA-Z\u00a1-\uffff0-9]+-?)*[a-zA-Z\u00a1-\uffff0-9]+)*(?:\.(?:[a-zA-Z\u00a1-\uffff]{2,}))(?::\d{2,5})?(?:\/[^\s]*)?">
+                        <small class="text-muted">http://domain.com</small>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-12 col-md-12">
+                        <label for="txtLinkedinProfile" translate="LBL_LINKEDIN_PRO">Linkedin Profile</label>
+                        <div class="input-group mb-2 mr-sm-2">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">www.linkedin.com/in/</div>
+                          </div>
+                          <input type="text" name="txtLinkedinProfile" id="txtLinkedinProfile" class="form-control" ng-model="formData.linkedinProfile" ng-change="isEditingForm()" maxlength="255">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-12 col-md-12">
+                        <label for="txtInstagramProfile" translate="LBL_INSTAGRAM_PRO">Instagram Profile</label>
+                        <div class="input-group mb-2 mr-sm-2">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">www.instagram.com/</div>
+                          </div>
+                          <input type="text" name="txtInstagramProfile" id="txtInstagramProfile" class="form-control" ng-model="formData.instagramProfile" ng-change="isEditingForm()" maxlength="255">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-12 col-md-12">
+                        <label for="txtFacebookProfile" translate="LBL_FACEBOOK_PRO">Facebook Profile</label>
+                        <div class="input-group mb-2 mr-sm-2">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">www.facebook.com/</div>
+                          </div>
+                          <input type="text" name="txtFacebookProfile" id="txtFacebookProfile" class="form-control" ng-model="formData.facebookProfile" ng-change="isEditingForm()" maxlength="255">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-12 col-md-12">
+                        <label for="txtTwitterProfile" translate="LBL_TWITTER_PRO">Twitter Profile</label>
+                        <div class="input-group mb-2 mr-sm-2">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">twitter.com/</div>
+                          </div>
+                          <input type="text" name="txtTwitterProfile" id="txtTwitterProfile" class="form-control" ng-model="formData.twitterProfile" ng-change="isEditingForm()" maxlength="255">
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-12 col-md-12">
+                        <label for="txtYoutubeProfile" translate="LBL_YOUTUBE_PRO">Youtube Profile</label>
+                        <div class="input-group mb-2 mr-sm-2">
+                          <div class="input-group-prepend">
+                            <div class="input-group-text">youtube.com/channel/</div>
+                          </div>
+                          <input type="text" name="txtYoutubeProfile" id="txtYoutubeProfile" class="form-control" ng-model="formData.youtubeProfile" ng-change="isEditingForm()" maxlength="255">
+                        </div>
+                      </div>
+                    </div>
+                  </section>
+
+              </div>
+              <div class="col-sm-12 col-md-6 col-lg-6 text-left mb-2 mt-4">
+                  <h5 translate="TIT_MAILING_ADDRESS">Mailing Address</h5>
+                  <hr class="mt-1">
+
+                  <div class="row">
+                    <div class="col-12 col-md-12">
+                      <label for="cmbCountry"><span translate="LBL_COUNTRY">Country</span> *</label>
+                      <select id="cmbCountry" class="browser-default custom-select"
+                        ng-model="formData.couId" ng-change="selectCountry(true)" ng-options="item.id as item.label for item in lstCountry" required>
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-12 col-md-12">
+                      <div class="form-row">
+                        <div class="col-6">
+                          <label for="cmbState"><span translate="LBL_STATE">State</span> *</label>
+                          <select id="cmbState" class="browser-default custom-select"
+                            ng-model="formData.staId" ng-change="isEditingForm()" ng-options="item.id as item.label for item in lstState" required>
+                          </select>
+                        </div>
+                        <div class="col-6">
+                          <label for="txtName"><span translate="LBL_CITY">City</span> *</label>
+                          <input type="text" name="txtCity" id="txtCity" class="form-control" ng-model="formData.city" maxlength="100" ng-change="isEditingForm()" required>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-12 col-md-12">
+                      <div class="form-row">
+                        <div class="col-8">
+                          <label for="txtAddress"><span translate="LBL_ADDRESS">Address</span> *</label>
+                          <input type="text" name="txtAddress" id="txtAddress" class="form-control" ng-model="formData.address" maxlength="255" ng-change="isEditingForm()" required>
+                        </div>
+                        <div class="col-4">
+                          <label for="txtZip"><span translate="LBL_ZIP">ZIP</span> *</label>
+                          <input type="text" name="txtZip" id="txtZip" class="form-control" 
+                          ng-model="formData.zip" maxlength="10" ng-change="isEditingForm()" required>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-12 col-md-12">
+                      <div class="form-row">
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                          <label for="txtTimeZone"><span translate="LBL_TIME_ZONE">Time Zone</span> *</label>
+                          <select id="cmbTimeZone" class="browser-default custom-select"
+                            ng-model="formData.tmzId" ng-change="isEditingForm()" ng-options="item.id as item.label for item in lstTimeZones" required>
+                          </select>
+                        </div>
+                        <div class="col-lg-6 col-md-6 col-sm-12">
+                          <label for="txtPhone"><span translate="LBL_PHONE">Phone</span> *</label>
+                          <input type="text" name="txtPhone" id="txtPhone" class="form-control" ng-model="formData.phone" maxlength="32" ng-change="isEditingForm()" required>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <h5 class="mt-4" translate="TIT_BILLING_ADDRESS">Billing Address</h5>
+                  <hr class="mt-1">
+
+                  <div class="row">
+                    <div class="col-12 col-md-12">
+                      <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" ng-model="formData.sameMailingBilling" 
+                        ng-checked="formData.sameMailingBilling" id="chkSameMailingAddress" ng-change="clickSameAddress()">
+                        <label class="custom-control-label" for="chkSameMailingAddress" translate="LBL_SAME_MAILING_ADDRESS"></label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-12 col-md-12">
+                      <div class="form-row">
+                        <div class="col-6">
+                          <label for="txtFirstNameBilling"><span translate="LBL_FIRST_NAME">First Name</span></label>
+                          <input type="text" name="txtFirstNameBilling" id="txtFirstNameBilling" class="form-control"
+                            ng-model="formData.firstNameBilling" maxlength="100"
+                            ng-change="isEditingFormBilling()">
+                        </div>
+                        <div class="col-6">
+                          <label for="txtLastNameBilling"><span translate="LBL_LAST_NAME">Last Name</span></label>
+                          <input type="text" name="txtLastNameBilling" id="txtLastNameBilling" class="form-control"
+                            ng-model="formData.lastNameBilling" maxlength="100" 
+                            ng-change="isEditingFormBilling()">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-12 col-md-12">
+                      <label for="cmbCountryBilling"><span translate="LBL_COUNTRY">Country</span></label>
+                      <select id="cmbCountryBilling" class="browser-default custom-select"
+                        ng-model="formData.couIdBilling" ng-change="selectCountryBilling(true)" 
+                        ng-options="item.id as item.label for item in lstCountry">
+                      </select>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-12 col-md-12">
+                      <div class="form-row">
+                        <div class="col-6">
+                          <label for="cmbStateBilling"><span translate="LBL_STATE">State</span></label>
+                          <select id="cmbStateBilling" class="browser-default custom-select"
+                            ng-model="formData.staIdBilling" ng-change="isEditingFormBilling()" 
+                            ng-options="item.id as item.label for item in lstStateBilling">
+                          </select>
+                        </div>
+                        <div class="col-6">
+                          <label for="txtCityBilling"><span translate="LBL_CITY">City</span></label>
+                          <input type="text" name="txtCityBilling" id="txtCityBilling" class="form-control" 
+                          ng-model="formData.cityBilling" maxlength="100" ng-change="isEditingFormBilling()">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-12 col-md-12">
+                      <div class="form-row">
+                        <div class="col-8">
+                          <label for="txtAddressBilling"><span translate="LBL_ADDRESS">Address</span></label>
+                          <input type="text" name="txtAddressBilling" id="txtAddressBilling" class="form-control" 
+                          ng-model="formData.addressBilling" maxlength="255" ng-change="isEditingFormBilling()">
+                        </div>
+                        <div class="col-4">
+                          <label for="txtZipBilling"><span translate="LBL_ZIP">ZIP</span></label>
+                          <input type="text" name="txtZipBilling" id="txtZipBilling" class="form-control" 
+                          ng-model="formData.zipBilling" maxlength="10" ng-change="isEditingFormBilling()">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="row">
+                    <div class="col-12 col-md-12">
+                          <label for="txtPhoneBilling"><span translate="LBL_PHONE">Phone</span></label>
+                          <input type="text" name="txtPhoneBilling" id="txtPhoneBilling" class="form-control" 
+                          ng-model="formData.phoneBilling" maxlength="32" ng-change="isEditingFormBilling()">
+                    </div>
+                  </div>
+              </div>
+              
+            </div>
+
+            <small class="text-muted" translate="MSG_FIELDS_MANDATORY">Fields marked with * are mandatory</small>
+          </div>
+
+          <!--Footer-->
+          <div class="modal-footer mx-3 p-0 pt-3" ng-hide="paramAction=='view'">
+            <button type="submit" class="btn btn-success ml-0" ng-disabled="!editForm" translate="BTN_SAVE_PROFILE">Save Profile</button>
+            <div class="options text-center text-md-right mt-1 ml-auto"></div>
+          </div>
+      </div>
+    </form>
+  </div>
+</main>

@@ -1,0 +1,227 @@
+<main ng-controller="panelController" ng-init="loadPanel()" class="home mx-lg-5">
+  <!-- start: PAGE -->
+  <div class="container-fluid">
+
+      <div class="row mb-3">
+
+          <div class="col-lg-3 col-6 mb-3" ng-show="userInfo.role==2">
+              <div class="card card-cascade cascading-admin-card">
+                  <div class="admin-up">
+                      <i class="fas fa-money-bill-alt  blue darken-3"></i>
+                      <div class="data">
+                          <p translate="LBL_DONATIONS">Donations</p>
+                          <h3>{{lstCounters.donatios | customCurrency}}</h3>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <div class="col-lg-3 col-6 mb-3" ng-show="userInfo.type==1">
+              <div class="card card-cascade cascading-admin-card">
+                  <div class="admin-up">
+                      <i class="fas fa-dollar-sign deep-purple darken-4"></i>
+                      <div class="data">
+                          <p translate="LBL_DEALS">Deals</p>
+                          <h3>{{lstCounters.deals | customCurrency}}</h3>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <div class="col-lg-3 col-6 mb-3" ng-show="userInfo.role==2">
+              <div class="card card-cascade cascading-admin-card">
+                  <div class="admin-up">
+                      <i class="fas fa-users indigo"></i>
+                      <div class="data">
+                          <p translate="LBL_MEMBERS_ACTIVE">Active Members</p>
+                          <h3>{{lstCounters.members}}</h3>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <div class="col-lg-3 col-6 mb-3" ng-show="userInfo.type==1">
+              <div class="card card-cascade cascading-admin-card">
+                  <div class="admin-up">
+                      <i class="fas fa-edit purple"></i>
+                      <div class="data">
+                          <p translate="LBL_PROJECTS">Projects</p>
+                          <h3>{{lstCounters.projects}}</h3>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <div class="col-lg-3 col-6 mb-3" ng-show="userInfo.type==3">
+              <div class="card card-cascade cascading-admin-card">
+                  <div class="admin-up">
+                      <i class="fas fa-umbrella blue"></i>
+                      <div class="data">
+                          <p translate="LBL_PROJECTS_SPONSORED">Sponsored Projects</p>
+                          <h3>{{lstCounters.projectsSoponsored}}</h3>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+          <div class="col-lg-3 col-6 mb-3" ng-show="userInfo.type==3">
+              <div class="card card-cascade cascading-admin-card">
+                  <div class="admin-up">
+                      <i class="fas fa-thumbs-up purple"></i>
+                      <div class="data">
+                          <p translate="LBL_PROJECTS_APPROVED">Approved Projects</p>
+                          <h3>{{lstCounters.projectsApproved}}</h3>
+                      </div>
+                  </div>
+              </div>
+          </div>
+
+      </div>
+
+      <!--Section: Main Chart-->
+      <section class="section" ng-show="lstLast30Deals.length>0">
+
+          <!--Main row-->
+          <div class="row">
+
+              <div class="col-md-12 mt-3">
+
+                <!--Cascading element-->
+                <div class="view right primary-color">
+                    <!--Main chart-->
+                    <canvas id="dealsLast30Days" height="400px"></canvas>
+                </div>
+                <!--/Cascading element-->
+
+              </div>
+
+          </div>
+          <!--/Main row-->
+
+      </section>
+      <!--/Section: Main chart-->
+
+      <section class="section section-intro">
+        <div class="row">
+
+            <div class="col-12 col-lg-6 mb-3" ng-show="userInfo.role==2">
+
+              <!-- Card -->
+              <div class="card card-cascade narrower" ng-show="lstLastMembers.length>0">
+                  <!-- Card image -->
+                  <div class="view view-cascade gradient-card-header purple-gradient">
+
+                    <!-- Title -->
+                    <h2 class="card-header-title">Latest Members</h2>
+
+                  </div>
+
+                  <!--Card content-->
+                  <div class="card-block">
+
+                    <!--Panel 1-->
+                    <div class="tab-pane fade show active" id="panel83" role="tabpanel">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                        <th class="d-none d-sm-block d-lg-table-cell" translate="COL_ID">ID</th>
+                                        <th translate="COL_USER">User</th>
+                                        <th translate="COL_TYPE">Type</th>
+                                        <th translate="COL_ROLE">Role</th>
+                                        <th class="d-none d-sm-block d-lg-table-cell" translate="COL_DATE">Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in lstLastMembers">
+                                        <th class="d-none d-sm-block d-lg-table-cell" scope="row">{{item.id}}</th>
+                                        <td>{{item.name}}</td>
+                                        <td>
+                                          <badge-status id="{{item.type}}" type="userType"></badge-status>
+                                        </td>
+                                        <td>
+                                          <badge-status id="{{item.role}}" type="userRole"></badge-status>
+                                        </td>
+                                        <td class="d-none d-sm-block d-lg-table-cell">{{item.date}}</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!--/.Panel 1-->
+
+                  </div>
+                  <!--/.Card content-->
+              </div>
+              <!-- /.Card -->
+
+            </div>
+            
+            <div class="col-12 col-lg-6 mb-3" ng-show="userInfo.type==1">
+
+              <!-- Card -->
+              <div class="card card-cascade narrower" ng-show="lstRecentProjects.length>0">
+                  <!-- Card image -->
+                  <div class="view view-cascade gradient-card-header blue-gradient">
+
+                    <!-- Title -->
+                    <h2 class="card-header-title">Recent Projects</h2>
+
+                  </div>
+
+                  <!--Card content-->
+                  <div class="card-block">
+
+                    <!--Panel 1-->
+                    <div class="tab-pane fade show active" id="panel83" role="tabpanel">
+                        <div class="table-responsive">
+                            <table class="table">
+                                <thead>
+                                    <tr>
+                                      <th class="d-none d-sm-block d-lg-table-cell" translate="COL_ID">ID</th>
+                                      <th translate="COL_TITLE">Title</th>
+                                      <th class="d-none d-sm-block d-lg-table-cell" translate="COL_PROGRESS">Progress</th>
+                                      <th translate="COL_STATUS">Status</th>
+                                      <th class="d-none d-sm-block d-lg-table-cell" translate="COL_DATE">Date</th>
+                                      <th class="text-center" translate="COL_ACTIONS">Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr ng-repeat="item in lstRecentProjects">
+                                      <td class="d-none d-sm-block d-lg-table-cell">{{item.id}}</td>
+                                      <td>{{item.title}}
+                                        <a type="button" class="text-primary ml-2" title="Detalle" ng-click="clickViewDetailProject(item)" data-toggle="tooltip"><i class="fas fa-search-plus"></i></a>
+                                      </td>
+                                      <td class="d-none d-sm-block d-lg-table-cell"><badge-status id="{{item.progress}}" type="progress"></badge-status></td>
+                                      <td>
+                                        <badge-status id="{{item.status}}" type="project" ng-show="(userInfo.role==1 && item.status>2) || userInfo.role==2"></badge-status>
+                                        <div class="custom-control custom-switch" ng-hide="(userInfo.role==1 && item.status>2) || userInfo.role==2 || !item.isMe">
+                                          <input type="checkbox" class="custom-control-input" ng-checked="item.status==2" id="chk{{item.id}}" ng-click="changeStatusProject(item)">
+                                          <label class="custom-control-label" for="chk{{item.id}}">{{(item.status==1)?('VAL_DRAFT' | translate):('VAL_PENDING' | translate)}}</label>
+                                        </div>
+                                      </td>
+                                      <td class="d-none d-sm-block d-lg-table-cell">{{item.date}}</td>
+                                      <td class="buttons text-center" ng-show="item.isMe || userInfo.role==2">
+                                        <a class="icons-sm text-primary" ng-click="clickEditProject(item)" title="{{ 'BTN_EDIT' | translate }}"><i class="fa-edit" ng-class="{'fas':item.status!=3,'far':item.status==3}"></i></a>
+                                        <a class="icons-sm ml-2 text-danger" ng-click="clickRemoveProject(item)" title="{{ 'BTN_DELETE' | translate }}"><i class="fas fa-trash"></i></a>
+                                      </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                    <!--/.Panel 1-->
+
+                  </div>
+                  <!--/.Card content-->
+              </div>
+              <!-- /.Card -->
+
+            </div>
+
+        </div>
+      </section>
+
+  </div>
+  <!-- end: PAGE -->
+</main>

@@ -1,0 +1,42 @@
+<main ng-controller="settingsPagesController" elem-ready="loadPages()" class="list mx-lg-5">
+  <div class="container-fluid">
+    <!--First column-->
+    <div class="header mb-3">
+        <h2 translate="TIT_PAGES">Pages</h2>
+    </div>
+
+    <!--Table-->
+    <div ng-hide="loadList" translate="LOADING">Loading...</div>
+    <div class="alert alert-primary" role="alert" ng-show="pages.length==0"><span translate="INF_EMPTY_PAGE">You have not yet loaded a page</span> (<a href="#" ng-click="clickNew()" translate="LNK_NEW_PAGE">New Page</a>).</div>
+    <table class="table table-bordered table-hover" ng-hide="pages.length==0">
+        <!--Table head-->
+        <thead class="mdb-color darken-1">
+            <tr class="text-white">
+                <th class="d-none d-sm-block d-lg-table-cell" translate="COL_ID">ID</th>
+                <th translate="COL_TITLE">Title</th>
+                <th translate="COL_FILE">File</th>
+                <th class="text-center" translate="COL_ACTIONS">Actions</th>
+            </tr>
+        </thead>
+        <!--Table head-->
+        <!--Table body-->
+        <tbody class="grid-list">
+            <tr ng-repeat="item in pages">
+                <td class="d-none d-sm-block d-lg-table-cell">{{item.id}}</td>
+                <td>{{item.title}}</td>
+                <td>
+                  {{item.file}}
+                  <a type="button" class="text-primary ml-2" title="Detalle" ng-click="clickViewPage(item)" data-toggle="tooltip"><i class="fas fa-search-plus"></i></a>
+                </td>
+                <td class="buttons text-center">
+                  <a class="icons-sm text-primary" ng-click="clickEdit(item)" title="{{ 'BTN_EDIT' | translate }}"><i class="fas fa-edit"></i></a>
+                  <a class="icons-sm ml-2 text-danger" ng-click="clickRemove(item)" title="{{ 'BTN_DELETE' | translate }}"><i class="fas fa-trash"></i></button>
+                </td>
+            </tr>
+        </tbody>
+        <!--Table body-->
+
+    </table>
+    <!--Table-->
+  </div>
+</main>

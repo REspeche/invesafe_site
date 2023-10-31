@@ -1,0 +1,45 @@
+<div class="modal-header text-center">
+    <h4 class="modal-title w-100 font-weight-bold">{{ 'TIT_CHANGE_PASS' | translate}}</h4>
+    <button type="button" class="close" data-dismiss="modal" aria-label="Close" data-ng-click="modalOptions.close()">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="modal-body">
+  
+    <form id="frmChangePass" name="frmLogin" autocomplete="chrome-off" novalidate>
+  
+        <p class="text-muted text-center" translate="TXT_CHANGE_PASS">Type the new password to entry the system.</p>
+
+        <!-- Body -->
+        <div class="md-form">
+          <div class="form-row">
+            <div class="col">
+              <i class="fas fa-lock prefix grey-text"></i>
+              <input type="password" id="fieldPassword" name="fieldPassword" class="form-control ok-password mb-0" 
+                ng-class="(frmChangePass.fieldPassword.$dirty && frmChangePass.fieldPassword.$invalid) ? 'error' : ''"
+                ng-model="modalOptions.formDataChange.password" required maxlength="20">
+              <label for="field-pass" translate="LBL_PASS">Password</label>
+              <div class="badge password-count" ng-class="password.length > 7 ? 'bg-success' : 'bg-danger'" ng-cloak>{{ modalOptions.formDataChange.password | passwordCount:7 }}</div>
+              <div class="strength-meter">
+                <div class="strength-meter-fill" data-strength="{{passwordStrength}}"></div>
+              </div>
+            </div>
+            <div class="col">
+              <input type="password" id="field-passR" class="form-control" ng-model="modalOptions.formDataChange.passwordR" required maxlength="20">
+              <label for="field-passR" translate="LBL_CONF_PASS">Confirm Password</label>
+            </div>
+          </div>
+        </div>
+
+    </form>
+  
+  </div>
+  <progress-bar ng-show="isBusy"></progress-bar>
+  <div class="modal-footer">
+    <div class="col-md-3 col-md-6">
+      <button type="button" class="btn btn-pink btn-rounded z-depth-1a" data-ng-click="modalOptions.ok();">{{ 'BTN_CHANGE' | translate}}</button>
+    </div>
+    <div class="col-md-6">
+    </div>
+  </div>
+  

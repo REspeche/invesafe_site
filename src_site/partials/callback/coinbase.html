@@ -1,0 +1,23 @@
+<main ng-controller="coinbaseController" ng-init="loadCoinbase()">
+
+    <banner-page title="{{'CHECKOUT_SLIDE_TITLE' | translate}}" text="{{'CHECKOUT_SLIDE_TEXT' | translate}}" image="back_checkout"/>
+
+    <div class="container">
+        <div class="container py-4">
+
+          <p ng-show="isProcessing"><span translate="INF_PROCESSING_ORDER">Processing order</span>...</p>
+
+          <div ng-show="orderFail">
+              <div class="alert alert-danger mt-2" role="alert"><i class="fas fa-info-circle mr-2"></i>{{ 'MSG_COD315' | translate }}</div>
+              <div class="row my-3">
+                  <div class="col-12 text-center">
+                      <button type="button" class="btn btn-outline-primary btn-rounded"
+                      data-mdb-ripple-color="dark" ng-click="clickAction(106)" translate="BTN_RETURN_CART"></button>
+                  </div>
+              </div>
+          </div>
+
+        </div>
+    </div>
+
+</main>

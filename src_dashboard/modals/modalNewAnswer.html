@@ -1,0 +1,30 @@
+<div class="modal-header text-center">
+  <h4 class="modal-title w-100 font-weight-bold" translate="TIT_QUESION_ANSWER">Question/Answer</h4>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close" data-ng-click="modalOptions.close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body form">
+  <form id="frmAnswer" name="frmAnswer" class="needs-validation" novalidate autocomplete="off">
+    <div class="row">
+        <div class="col-12 col-md-12">
+          <p>{{modalOptions.formDataAnswer.question}}</p>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12 col-md-12">
+          <label for="txtAnswer" translate="LBL_ANSWER">Answer</label>
+          <textarea id="txtAnswer" class="form-control rounded-0" rows="4" ng-model="modalOptions.formDataAnswer.answer" ng-change="isEditingFormDeal()"></textarea>
+        </div>
+    </div>
+
+  </form>
+</div>
+<progress-bar ng-show="isBusy"></progress-bar>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary ml-0" data-ng-click="modalOptions.ok();" translate="BTN_RESPOND">Respond</button>
+    <div class="options text-center text-md-right mt-1 ml-auto">
+      <p class="font-small grey-text d-flex justify-content-end"><a href="#" class="blue-text" ng-click="modalOptions.close();" translate="BTN_CANCEL">Cancel</a></p>
+    </div>
+</div>

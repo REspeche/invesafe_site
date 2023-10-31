@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:ror="http://rorweb.com/0.1/" >
+<channel>
+  <title>ROR Sitemap for https://invesafe.com/</title>
+  <link>https://invesafe.com/</link>
+
+     <item>
+          <link>https://invesafe.com/</link>
+          <title>INVESAFE - Real estate crowdfunding platform</title>
+          <description>INVESAFE is a web platform, focused exclusively on Internet of Things projects. The term Internet of Things (IOT) refers to the growing number of smart products connected to the Internet. The technological solutions have become systems that integrate electronic components, sensors, storage systems, microprocessors and software developments. Connect all devices or objects to the network opened up a new era of possibilities that offers opportunities for the creation of functionalities that interact with these devices or "objects". INVESAFE was born in 2020 with the aim of promoting the creation, development, diffusion and commercialization of Internet  of Things projects, mainly supporting entrepreneurs.</description>
+          <ror:updatePeriod></ror:updatePeriod>
+          <ror:sortOrder>0</ror:sortOrder>
+          <ror:resourceOf>sitemap</ror:resourceOf>
+     </item>
+</channel>
+</rss>

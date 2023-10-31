@@ -1,0 +1,27 @@
+<main ng-controller="privacyPolicyController" ng-init="loadPrivacyPolicy()">
+
+  <banner-page title="{{'PRIVACY_SLIDE_TITLE' | translate}}" text="{{'PRIVACY_SLIDE_TEXT' | translate}}" image="back_legal" size="xs" align="start"/>
+
+  <!--Section: Privacidad -->
+  <section class="p-50 privacy">
+      <div class="container">
+          <div class="row">
+              <div class="col-12 col-md-2 mb-5">
+                  <nav class="nav flex-md-column">
+                      <a href="#" ng-click="clickAction(102)" class="active nav-link bold" translate="MENU_TERMS">Términos y condiciones</a>
+                  </nav>
+                  <hr class="short">
+                  <nav class="nav flex-md-column">
+                      <a href="#" ng-click="clickAction(103)" class="active nav-link bold" translate="MENU_PRIVACY">Política de privacidad</a>
+                  </nav>
+              </div>
+              <div class="col">
+                <div ng-hide="loadPage" translate="LOADING">Loading...</div>
+                <div ng-bind-html="customHtml | unsafe"></div>
+              </div>
+          </div>
+      </div>
+  </section>
+  <!--Section: Privacidad -->
+
+</main>

@@ -1,0 +1,51 @@
+<main ng-controller="settingsSponsorsController" elem-ready="loadSponsors()" class="list mx-lg-5">
+    <div class="container-fluid">
+      <!--First column-->
+      <div class="header mb-3">
+          <h2 translate="TIT_SPONSORS">Sponsors</h2>
+          <a type="button" class="btn-floating pink"><i class="fas fa-plus" aria-hidden="true" ng-click="clickNew()"></i></a>
+      </div>
+  
+      <!--Table-->
+      <div ng-hide="loadList" translate="LOADING">Loading...</div>
+      <div class="alert alert-primary" role="alert" ng-show="sponsors.length==0"><span translate="INF_EMPTY_PAGE">You have not yet loaded a sponsor</span> (<a href="#" ng-click="clickNew()" translate="LNK_NEW_SPONSOR">New Sponsor</a>).</div>
+      <table class="table table-bordered table-hover" ng-hide="sponsors.length==0">
+          <!--Table head-->
+          <thead class="mdb-color darken-1">
+              <tr class="text-white">
+                  <th class="d-none d-sm-block d-lg-table-cell" translate="COL_ID">ID</th>
+                  <th translate="COL_NAME">Name</th>
+                  <th translate="COL_STATUS">Status</th>
+                  <th class="text-center" translate="COL_ACTIONS">Actions</th>
+              </tr>
+          </thead>
+          <!--Table head-->
+          <!--Table body-->
+          <tbody class="grid-list">
+              <tr ng-repeat="item in sponsors">
+                  <td class="d-none d-sm-block d-lg-table-cell">{{item.id}}</td>
+                  <td>
+                      {{item.name}}
+                      <a class="text-primary ml-2" title="{{item.website}}" href="{{item.website}}" target="_blank" data-toggle="tooltip">
+                        <i class="fas fa-globe-americas"></i>
+                      </a>
+                  </td>
+                  <td>
+                    <div class="custom-control custom-switch">
+                      <input type="checkbox" class="custom-control-input" ng-checked="item.mode==1" id="chk{{item.id}}" ng-click="activeCategory(item)">
+                      <label class="custom-control-label" for="chk{{item.id}}">{{(item.mode==1)?('VAL_ON' | translate):('VAL_OFF' | translate)}}</label>
+                    </div>
+                  </td>
+                  <td class="buttons text-center">
+                    <a class="icons-sm text-primary" ng-click="clickEdit(item)" title="{{ 'BTN_EDIT' | translate }}"><i class="fas fa-edit"></i></a>
+                    <a class="icons-sm ml-2 text-danger" ng-click="clickRemove(item)" title="{{ 'BTN_DELETE' | translate }}"><i class="fas fa-trash"></i></button>
+                  </td>
+              </tr>
+          </tbody>
+          <!--Table body-->
+  
+      </table>
+      <!--Table-->
+    </div>
+  </main>
+  

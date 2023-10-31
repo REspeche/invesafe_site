@@ -1,0 +1,245 @@
+<main ng-controller="checkoutController" ng-init="loadCheckout()">
+
+  <banner-page title="{{'CHECKOUT_SLIDE_TITLE' | translate}}" text="{{'CHECKOUT_SLIDE_TEXT' | translate}}" image="back_checkout"/>
+
+  <section class="p-100" id="checkout">
+    <div class="container">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <h5 translate="TIT_BILLING_ADDRESS">Billing Address</h5>
+                    <hr class="mt-1">
+
+                    <div class="row mb-3">
+                      <div class="col-12 col-md-12">
+                        <div class="custom-control custom-switch">
+                          <input type="checkbox" class="custom-control-input" ng-model="formData.sameMailingBilling"
+                          ng-checked="formData.sameMailingBilling" id="chkSameMailingAddress" ng-change="clickSameAddress()">
+                          <label class="custom-control-label" for="chkSameMailingAddress" translate="LBL_SAME_MAILING_ADDRESS"></label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-12 col-md-12">
+                        <div class="form-row">
+                          <div class="col-6">
+                            <label for="txtFirstNameBilling"><span translate="LBL_FIRST_NAME">First Name</span></label>
+                            <input type="text" name="txtFirstNameBilling" id="txtFirstNameBilling" class="form-control"
+                              ng-model="formData.firstNameBilling" maxlength="100"
+                              ng-change="isEditingFormBilling()">
+                          </div>
+                          <div class="col-6">
+                            <label for="txtLastNameBilling"><span translate="LBL_LAST_NAME">Last Name</span></label>
+                            <input type="text" name="txtLastNameBilling" id="txtLastNameBilling" class="form-control"
+                              ng-model="formData.lastNameBilling" maxlength="100"
+                              ng-change="isEditingFormBilling()">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-12 col-md-12">
+                        <label for="cmbCountryBilling"><span translate="LBL_COUNTRY">Country</span></label>
+                        <select id="cmbCountryBilling" class="browser-default custom-select"
+                          ng-model="formData.couIdBilling" ng-change="selectCountryBilling(true)"
+                          ng-options="item.id as item.label for item in lstCountry">
+                        </select>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-12 col-md-12">
+                        <div class="form-row">
+                          <div class="col-6">
+                            <label for="cmbStateBilling"><span translate="LBL_STATE">State</span></label>
+                            <select id="cmbStateBilling" class="browser-default custom-select"
+                              ng-model="formData.staIdBilling" ng-change="isEditingFormBilling()"
+                              ng-options="item.id as item.label for item in lstStateBilling">
+                            </select>
+                          </div>
+                          <div class="col-6">
+                            <label for="txtCityBilling"><span translate="LBL_CITY">City</span></label>
+                            <input type="text" name="txtCityBilling" id="txtCityBilling" class="form-control"
+                            ng-model="formData.cityBilling" maxlength="100" ng-change="isEditingFormBilling()">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-12 col-md-12">
+                        <div class="form-row">
+                          <div class="col-8">
+                            <label for="txtAddressBilling"><span translate="LBL_ADDRESS">Address</span></label>
+                            <input type="text" name="txtAddressBilling" id="txtAddressBilling" class="form-control"
+                            ng-model="formData.addressBilling" maxlength="255" ng-change="isEditingFormBilling()">
+                          </div>
+                          <div class="col-4">
+                            <label for="txtZipBilling"><span translate="LBL_ZIP">ZIP</span></label>
+                            <input type="text" name="txtZipBilling" id="txtZipBilling" class="form-control"
+                            ng-model="formData.zipBilling" maxlength="10" ng-change="isEditingFormBilling()">
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-12 col-md-12">
+                            <label for="txtPhoneBilling"><span translate="LBL_PHONE">Phone</span></label>
+                            <input type="text" name="txtPhoneBilling" id="txtPhoneBilling" class="form-control"
+                            ng-model="formData.phoneBilling" maxlength="32" ng-change="isEditingFormBilling()">
+                      </div>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-md-6 col-lg-6">
+                    <h5 translate="TIT_ADDITIONAL_INFORMATION">Additional Information</h5>
+                    <hr class="mt-1">
+
+                    <div class="row mb-3">
+                      <div class="col-12 col-md-12">
+                        <div class="form-check pl-0" ng-hide="modalOptions.showValidateMsg">
+                            <input class="form-check-input" type="checkbox" value="1" id="giftCheck" ng-model="formData.isGift" required>
+                            <label class="form-check-label grey-text" for="giftCheck">{{ 'LBL_IS_GIFT' | translate }}</label>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-12 col-md-12">
+                        <div class="form-row">
+                          <div class="col-12">
+                            <label><span translate="LBL_ORDER_NOTES">Order Notes</span></label> <small class="text-muted">(<span translate="LBL_OPTIONAL">Optional</span>)</small>
+                             <textarea class="form-control" id="txtNotes" name="txtNotes" maxlength="200" rows="3"
+                                  ng-model="formData.notes" style="resize: none;max-height: 150px;"></textarea>
+                            <small class="text-muted">{{( 'LBL_ORDER_NOTES_INFO' | translate : { 'count' : formData.notes.length } )}}</small>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+
+            <section ng-show="lstItems.length">
+                <div class="row mt-4">
+                    <div class="col-sm-12 col-md-12 col-lg-12">
+                        <h5 class="mt-4" translate="TIT_YOUR_ORDER">Your Order</h5>
+                        <hr class="mt-1">
+
+                        <div class="row mt-2 header-table px-2">
+                            <div class="col-lg-10">
+                                <span>Product</span>
+                            </div>
+                            <div class="col-lg-2">
+                                <span>Subtotal</span>
+                            </div>
+                        </div>
+                        <div class="card mt-2 px-2">
+                            <div class="row flex item-cart" ng-repeat="item in lstItems">
+                                <div class="col-lg-10">
+                                    <span>{{item.title}}</span>
+                                </div>
+                                <div class="col-lg-2">
+                                    <span>{{(item.assetTokenPrice + item.fees) * item.tokenPurchase | customCurrency}}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row mt-3 pr-3">
+                            <div class="col-lg-10">
+                                <h5>Total</h5>
+                            </div>
+                            <div class="col-lg-2">
+                                <h5 class="num-total">{{sumTotalCart() | customCurrency}}</h5>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <div class="row mt-4 card-pay">
+              <div class="col-sm-12 col-md-12 col-lg-12">
+                <div class="card-body p-3">
+
+                  <div class="row">
+                    <div class="col-lg-12 col-md-12">
+                      <label class="title" translate="LBL_MODE_PAY">Pay Mode</label>
+                      <div class="row mt-2">
+                        <div class="form-check col-12">
+                          <input type="radio" class="form-check-input" id="chkMode2" name="chkMode2"
+                            ng-value="1" ng-model="formData.modePay" ng-click="isEditingForm()">
+                          <label class="form-check-label text-uppercase" for="chkMode2"
+                          title="{{'INF_PAY_CRYPTO' | translate}}" data-toggle="tooltip" data-placement="bottom">
+                            <span translate="VAL_PAY_CRYPTO">Pay with cryptocurrency</span>
+                            <img id="coinbase-list-icons" src="/content/assets/img/coinbase-support.svg" alt="Pay with cryptocurrency">
+                          </label>
+                        </div>
+                      </div>
+                      <div class="row mt-2">
+                        <div class="form-check col-12">
+                          <input type="radio" class="form-check-input" id="chkMode1" name="chkMode1" ng-value="2" ng-model="formData.modePay" ng-click="isEditingForm()">
+                          <label class="form-check-label text-uppercase" for="chkMode1" translate="VAL_PAY_CREDIT"
+                          title="{{'INF_PAY_CREDIT' | translate}}" data-toggle="tooltip" data-placement="bottom">Pay with credit or debit</label>
+
+                          <div class="row mt-3 mx-1" ng-show="formData.modePay==2">
+                            <div class="col-lg-6 col-md-8 col-sm-12 bg-info box-card-info pt-2 pb-3">
+                                <label class="form-check-label font-weight-bold mb-2">Pay securely using your credit card.</label>
+                                <div class="row">
+                                  <div class="col-12">
+                                        <label class="form-check-label" for="txtCardNumber"><span translate="LBL_CARD_NUMBER">Card Number</span></label>
+                                        <input type="text" name="txtCardNumber" id="txtCardNumber" class="form-control"
+                                        ng-model="formDataCard.number" maxlength="16">
+                                  </div>
+                                </div>
+
+                                <div class="row mt-2">
+                                  <div class="col-12">
+                                    <div class="form-row">
+                                      <div class="col-8">
+                                        <label class="form-check-label" for="txtCardExpiration"><span><span translate="LBL_CARD_EXPIRATION">Expiration</span> (MM/YY)</span></label>
+                                        <input type="text" name="txtCardExpiration" id="txtCardExpiration" class="form-control"
+                                        ng-model="formDataCard.expiration" maxlength="5">
+                                      </div>
+                                      <div class="col-4">
+                                        <label class="form-check-label" for="txtCardCode"><span translate="LBL_CARD_SECURITY_CODE">Card Security Code</span></label>
+                                        <input type="text" name="txtCardCode" id="txtCardCode" class="form-control"
+                                        ng-model="formDataCard.code" maxlength="3">
+                                      </div>
+                                    </div>
+                                  </div>
+                                </div>
+
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      <hr/>
+                      <small translate="TXT_PERSONAL_INFO_ALERT"></small>
+                      <div class="row mt-4">
+                        <div class="col-12 col-md-12 text-right">
+                          <div class="form-check pl-0" ng-hide="modalOptions.showValidateMsg">
+                              <input class="form-check-input" type="checkbox" value="1" id="agreeCheck" ng-model="formData.agree" required>
+                              <label class="form-check-label" for="agreeCheck">{{ 'LBL_AGREE_TERMS' | translate }}</label>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="row mt-4">
+                        <div class="col-12 col-md-12 text-right">
+                          <button type="button" class="btn btn-fucsia btn-rounded mr-0"
+                          data-mdb-ripple-color="dark" ng-click="clickPayCheckout()">{{ (formData.modePay==1)?'BTN_PAY_CRYPTO':'BTN_PAY_CREDIT' | translate}}</button>
+                        </div>
+                      </div>
+
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+        </div>
+    </div>
+  </section>
+
+</main>

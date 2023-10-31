@@ -1,0 +1,31 @@
+<!--Section: Banner -->
+<section class="bg-dark text-white space-{{size}}">
+    <picture>
+        <source ng-srcset="/content/assets/img/back/webp/{{image}}.webp" type="image/webp">
+        <source ng-srcset="/content/assets/img/back/{{image}}.jpg" type="image/jpeg">
+        <img ng-src="/content/assets/img/back/{{image}}.jpg" class="bg-image opacity-50">
+    </picture>
+    <div class="container">
+        <div class="row justify-content-end" ng-if="align=='end'">
+            <div class="col-12 col-md-8 col-lg-7 text-center">
+                <h1 class="display-4" ng-show="title">{{title}}</h1>
+                <p class="mb-3" ng-show="text">{{text}}</p>
+                <div ng-show="showSocials">
+                  <a href="https://www.facebook.com/invesafe/" target="_blank" class="btn btn-linea-celeste btn-md"><i class="fab fa-facebook-f fa-2x"></i></a>
+                  <a href="https://www.linkedin.com/company/invesafe" target="_blank" class="btn btn-linea-celeste btn-md"><i class="fab fa-linkedin fa-2x"></i></a>
+                  <a href="https://twitter.com/Invesafe" target="_blank" class="btn btn-linea-celeste btn-md"><i class="fab fa-twitter fa-2x"></i></a>
+                  <a href="https://instagram.com/Invesafe.us" target="_blank" class="btn btn-linea-celeste btn-md"><i class="fab fa-instagram fa-2x"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-if="align=='start'">
+            <div class="col-12">
+                <div class="space-lg pb-0">
+                    <h1 class="display-4" ng-show="title">{{title}}</h1>
+                    <span class="lead" ng-show="text">{{text}}</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--Section: Banner -->

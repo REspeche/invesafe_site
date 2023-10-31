@@ -1,0 +1,356 @@
+<!-- Type: Apartments ///////////////////////////////////////////////////////////////////////////////// -->
+<div class="row" ng-show="formData.catId==1">
+
+  <div class="col-lg-6 col-md-6 col-sm-12">
+    <div class="text-left mb-2 mt-4">
+        <div>
+          <h5 class="d-inline" translate="LBL_PROPERTY_HIGHLIGHTS">Property Highlights</h5>
+        </div>
+        <hr class="mt-1">
+    </div>
+    <div class="row">
+      <div class="col-12 text-left">
+        <input class="form-check-input" type="checkbox" value="1" id="chkNeedRemodelation" 
+          ng-model="formMetaData[formData.catId].highlights.needRemodelation"
+          ng-click="isEditingForm()">
+        <label class="form-check-label" for="chkNeedRemodelation" translate="LNK_NEED_REMODELATION"></label>
+      </div>
+    </div>
+    <div class="row">
+        <div ng-class="{'col-lg-12 col-md-12':!formMetaData[formData.catId].highlights.needRemodelation,'col-lg-6 col-md-6':formMetaData[formData.catId].highlights.needRemodelation}">
+          <label for="txtAssetAnnualReturn"><span translate="LBL_ASSETANNUALRETURN">Expected Yield</span>...<i class="fas fa-info-circle ml-1 opacity-3" title="{{ 'INF_ASSETANNUALRETURN' | translate }}" data-toggle="tooltip" data-placement="right" data-html="true"></i></label>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="lbl-assetAnnualReturn">%</span>
+            <input type="text" class="form-control" id="txtAssetAnnualReturn" name="txtAssetAnnualReturn" aria-describedby="lbl-assetAnnualReturn"
+                   ng-model="formMetaData[formData.catId].highlights.assetAnnualReturn" minlength="1" maxlength="5"
+                   ng-change="isEditingForm()">
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6" ng-show="formMetaData[formData.catId].highlights.needRemodelation">
+          <label for="txtAssetRenovationTargetYield" translate="LBL_ASSETRENOVATIONTARGETYIELD">Expected Yield After Renovation & Stabilization</label>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="lbl-assetRenovationTargetYield">%</span>
+            <input type="text" class="form-control" id="txtAssetRenovationTargetYield" name="txtAssetRenovationTargetYield" aria-describedby="lbl-assetRenovationTargetYield"
+                   ng-model="formMetaData[formData.catId].highlights.assetRenovationTargetYield" minlength="1" maxlength="5"
+                   ng-change="isEditingForm()">
+          </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+          <label for="txtAssetRentStartDate" translate="LBL_ASSETRENTSTARTDATE">Rent Start Date</label>
+          <date-time name="txtAssetRentStartDate" value="formMetaData[formData.catId].highlights.assetRentStartDate" change="isEditingForm()"
+            hide-time="true" place-holder="{{'LBL_NOT_DEFINED_YET' | translate}}"></date-time>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+          <label for="txtAssetRentPerToken"><span translate="LBL_ASSETRENTPERTOKEN">Rent per Token</span><i class="fas fa-info-circle ml-1 opacity-3" title="{{ 'INF_ASSETRENTPERTOKEN' | translate }}" data-toggle="tooltip" data-placement="right" data-html="true"></i></label>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="lbl-assetRentPerToken">$/year</span>
+            <input type="text" class="form-control" id="txtAssetRentPerToken" name="txtAssetRentPerToken" aria-describedby="lbl-assetRentPerToken"
+                   ng-model="formMetaData[formData.catId].highlights.assetRentPerToken" minlength="1" maxlength="5"
+                   ng-change="isEditingForm()">
+          </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-md-6">
+          <label for="txtAssetTokenPrice" translate="LBL_ASSETTOKENPRICE">Token Price</label>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="lbl-assetTokenPrice">$</span>
+            <input type="text" class="form-control" id="txtAssetTokenPrice" name="txtAssetTokenPrice" aria-describedby="lbl-assetTokenPrice"
+                   ng-model="formMetaData[formData.catId].highlights.assetTokenPrice" minlength="1" maxlength="10"
+                   ng-change="isEditingForm()">
+          </div>
+        </div>
+        <div class="col-lg-6 col-md-6">
+          <label for="txtAssetTotalTokens" translate="LBL_ASSETTOTALTOKENS">Total Tokens</label>
+          <input type="number" class="form-control" id="txtAssetTotalTokens" name="txtAssetTotalTokens" aria-describedby="lbl-assetTotalTokens"
+                 ng-model="formMetaData[formData.catId].highlights.assetTotalTokens" minlength="1" maxlength="20"
+                 ng-change="isEditingForm()">
+        </div>
+    </div>
+    <hr class="mt-4">
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+          <label for="cmbAssetPropertyType" translate="LBL_ASSETPROPERTYTYPE">Property Type</label>
+          <select id="cmbAssetPropertyType" class="browser-default custom-select" ng-model="formMetaData[formData.catId].highlights.assetPropertyType"
+                  ng-options="item.id as item.label for item in lstPropertyType"
+                  ng-change="isEditingForm()">
+          </select>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+          <label for="txtAssetConstructionYear" translate="LBL_ASSETCONSTRUCTIONYEAR">Construction Year</label>
+          <input type="number" class="form-control" id="txtAssetConstructionYear" name="txtAssetConstructionYear" aria-describedby="lbl-assetConstructionYear"
+                 ng-model="formMetaData[formData.catId].highlights.assetConstructionYear" minlength="1" maxlength="4"
+                 ng-change="isEditingForm()">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+          <label for="txtAssetNeighborhood" translate="LBL_ASSETNEIGHBORHOOD">Neighborhood</label>
+          <input type="text" class="form-control" id="txtAssetNeighborhood" name="txtAssetNeighborhood" aria-describedby="lbl-assetNeighborhood"
+                 ng-model="formMetaData[formData.catId].highlights.assetNeighborhood" minlength="1" maxlength="45"
+                 ng-change="isEditingForm()">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-md-6">
+          <label for="txtAssetSquareFeet" translate="LBL_ASSETSQUAREFEET">Square Feet</label>
+          <input type="number" class="form-control" id="txtAssetSquareFeet" name="txtAssetSquareFeet" aria-describedby="lbl-assetSquareFeet"
+                 ng-model="formMetaData[formData.catId].highlights.assetSquareFeet" minlength="1" maxlength="10"
+                 ng-change="isEditingForm()">
+        </div>
+        <div class="col-lg-6 col-md-6">
+          <label for="txtAssetLandSquareFeet" translate="LBL_ASSETLANDSQUAREFEET">Lot Size</label>
+          <input type="number" class="form-control" id="txtAssetLandSquareFeet" name="txtAssetLandSquareFeet" aria-describedby="lbl-assetLandSquareFeet"
+                 ng-model="formMetaData[formData.catId].highlights.assetLandSquareFeet" minlength="1" maxlength="10"
+                 ng-change="isEditingForm()">
+        </div>
+    </div>
+    <div class="row" ng-show="formMetaData[formData.catId].highlights.assetPropertyType==1">
+        <div class="col-lg-12 col-md-12">
+          <label for="txtAssetTotalUnits" translate="LBL_ASSETTOTALUNITS">Total Units</label>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="lbl-assetTotalUnits">Units</span>
+            <input type="number" class="form-control" id="txtAssetTotalUnits" name="txtAssetTotalUnits" aria-describedby="lbl-assetTotalUnits"
+                   ng-model="formMetaData[formData.catId].highlights.assetTotalUnits" minlength="1" maxlength="5"
+                   ng-change="isEditingForm()">
+          </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+          <label for="txtAssetBedroomBath" translate="LBL_ASSETBEDROOMBATH">Bedroom/Bath</label>
+          <input type="text" class="form-control" id="txtAssetBedroomBath" name="txtAssetBedroomBath" aria-describedby="lbl-assetBedroomBath"
+                 ng-model="formMetaData[formData.catId].highlights.assetBedroomBath" minlength="1" maxlength="200"
+                 ng-change="isEditingForm()">
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-6 col-md-6">
+          <label for="cmbAssetHasTenants"><span translate="LBL_ASSETHASTENANTS">Rented?</span><i class="fas fa-info-circle ml-1 opacity-3" title="{{ 'INF_ASSETHASTENANTS' | translate }}" data-toggle="tooltip" data-placement="right" data-html="true"></i></label>
+          <select id="cmbAssetHasTenants" class="browser-default custom-select" ng-model="formMetaData[formData.catId].highlights.assetHasTenants"
+                  ng-options="item.id as item.label for item in lstHasTenants"
+                  ng-change="isEditingForm()">
+          </select>
+        </div>
+        <div class="col-lg-6 col-md-6">
+          <label><span translate="LBL_ASSETSECTION8">Section 8?</span><i class="fas fa-info-circle ml-1 opacity-3" title="{{ 'INF_ASSETSECTION8' | translate }}" data-toggle="tooltip" data-placement="right" data-html="true"></i></label>
+          <div class="row">
+            <div class="form-check col-md-6">
+              <input type="radio" class="form-check-input" id="chkFeatured1" name="chkFeatured1" ng-value="1" ng-model="formMetaData[formData.catId].highlights.assetSection8" ng-click="isEditingForm()">
+              <label class="form-check-label" for="chkFeatured1" translate="VAL_NO">No</label>
+            </div>
+            <div class="form-check col-md-6">
+              <input type="radio" class="form-check-input" id="chkFeatured2" name="chkFeatured2" ng-value="2" ng-model="formMetaData[formData.catId].highlights.assetSection8" ng-click="isEditingForm()">
+              <label class="form-check-label" for="chkFeatured2" translate="VAL_YES">Yes</label>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6 col-md-6">
+        <label for="txtGpsLatitude" translate="LBL_GPS_LATITUDE">Latitude</label>
+        <input type="text" class="form-control" id="txtGpsLatitude" name="txtGpsLatitude" aria-describedby="lbl-gpsLatitude"
+               ng-model="formMetaData[formData.catId].highlights.gpsLatitude" minlength="1" maxlength="20"
+               ng-change="isEditingForm()">
+      </div>
+      <div class="col-lg-6 col-md-6">
+        <label for="txtGpsLongitude" translate="LBL_GPS_LONGITUDE">Longitude</label>
+        <input type="text" class="form-control" id="txtGpsLongitude" name="txtGpsLongitude" aria-describedby="lbl-gpsLongitude"
+               ng-model="formMetaData[formData.catId].highlights.gpsLongitude" minlength="1" maxlength="20"
+               ng-change="isEditingForm()">
+      </div>
+    </div>
+    <div class="row" ng-if="formMetaData[formData.catId].highlights.gpsLatitude && formMetaData[formData.catId].highlights.gpsLongitude">
+      <div class="col-lg-12 col-md-12">
+
+      </div>
+    </div>
+  </div>
+  <div class="col-lg-6 col-md-6 col-sm-12">
+    <div class="text-left mb-2 mt-4">
+        <div>
+          <h5 class="d-inline" translate="LBL_FINANCIALS">Financials</h5>
+        </div>
+        <hr class="mt-1">
+    </div>
+    <div class="row">
+      <div class="col-lg-6 col-md-6">
+        <label for="txtGrossRent" translate="LBL_GROSSRENT">Gross Rent / month</label>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="lbl-grossRent">$</span>
+          <input type="number" class="form-control" id="txtGrossRent" name="txtGrossRent" aria-describedby="lbl-grossRent"
+                  ng-model="formMetaData[formData.catId].financials.grossRent" minlength="1" maxlength="10"
+                  ng-change="changeGrossRent()">
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6">
+        <label for="txtGrossRentAnual" translate="LBL_GROSSRENTANUAL">Gross Rent / year</label>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="lbl-grossRentAnual">$</span>
+          <input type="number" class="form-control" id="txtGrossRentAnual" name="txtGrossRentAnual" aria-describedby="lbl-grossRentAnual"
+                 ng-model="formMetaData[formData.catId].financials.grossRentAnual" minlength="1" maxlength="10" disabled>
+        </div>
+      </div>
+    </div>
+    <div class="sub-box-form px-3 pt-3 pb-0 mb-2">
+      <div class="text-left mb-2 mt-2">
+        <div>
+          <h6 class="d-inline" translate="LBL_MONTHLYCOSTS">Monthly Costs</h6>
+        </div>
+        <hr class="mt-1">
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-md-12">
+          <label for="txtPropertyManagement" translate="LBL_PROPERTYMANAGEMENT">Property Management (8.00%)</label>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="lbl-propertyManagement">$</span>
+            <input type="number" class="form-control" id="txtPropertyManagement" name="txtPropertyManagement" aria-describedby="lbl-propertyManagement"
+                   ng-model="formMetaData[formData.catId].financials.propertyManagement" minlength="1" maxlength="10"
+                   ng-change="isEditingForm()">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-md-12">
+          <label for="txtPlatformCost" translate="LBL_PLATFORM">Invesafe Platform (2.00%)</label>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="lbl-platformCost">$</span>
+            <input type="number" class="form-control" id="txtPlatformCost" name="txtPlatformCost" aria-describedby="lbl-platformCost"
+                   ng-model="formMetaData[formData.catId].financials.platformCost" minlength="1" maxlength="10"
+                   ng-change="isEditingForm()">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-md-12">
+          <label for="txtPropertyMaintenance" translate="LBL_PROPERTYMAINTENANCE">Maintenance Expenses</label>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="lbl-propertyMaintenance">$</span>
+            <input type="number" class="form-control" id="txtPropertyMaintenance" name="txtPropertyMaintenance" aria-describedby="lbl-propertyMaintenance"
+                   ng-model="formMetaData[formData.catId].financials.propertyMaintenance" minlength="1" maxlength="10"
+                   ng-change="isEditingForm()">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-md-12">
+          <label for="txtPropertyTaxes" translate="LBL_PROPERTYTAXES">Property Taxes</label>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="lbl-propertyTaxes">$</span>
+            <input type="number" class="form-control" id="txtPropertyTaxes" name="txtPropertyTaxes" aria-describedby="lbl-propertyTaxes"
+                   ng-model="formMetaData[formData.catId].financials.propertyTaxes" minlength="1" maxlength="10"
+                   ng-change="isEditingForm()">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-md-12">
+          <label for="txtPropertyInsurance" translate="LBL_PROPERTYINSURANCE">Insurance</label>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="lbl-propertyInsurance">$</span>
+            <input type="number" class="form-control" id="txtPropertyInsurance" name="txtPropertyInsurance" aria-describedby="lbl-propertyInsurance"
+                   ng-model="formMetaData[formData.catId].financials.propertyInsurance" minlength="1" maxlength="10"
+                   ng-change="isEditingForm()">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-md-12 pb-3">
+          <label for="cmbPropertyUtilities" translate="LBL_PROPERTYUTILITIES">Utilities</label>
+          <select id="cmbPropertyUtilities" class="browser-default custom-select" ng-model="formMetaData[formData.catId].financials.propertyUtilities"
+                  ng-options="item.id as item.label for item in lstMontlyUtilities"
+                  ng-change="isEditingForm()">
+          </select>
+        </div>
+      </div>
+      <div class="row my-0">
+        <div class="col-lg-12 col-md-12 pt-3 px-4 pb-1 mb-0 sub-box-total">
+          <h6>$ {{propertyUtilitiesSum() | customCurrency}}</h6>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-lg-6 col-md-6">
+        <label for="txtNetRentMonthly" translate="LBL_NETRENTMONTHLY">Net Rent / month</label>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="lbl-netRentMonthly">$</span>
+          <input type="number" class="form-control" id="txtNetRentMonthly" name="txtNetRentMonthly" aria-describedby="lbl-netRentMonthly"
+                 ng-model="formMetaData[formData.catId].financials.netRentMonthly" minlength="1" maxlength="10"
+                 ng-change="changeNetRentMonthly()">
+        </div>
+      </div>
+      <div class="col-lg-6 col-md-6">
+        <label for="txtNetRentAnnual" translate="LBL_NETRENTANNUAL">Net Rent / year</label>
+        <div class="input-group mb-3">
+          <span class="input-group-text" id="lbl-netRentAnnual">$</span>
+          <input type="number" class="form-control" id="txtNetRentAnnual" name="txtNetRentAnnual" aria-describedby="lbl-netRentAnnual"
+                  ng-model="formMetaData[formData.catId].financials.netRentAnnual" minlength="1" maxlength="10" disabled>
+        </div>
+      </div>
+    </div>
+    <div class="sub-box-form px-3 pt-3 pb-0 mb-2">
+      <div class="text-left mb-2 mt-2">
+        <div>
+          <h6 class="d-inline"><span translate="LBL_ASSETPRICE">Total Investment</span><i class="fas fa-info-circle ml-1 opacity-3" title="{{ 'INF_ASSETPRICE' | translate }}" data-toggle="tooltip" data-placement="right" data-html="true"></i></h6>
+        </div>
+        <hr class="mt-1">
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-md-12">
+          <label for="txtUnderlyingAssetPrice" translate="LBL_UNDERLYINGASSETPRICE">Underlying Asset Price</label>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="lbl-underlyingAssetPrice">$</span>
+            <input type="number" class="form-control" id="txtUnderlyingAssetPrice" name="txtUnderlyingAssetPrice" aria-describedby="lbl-underlyingAssetPrice"
+                   ng-model="formMetaData[formData.catId].financials.underlyingAssetPrice" minlength="1" maxlength="10"
+                   ng-change="isEditingForm()">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-md-12">
+          <label for="txtPlatformListingFee" translate="LBL_PLATFORMLISTINGFEE">Invesafe Listing Fee (10%)</label>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="lbl-platformListingFee">$</span>
+            <input type="text" class="form-control" id="txtPlatformListingFee" name="txtPlatformListingFee" aria-describedby="lbl-platformListingFee"
+                   ng-model="formMetaData[formData.catId].financials.platformListingFee" minlength="1" maxlength="10"
+                   ng-change="isEditingForm()">
+          </div>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-12 col-md-12">
+          <label for="txtInitMaintenanceReserve" translate="LBL_INITMAINTENANCERESERVE">Initial Maintenance Reserve</label>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="lbl-initMaintenanceReserve">$</span>
+            <input type="number" class="form-control" id="txtInitMaintenanceReserve" name="txtInitMaintenanceReserve" aria-describedby="lbl-initMaintenanceReserve"
+                   ng-model="formMetaData[formData.catId].financials.initMaintenanceReserve" minlength="1" maxlength="10"
+                   ng-change="isEditingForm()">
+          </div>
+        </div>
+      </div>
+      <div class="row" ng-show="formMetaData[formData.catId].highlights.needRemodelation">
+        <div class="col-lg-12 col-md-12">
+          <label for="txtRenovationReserve" translate="LBL_RENOVATIONRESERVE">Initial Renovation Reserve</label>
+          <div class="input-group mb-3">
+            <span class="input-group-text" id="lbl-renovationReserve">$</span>
+            <input type="number" class="form-control" id="txtRenovationReserve" name="txtRenovationReserve" aria-describedby="lbl-renovationReserve"
+                   ng-model="formMetaData[formData.catId].financials.renovationReserve" minlength="1" maxlength="10"
+                   ng-change="isEditingForm()">
+          </div>
+        </div>
+      </div>
+      <div class="row my-0">
+        <div class="col-lg-12 col-md-12 pt-3 px-4 pb-1 mb-0 sub-box-total">
+          <h6>$ {{propertyTotalInvestmentSum() | customCurrency}}</h6>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

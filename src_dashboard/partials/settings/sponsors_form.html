@@ -1,0 +1,88 @@
+<main ng-controller="settingsSponsorsFormController" ng-init="loadFormSponsors()" class="form mx-lg-5">
+    <div class="container-fluid">
+      <!--First column-->
+      <div class="header">
+          <h2><span translate="LBL_EDIT" ng-show="paramAction=='edit'">Edit</span><span translate="LBL_NEW" ng-show="paramAction=='new'">New</span> {{ 'LBL_SPONSOR' | translate}}</h2>
+          <a type="button" class="btn-floating light-blue"><i class="fas fa-list" aria-hidden="true" ng-click="clickCancelForm()"></i></a>
+          <a type="button" class="btn-floating btn-danger ml-0" ng-show="paramAction=='edit'"><i class="fas fa-trash" aria-hidden="true" ng-click="clickRemove()"></i></a>
+      </div>
+  
+      <div ng-hide="loadForm" translate="LOADING">Loading...</div>
+      <form id="frmSponsor" name="frmSponsor" class="needs-validation" ng-submit="submitForm()" novalidate autocomplete="off" ng-show="loadForm">
+  
+        <div class="card p-3">
+  
+            <div class="card-body p-3">
+  
+                <div class="row">
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+  
+                      <div class="row">
+                          <div class="col-12 col-md-12">
+                            <label for="txtName"><span translate="LBL_NAME">Name</span> *</label>
+                            <input type="text" class="form-control" id="txtName" name="txtName"
+                                   ng-model="formData.name" minlength="2" maxlength="255"
+                                   ng-change="isEditingForm()" ng-blur="changeName()" required>
+                            <div class="invalid-feedback" ng-show="invalidForm">{{msgInvalid}}</div>
+                          </div>
+                      </div>
+  
+                      <div class="row">
+                        <div class="col-12 col-md-12">
+                          <label for="txtEmail">Email</label>
+                          <input type="email" class="form-control" id="txtEmail" name="txtEmail"
+                                 ng-model="formData.email">
+                        </div>
+                      </div>
+
+                      <div class="row">
+                        <div class="col-lg-12 col-md-12">
+                          <label for="txtWebSite"><span translate="LBL_WEBSITE">Web Site</span></label>
+                          <input type="text" class="form-control" id="txtWebSite" name="txtWebSite"
+                                 ng-model="formData.website" minlength="2" maxlength="255"
+                                 ng-change="isEditingForm()">
+                          <div class="invalid-feedback" ng-show="invalidForm">{{msgInvalid}}</div>
+                        </div>
+                      </div>
+  
+                      <div class="row">
+                          <div class="col-lg-12 col-md-12">
+                            <label translate="LBL_MODE">Mode</label>
+                            <div class="row">
+                              <div class="form-check col-md-6">
+                                <input type="radio" class="form-check-input" id="chkMode2" name="chkMode2" ng-value="1" ng-model="formData.mode" ng-click="isEditingForm()">
+                                <label class="form-check-label" for="chkMode2" translate="VAL_ON">On</label>
+                              </div>
+                              <div class="form-check col-md-6">
+                                <input type="radio" class="form-check-input" id="chkMode1" name="chkMode1" ng-value="2" ng-model="formData.mode" ng-click="isEditingForm()">
+                                <label class="form-check-label" for="chkMode1" translate="VAL_OFF">Off</label>
+                              </div>
+                            </div>
+                          </div>
+                      </div>
+  
+                    </div>
+                    <div class="col-lg-6 col-md-6 col-sm-12">
+                      <ng-file label="{{ 'LBL_AVATAR_IMAGE' | translate }}" value="formData.avatar" value-return="imageNew" type="profile"
+                        link="formData.avatar" is-change="isEditingForm()"></ng-file>
+                    </div>
+  
+                </div>
+  
+                <small class="text-muted" translate="MSG_FIELDS_MANDATORY">Fields marked with * are mandatory</small>
+            </div>
+  
+            <!--Footer-->
+            <div class="modal-footer mx-3 p-0 pt-3">
+              <button type="submit" class="btn btn-success ml-0" ng-disabled="!editForm" translate="BTN_SAVE_SPONSOR">Save Sponsor</button>
+              <div class="options text-center text-md-right mt-1 ml-auto">
+                <p class="font-small grey-text d-flex justify-content-end"><a href="#" class="blue-text" ng-click="clickCancelForm()" translate="BTN_CANCEL">Cancel</a></p>
+              </div>
+            </div>
+  
+        </div>
+  
+      </form>
+    </div>
+  </main>
+  

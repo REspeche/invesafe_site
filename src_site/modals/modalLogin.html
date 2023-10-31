@@ -1,0 +1,46 @@
+<div class="modal-header text-center">
+  <h4 class="modal-title w-100 font-weight-bold">{{ ((modalOptions.formDataLogin.isForgot)?'TIT_FORGOT':'TIT_LOGIN') | translate}}</h4>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close" data-ng-click="modalOptions.close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+
+  <form id="frmLogin" name="frmLogin" autocomplete="chrome-off" novalidate>
+
+    <div class="md-form">
+      <i class="fas fa-envelope prefix grey-text"></i>
+      <input type="email" id="field-email" name="field-email" class="form-control" ng-model="modalOptions.formDataLogin.email" required maxlength="45" autocomplete="nope">
+      <label for="txtEmail" ng-class="{'active':modalOptions.formDataLogin.email}" translate="LBL_EMAIL">Email</label>
+    </div>
+
+    <div class="md-form" ng-hide="modalOptions.formDataLogin.isForgot">
+      <i class="fas fa-lock prefix grey-text"></i>
+      <input type="password" id="field-password" name="field-password" class="form-control password" ng-model="modalOptions.formDataLogin.password" required maxlength="20" autocomplete="current-password">
+      <label for="txtPass" ng-class="{'active':modalOptions.formDataLogin.password}" translate="LBL_PASS">Password</label>
+    </div>
+
+    <div class="form-group" ng-hide="modalOptions.formDataLogin.isForgot">
+      <div class="form-check pl-0" ng-hide="modalOptions.showValidateMsg">
+        <input class="form-check-input" type="checkbox" value="1" id="invalidCheck2" ng-model="modalOptions.formDataLogin.remember" required>
+        <label class="form-check-label grey-text" for="invalidCheck2">{{ 'LNK_REMEMBER_ME' | translate }}</label>
+      </div>
+      <div class="alert alert-warning mt-2" role="alert" ng-show="modalOptions.showValidateMsg"><i class="fas fa-exclamation-triangle mr-2"></i>{{ 'LNK_SEND_EMAIL1' | translate }}&nbsp;<a href="javascript:void(0)" ng-click="modalOptions.sendMailValidate(modalOptions)" class="blue-text">{{ 'LNK_SEND_EMAIL2' | translate }}</a></div>
+    </div>
+
+  </form>
+
+</div>
+<progress-bar ng-show="isBusy"></progress-bar>
+<div class="modal-footer">
+  <div class="col-md-3 col-md-6">
+    <button type="button" class="btn btn-pink btn-rounded z-depth-1a" data-ng-click="modalOptions.ok();">{{ ((modalOptions.formDataLogin.isForgot)?'BTN_SEND':'BTN_SIGN_IN') | translate}}</button>
+  </div>
+  <div class="col-md-6">
+    <div ng-hide="modalOptions.formDataLogin.isForgot">
+      <div class="font-small grey-text d-flex justify-content-end">{{ 'LNK_FORGET_PASS1' | translate }}<a href="javascript:void(0)" ng-click="modalOptions.forgot(modalOptions)" class="blue-text ml-1">{{ 'LNK_FORGET_PASS2' | translate }}</a>?</div>
+      <div class="font-small grey-text d-flex justify-content-end">{{ 'LNK_WISH_SIGNUP1' | translate}}<a href="javascript:void(0)" ng-click="modalOptions.hideAndShowSignUp(modalOptions)" class="blue-text ml-1">{{ 'LNK_WISH_SIGNUP2' | translate}}</a></div>
+    </div>
+    <p ng-show="modalOptions.formDataLogin.isForgot" class="font-small grey-text d-flex justify-content-end">{{ 'LNK_WISH_SIGNIN1' | translate }} <a href="#" ng-click="modalOptions.login(modalOptions)" class="blue-text ml-1">{{ 'LNK_WISH_SIGNIN2' | translate }}</a></p>
+  </div>
+</div>

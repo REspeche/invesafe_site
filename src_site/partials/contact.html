@@ -1,0 +1,48 @@
+<main ng-controller="contactController" ng-init="loadContact()">
+
+  <banner-page title="{{'CONTACT_SLIDE_TITLE' | translate}}" text="{{'CONTACT_SLIDE_TEXT' | translate}}" image="back_contact1" size="xs" align="start"/>
+
+  <!--Section: Formulario -->
+  <section class="p-50">
+      <div class="container">
+          <div class="row">
+              <div class="col-12 col-md-7 mb-5">
+                  <form novalidate="novalidate">
+                      <label for="about-me"><span translate="CONTACT_FORM_LABEL1">Datos Personales</span> *</label>
+                      <div class="form-row form-group ">
+                          <div class="col">
+                              <input class="form-control form-control-lg" type="text" name="name" placeholder="{{ 'CONTACT_FORM_PLACEHOLDER1' | translate }}" ng-model="formContactForm.name" required="">
+                          </div>
+                          <div class="col">
+                              <input class="form-control form-control-lg" type="email" name="email" placeholder="{{ 'CONTACT_FORM_PLACEHOLDER2' | translate }}" ng-model="formContactForm.email" required="">
+                          </div>
+                      </div>
+                      <label><span translate="CONTACT_FORM_LABEL3">Asunto</span> *</label>
+                      <div class="form-group">
+                          <select class="custom-select2 form-control-lg" name="subject" ng-model="formContactForm.subject" required="">
+                              <option value="">{{ 'CONTACT_FORM_PLACEHOLDER3' | translate }}</option>
+                              <option value="investment">{{ 'CONTACT_FORM_SUBJECT_OPTION1' | translate }}</option>
+                              <option value="support">{{ 'CONTACT_FORM_SUBJECT_OPTION2' | translate }}</option>
+                              <option value="finance">{{ 'CONTACT_FORM_SUBJECT_OPTION3' | translate }}</option>
+                              <option value="hr">{{ 'CONTACT_FORM_SUBJECT_OPTION4' | translate }}</option>
+                              <option value="other">{{ 'CONTACT_FORM_SUBJECT_OPTION5' | translate }}</option>
+                          </select>
+                      </div>
+                      <label for="descripcion" translate="CONTACT_FORM_LABEL4">Comentarios</label>
+                      <div class="form-group">
+                          <textarea rows="4" class="form-control form-control-lg" name="comment" ng-model="formContactForm.comment" required=""></textarea>
+                      </div>
+                      <div class="form-group">
+                          <label><small>* <span translate="CONTACT_FORM_REFERENCE">Campos obligatorios</span></small></label>
+                      </div>
+                      <button type="button" data-action="submit" class="btn btn-success btn-lg" ng-click="toContactForm()">
+                          <span translate="CONTACT_FORM_BTN">Enviar consulta</span>
+                      </button>
+                  </form>
+              </div>
+          </div>
+      </div>
+  </section>
+  <!--Section: Formulario -->
+
+</main>

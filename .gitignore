@@ -1,0 +1,7 @@
+
+.DS_Store
+_build_dashboard
+_build_site
+_deploy_server
+node_modules
+package-lock.json

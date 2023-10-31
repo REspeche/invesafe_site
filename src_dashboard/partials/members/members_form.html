@@ -1,0 +1,49 @@
+<main ng-controller="membersFormController" ng-init="loadMembersForm()" class="form mx-lg-5">
+  <!--First column-->
+  <div class="header">
+      <h2><span translate="TIT_MEMBER_INFO">Member Info</span></h2>
+  </div>
+
+  <div ng-hide="loadForm" translate="LOADING">Loading...</div>
+  <form id="frmMembers" name="frmMembers" class="needs-validation" ng-submit="submitForm()" novalidate autocomplete="off" ng-show="loadForm">
+    <div class="card p-3 col-6 col-md-6">
+        <div class="card-body p-3">
+
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <label for="txtName"><span translate="LBL_USER_NAME">User Name</span> *</label>
+              <input type="text" name="txtName" id="txtName" class="form-control" ng-model="formData.name" maxlength="100" ng-change="isEditingForm()" required>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <label for="txtEmail">Email</label>
+              <input type="email" class="form-control" id="txtEmail" name="txtEmail"
+                     ng-model="formData.email" readonly>
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="col-12 col-md-12">
+              <label for="cmbRole"><span translate="LBL_ROLE">Role</span> *</label>
+              <select id="cmbRole" class="browser-default custom-select"
+                ng-model="formData.role" ng-change="isEditingForm()" ng-options="item.id as item.label for item in lstRoles" required>
+              </select>
+            </div>
+          </div>
+
+          <small class="text-muted" translate="MSG_FIELDS_MANDATORY">Fields marked with * are mandatory</small>
+        </div>
+
+        <!--Footer-->
+        <div class="modal-footer mx-3 p-0 pt-3" ng-hide="paramAction=='view'">
+          <button type="submit" class="btn btn-success ml-0" ng-disabled="!editForm" translate="BTN_SAVE_MEMBER">Save Member</button>
+          <div class="options text-center text-md-right mt-1 ml-auto">
+            <p class="font-small grey-text d-flex justify-content-end"><a href="#" class="blue-text" ng-click="clickCancelForm()" translate="BTN_CANCEL">Cancel</a></p>
+          </div>
+        </div>
+    </div>
+  </form>
+
+</main>

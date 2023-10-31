@@ -1,0 +1,71 @@
+<main ng-controller="purchaseProjectsController" elem-ready="loadPurchaseProjects()" class="list mx-lg-5">
+  <div class="container-fluid">
+    <!--First column-->
+    <div class="header">
+        <h2 translate="TIT_PURCHASE_PROJECTS">Purchase Projects</h2>
+        <a type="button" class="btn-floating btn-info float-right mr-0"><i class="fas fa-sync" aria-hidden="true" ng-click="refreshList()" ng-disabled="loadList"></i></a>
+    </div>
+
+    <!--Table-->
+    <div ng-hide="loadList" translate="LOADING">Loading...</div>
+    <div class="alert alert-primary" role="alert" ng-show="projects.length==0"><span translate="INF_EMPTY_PURCHASE_PROJECT"></span></div>
+
+    <div class="row my-3" ng-show="projects.length==0">
+        <div class="col-12 text-center">
+            <button type="button" class="btn btn-outline-info btn-rounded"
+            data-mdb-ripple-color="dark" ng-click="goToBrowseProducts()" translate="BTN_BROWSE_PRODUCTS"></button>
+        </div>
+    </div>
+
+    <table id="dtTable" class="table table-bordered table-hover" ng-hide="orders.length==0">
+        <!--Table head-->
+        <thead class="mdb-color darken-1">
+            <tr class="text-white">
+                <th class="d-none d-sm-block d-lg-table-cell" translate="COL_ID">ID</th>
+                <th translate="COL_PURCHASE_DATE">Purchase Date</th>
+                <th translate="COL_TITLE">Project</th>
+                <th translate="COL_QUANTITY">Quantity</th>
+                <th translate="COL_TOKEN_PRICE">Token Price</th>
+                <th class="d-none d-sm-block d-lg-table-cell" translate="COL_SUBTOTAL">Subtotal</th>
+            </tr>
+        </thead>
+        <!--Table head-->
+        <!--Table body-->
+        <tbody class="grid-list" ng-repeat="x in orders">
+            <tr>
+                <td rowspan="{{x.projects.length}}" class="d-none d-sm-block d-lg-table-cell">{{x.id}}</td>
+                <td rowspan="{{x.projects.length}}" d-lg-table-cell">{{x.datePurchase}}</td>
+                <td>{{x.projects[0].project}}<a type="button" class="text-primary ml-2" title="Detalle"
+                  ng-click="clickViewDetail(x.projects[0])" data-toggle="tooltip"><i class="fas fa-search-plus"></i></a>
+                </td>
+                <td>{{x.projects[0].tokenPurchase}}</td>
+                <td>{{x.projects[0].assetTokenPrice | customCurrency}}</td>
+                <td class="d-none d-sm-block d-lg-table-cell">{{x.projects[0].tokenPurchase * x.projects[0].assetTokenPrice | customCurrency}}</td>
+            </tr>
+            <tr ng-repeat="y in x.projects" ng-if="$index > 0">
+                <td>{{y.project}}<a type="button" class="text-primary ml-2" title="Detalle"
+                  ng-click="clickViewDetail(item.projects)" data-toggle="tooltip"><i class="fas fa-search-plus"></i></a>
+                </td>
+                <td>{{y.tokenPurchase}}</td>
+                <td>{{y.assetTokenPrice | customCurrency}}</td>
+                <td class="d-none d-sm-block d-lg-table-cell">{{y.tokenPurchase * y.assetTokenPrice | customCurrency}}</td>
+            </tr>
+            <tr ng-if="x.projects.length>1">
+                <td colspan="3" class="text-right" style="background-color: #bbdefb"><span translate="COL_SUBTOTAL">Subtotal</span> #<span>{{x.id}}</span></td>
+                <td colspan="1" style="background-color: #bbdefb" class="font-weight-bold">{{x.orderTotal | customCurrency}}</td>
+            </tr>
+        </tbody>
+        <!--Table body-->
+        <!--Table head-->
+        <tfoot class="mdb-color lighten-2">
+            <tr class="text-white">
+                <th colspan="3" translate="COL_TOTAL" class="text-right">Total</th>
+                <th colspan="1" class="font-weight-bold">{{ getTotal() | customCurrency}}</th>
+            </tr>
+        </tfoot>
+        <!--Table head-->
+
+    </table>
+    <!--Table-->
+  </div>
+</main>

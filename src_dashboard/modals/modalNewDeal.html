@@ -1,0 +1,42 @@
+<div class="modal-header">
+  <h5 class="modal-title" translate="TIT_NEW_DEAL">New Deal</h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close" data-ng-click="modalOptions.close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body form">
+  <form id="frmDeal" name="frmDeal" class="needs-validation" novalidate autocomplete="off">
+    <div class="row">
+        <div class="col-lg-8 col-md-8 col-sm-8">
+          <label for="txtTitle"><span translate="LBL_TITLE">Title</span> *</label>
+          <input type="text" class="form-control" id="txtTitle" name="txtTitle"
+                 ng-model="modalOptions.formDataDeal.title" minlength="2" maxlength="255"
+                 required>
+          <div class="invalid-feedback" ng-show="invalidForm">{{msgInvalid}}</div>
+        </div>
+        <div class="col-lg-4 col-md-4 col-sm-4">
+          <label for="txtMoney"><span translate="LBL_AMOUNT">Amount</span> *</label>
+          <input type="number" class="form-control" id="txtMoney" name="txtMoney"
+                 ng-model="modalOptions.formDataDeal.money"
+                 required>
+          <div class="invalid-feedback" ng-show="invalidForm">{{msgInvalid}}</div>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-lg-12 col-md-12">
+          <label for="txtDescription" translate="LBL_DESCRIPTION">Description</label>
+          <textarea id="txtDescription" class="form-control rounded-0" rows="4" ng-model="modalOptions.formDataDeal.description" ng-change="isEditingFormDeal()"></textarea>
+        </div>
+    </div>
+
+    <small class="text-muted">Los campos marcados con * son obligatorios</small>
+  </form>
+</div>
+<progress-bar ng-show="isBusy"></progress-bar>
+<div class="modal-footer">
+    <button type="button" class="btn btn-primary ml-0" data-ng-click="modalOptions.ok();"><span ng-hide="modalOptions.edit" translate="BTN_ADD">Add</span><span ng-show="modalOptions.edit" translate="BTN_UPDATE">Update</span></button>
+    <div class="options text-center text-md-right mt-1 ml-auto">
+      <p class="font-small grey-text d-flex justify-content-end"><a href="#" class="blue-text" ng-click="modalOptions.close();" translate="BTN_CANCEL">Cancel</a></p>
+    </div>
+</div>
