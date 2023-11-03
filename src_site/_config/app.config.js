@@ -24,7 +24,7 @@ mainApp.config(['$provide', 'BASE_URL',
 mainApp.config(['$translateProvider',
   function($translateProvider) {
     $translateProvider
-	  .registerAvailableLanguageKeys(['es','en','pt'], {
+	  .registerAvailableLanguageKeys(['es','en'], {
         'es_*': 'es',
         'en_*': 'en'
       })
@@ -48,7 +48,7 @@ mainApp.config(['$translateProvider',
           }
         ]
       })
-      .preferredLanguage('en')
+      .preferredLanguage('es')
       .useLocalStorage()
       .useSanitizeValueStrategy('sanitizeParameters');
   }]);

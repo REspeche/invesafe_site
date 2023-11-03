@@ -1,8 +1,8 @@
 mainApp.constant('BASE_URL', {
-    'api': 'https://invesafeapi.incloux.com',
+    'api': 'https://api.invesafe.com',
     'secured': true, //[true:default]
-    'dashboard': 'https://invesafedashboard.incloux.com/',
-    'site': 'https://invesafe.incloux.com/'
+    'dashboard': 'https://dashboard.invesafe.com/',
+    'site': 'https://invesafe.com/'
   })
   .constant('CONSTANTS', {
     'timeout_ajax': 35000, //milliseconds
@@ -19,7 +19,8 @@ mainApp.constant('BASE_URL', {
     'meta': {
       'keywords': 'IOT, internet of things, internet de las cosas, internet das coisas, financiacion, financiamento, garage, internet, campañas, campaign, campanhas, software, Kickstarter, Indiegogo, Crowdfunding.'
     },
-    'recaptcha': '6LdlGIwUAAAAAO4hOFNkT75SytadZPFCckla-EDm'
+    'recaptcha': '6LdlGIwUAAAAAO4hOFNkT75SytadZPFCckla-EDm',
+    'canInvest': false
   })
   .constant('COOKIES', {
     'files': {

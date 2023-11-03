@@ -1,5 +1,5 @@
 <ul class="navbar-nav nav-flex-icons">
-  <li class="nav-item" style="position: relative;">
+  <li class="nav-item" style="position: relative;" ng-show="canInvest">
     <a class="nav-link link-cart" data-toggle="collapse" data-target=".navbar-collapse.show" href="javascript:void(0)" ng-click="clickAction(106)">
       <i class="fas fa-shopping-cart shopping-cart"></i>
       <span class="badge rounded-pill badge-notification bg-danger" ng-show="alerts && alerts.cart">{{alerts.cart}}</span>
@@ -8,7 +8,7 @@
   <li class="nav-item">
     <flags-language></flags-language>
   </li>
-  <li class="nav-item active" ng-hide="userInfo.isLogin">
+  <li class="nav-item active" ng-hide="userInfo.isLogin || !canInvest">
     <a href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse.show" ng-click="clickShowLogin()" class="nav-link">
       <div class="d-none d-md-block text-info">
         <i class="fas fa-user mr-2"></i><span translate="MNU_LOGIN">Login</span>
@@ -18,7 +18,7 @@
       </div>
     </a>
   </li>
-  <li class="nav-item avatar dropdown pt-1 pl-2" ng-show="userInfo.isLogin">
+  <li class="nav-item avatar dropdown pt-1 pl-2" ng-show="userInfo.isLogin && canInvest">
     <a class="nav-link dropdown-toggle" id="userDropdown" href="#" title="{{ 'MNU_MY_PROFILE' | translate}}" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
       <span class="clearfix d-none d-sm-inline-block" ng-bind="userInfo.name"></span>
       <img class="rounded-circle img-fluid avatar ml-1" ng-src="{{(userInfo.avatar)?(pathProfile + userInfo.avatar):'/assets/img/not-available-avatar.png'}}">

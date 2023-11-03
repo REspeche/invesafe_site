@@ -124,7 +124,7 @@
                         <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
                             <a class="nav-link" href="#" ng-click="clickAction(109)" translate="MENU_OPERATIVE">>Cómo Funciona?</a>
                         </li>
-                        <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
+                        <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show" ng-show="canInvest">
                             <a class="nav-link" href="#" ng-click="clickAction(105)" translate="MENU_PROJECTS">Proyectos</a>
                         </li>
                         <li class="nav-item" data-toggle="collapse" data-target=".navbar-collapse.show">
@@ -150,7 +150,7 @@
                               </li>
                             </ul>
                         </li>
-                        <li class="nav-item" ng-hide="userInfo.isLogin">
+                        <li class="nav-item" ng-hide="userInfo.isLogin || !canInvest">
                           <a href="javascript:void(0)" data-toggle="collapse" data-target=".navbar-collapse.show" ng-click="clickSignUp()" class="nav-link waves-effect text-info">
                             <span translate="MNU_SIGN_UP">Sign Up</span>
                           </a>
@@ -214,7 +214,7 @@
                             <h6 translate="FOTTER_SECTION3">Invierte</h6>
                             <ul class="list-unstyled">
                                 <li> <a href="#" ng-click="clickAction(109)" translate="MENU_OPERATIVE">¿Cómo Funciona?</a> </li>
-                                <li> <a href="#" ng-click="clickAction(105)" translate="MENU_PROJECTS">Proyectos</a> </li>
+                                <li> <a href="#" ng-click="clickAction(105)" translate="MENU_PROJECTS" ng-show="canInvest">Proyectos</a> </li>
                             </ul>
                         </div>
                         <div class="col-6 col-lg-3">

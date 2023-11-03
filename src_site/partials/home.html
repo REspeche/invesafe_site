@@ -25,7 +25,7 @@
                         <p class="mb-4" translate="SLIDE_TEXT">Una nueva forma de invertir en proyectos inmobiliarios al alcance de todos</p>
 
                         <a href="#" ng-click="clickAction(113)" class="btn btn-linea-celeste btn-lg" translate="SLIDE_BUTTON1">Obtén Financiamiento</a>
-                        <a href="#" ng-click="clickAction(105)" class="btn btn-fucsia btn-lg" translate="SLIDE_BUTTON2">Empieza a Invertir</a>
+                        <a href="#" ng-click="clickAction(105)" class="btn btn-fucsia btn-lg" translate="SLIDE_BUTTON2" ng-show="canInvest">Empieza a Invertir</a>
                     </div>
                     <!-- Content -->
 
@@ -117,7 +117,7 @@
                             <source srcset="/content/assets/img/icons/icon2.png" type="image/png">
                             <img data-src="/content/assets/img/icons/icon2.png" class="box-shadow mb-2 icon-110 opacity-80 lazyload" alt="Image">
                         </picture>
-                        <p class="text-center" translate="HOME_SECTION3_ICON2">Invierte a partir de<br />U$S 1.000</p>
+                        <p class="text-center" translate="HOME_SECTION3_ICON2">Invierte a partir de<br />U$S 20,000</p>
                     </li>
                     <li class="col-lg col-md-4 col-sm-4 col-5">
                         <picture>
@@ -162,7 +162,7 @@
 
                 <p class="mb-4" translate="HOME_SECTION4_TEXT">Analizamos cada proyecto con un equipo de profesionales para garantizar la tranquilidad de nuestros inversores</p>
 
-                <a class="btn btn-celeste btn-lg" href="#" ng-click="clickAction(105)" translate="BUTTON_VIEW_PROJECTS">View Projects</a>
+                <a class="btn btn-celeste btn-lg" href="#" ng-click="clickAction(105)" translate="BUTTON_VIEW_PROJECTS" ng-show="canInvest">View Projects</a>
 
             </div>
             <!--/Grid column-->
@@ -257,7 +257,7 @@
             </picture>
             <div class="col-12">
                 <h3 class="h1" translate="HOME_SECTION6_TITLE">Invierte en Activos Reales</h3>
-                <a class="btn btn-linea-celeste btn-lg" ng-click="showPreviousProperties()" translate="BTN_PREVIOUS_PROPERTIES">Ver Más Proyectos</a>
+                <a class="btn btn-linea-celeste btn-lg" ng-click="showPreviousProperties()" translate="BTN_PREVIOUS_PROPERTIES" ng-show="canInvest">Ver Más Proyectos</a>
             </div>
         </div>
     </div>
