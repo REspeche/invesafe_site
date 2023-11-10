@@ -5,6 +5,7 @@
     "LBL_ASSETRENOVATIONTARGETYIELD": "Net Profit",
     "LBL_PROJECTSTARTDATE": "Project Start Date",
     "LBL_SETUPFEE": "Setup-Fee",
+    "LBL_SETUPFEEBYTICKET": "Setup-Fee (Ticket)",
     "LBL_ASSETTICKETPRICE": "Ticket Price",
     "LBL_ASSETTOTALTOKENS": "Total Tokens",
     "LBL_ASSETPROPERTYTYPE": "Property Type",
@@ -19,6 +20,7 @@
     "LBL_GROSSRENTANUAL": "Gross Rent / year",
     "LBL_GROSSRENT": "Gross Rent / month",
     "LBL_CLOSSINGCOSTS": "Clossing Costs",
+    "LBL_TOTALCLOSSINGCOSTS": "Total Clossing Costs",
     "LBL_BROKERCOMISSION": "Broker Commission (6.00%)",
     "LBL_CLOSSING_COST": "Clossing Cost (2.00%)",
     "LBL_SUCCESSFEE": "Success Fee (0.5%)",
@@ -31,5 +33,7 @@
     "LBL_UNDERLYINGASSETPRICE": "Underlying Asset Price",
     "LBL_PLATFORMLISTINGFEE": "Invesafe Listing Fee (2%)",
     "LBL_ACCOUNTANTFEES": "Accountant Fees",
-    "LBL_LOTCLOSSINGCOST": "Lot Clossing Fee"
+    "LBL_LOTCLOSSINGCOST": "Lot Clossing Fee",
+    "LBL_INVESTMENT": "Investment",
+    "LBL_EXPECTEDPROFIT": "Expected Profit"
 }

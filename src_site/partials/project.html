@@ -4,9 +4,9 @@
       <img ng-src="{{item.imgBg}}" class="bg-image opacity-30">
       <div class="container">
           <div class="row justify-content-start">
-              <div class="col-12 col-md-8 col-lg-7">
+              <div class="col-12 col-md-12 col-lg-12">
 
-                  <h1 class="display-4">{{item.title}}</h1>
+                  <h1 class="display-4 text-uppercase">{{item.title}}</h1>
                   <p class="mb-3">
                     <span>{{item.subtitle}}</span>
                     <a href="javascript:void(0)" ng-click="clickFavorite(item)" class="ml-3" ng-class="{'text-muted':(item.isFavorite==0),'text-danger':(item.isFavorite>0)}" alt="Mark like favorite!" ng-show="canInvest">
@@ -110,7 +110,7 @@
             <p class="card-text style2" ng-show="itemMeta.assetRenovationTargetYield"><span class="text-meta" translate="LBL_ASSETRENOVATIONTARGETYIELD"></span><span class="value-meta">{{itemMeta.assetRenovationTargetYield | customCurrency}}%</span></p>
             <p class="card-text style2"><span class="text-meta" translate="LBL_PROJECTSTARTDATE"></span><span class="value-meta">{{itemMeta.strAssetRentStartDate}}</span></p>
             <p class="card-text"><span class="text-meta" translate="LBL_ASSETTICKETPRICE"></span><span class="value-meta">{{itemMeta.assetTicketPrice | customCurrency}}</span></p>
-            <p class="card-text"><span class="text-meta" translate="LBL_SETUPFEE"></span><span class="value-meta">{{itemMeta.setupFee}}% ({{itemMeta.assetTicketPrice * itemMeta.setupFee / 100 | customCurrency}})</span></p>
+            <p class="card-text"><span class="text-meta" translate="LBL_SETUPFEEBYTICKET"></span><span class="value-meta">{{itemMeta.setupFee}}% ({{itemMeta.assetTicketPrice * itemMeta.setupFee / 100 | customCurrency}})</span></p>
 
             <p class="card-text style1 mt-4"><span class="text-meta" translate="LBL_ASSETPROPERTYTYPE"></span><span class="value-meta">{{itemMeta.assetPropertyType}}</span></p>
             <p class="card-text"><span class="text-meta" translate="LBL_ASSETCONSTRUCTIONYEAR"></span><span class="value-meta">{{itemMeta.assetConstructionYear}}</span></p>
@@ -127,30 +127,32 @@
           </div>
         </div>
       </div>
-      <div class="col-md-12 col-lg-6">
+      <div class="col-md-12 col-lg-6 pb-2">
         <div class="card">
           <div class="card-body mb-2">
-            <h5 class="card-title font-weight-bold mb-4" translate="LBL_FINANCIALS"></h5>
+            <h5 class="card-title font-weight-bold mb-4" translate="LBL_INVESTMENT"></h5>
 
             <p class="card-text"><span class="text-meta" translate="LBL_UNDERLYINGASSETPRICE"></span><span class="value-meta">{{itemMeta.underlyingAssetPrice | customCurrency}}</span></p>
             <p class="card-text"><span class="text-meta" translate="LBL_PLATFORMLISTINGFEE"></span><span class="value-meta">{{itemMeta.platformListingFee | customCurrency}}</span></p>
             <p class="card-text"><span class="text-meta" translate="LBL_ACCOUNTANTFEES"></span><span class="value-meta">{{itemMeta.accountantFees | customCurrency}}</span></p>
             <p class="card-text sum"><span class="text-meta" translate="LBL_LOTCLOSSINGCOST"></span><span class="value-meta">{{itemMeta.lotClossingCost | customCurrency}}</span></p>
-            <p class="card-text style3"><span class="text-meta" translate="LBL_ASSETPRICE"></span><span class="value-meta">{{itemMeta.assetPrice | customCurrency}}</span></p>
+            <p class="card-text style3"><span class="text-meta" translate="LBL_ASSETPRICE"></span><small class="ml-1">(1)</small><span class="value-meta">{{itemMeta.assetPrice | customCurrency}}</span></p>
 
             <h5 class="card-title font-weight-bold my-4" translate="LBL_CLOSSINGCOSTS"></h5>
 
             <p class="card-text"><span class="text-meta" translate="LBL_BROKERCOMISSION"></span><span class="value-meta">{{itemMeta.brokerComission | customCurrency}}</span></p>
             <p class="card-text"><span class="text-meta" translate="LBL_CLOSSING_COST"></span><span class="value-meta">{{itemMeta.clossingCost | customCurrency}}</span></p>
             <p class="card-text sum"><span class="text-meta" translate="LBL_SUCCESSFEE"></span><span class="value-meta">{{itemMeta.successFee | customCurrency}}</span></p>
-            <p class="card-text style3"><span class="text-meta" translate="LBL_ASSETPRICE"></span><span class="value-meta">{{itemMeta.saleClossingCost | customCurrency}}</span></p>
+            <p class="card-text style3"><span class="text-meta" translate="LBL_TOTALCLOSSINGCOSTS"></span><small class="ml-1">(2)</small><span class="value-meta">{{itemMeta.saleClossingCost | customCurrency}}</span></p>
 
             <p class="card-text style1 mt-4"><span class="text-meta" translate="LBL_SALEPRICE"></span><span class="value-meta">{{itemMeta.salePrice | customCurrency}}</span></p>
-            <p class="card-text style2" ng-show="itemMeta.assetRenovationTargetYield"><span class="text-meta" translate="LBL_NETPROFIT"></span><span class="value-meta">{{itemMeta.netProfit | customCurrency}}</span></p>
+            <p class="card-text"><small class="mr-1">(1)</small><span class="text-meta" translate="LBL_INVESTMENT"></span><span class="value-meta">- {{itemMeta.assetPrice | customCurrency}}</span></p>
+            <p class="card-text"><small class="mr-1">(2)</small><span class="text-meta" translate="LBL_CLOSSINGCOSTS"></span><span class="value-meta">- {{itemMeta.saleClossingCost | customCurrency}}</span></p>
+            <p class="card-text style2" ng-show="itemMeta.assetRenovationTargetYield"><span class="text-meta" translate="LBL_EXPECTEDPROFIT"></span><span class="value-meta">{{itemMeta.netProfit | customCurrency}}</span></p>
           </div>
         </div>
 
-        <share-social></share-social>
+        <share-social project="1"></share-social>
 
       </div>
     </div>
@@ -167,7 +169,7 @@
         </div>
         <div class="col-sm-12 col-md-12 col-lg-6">
           <h5 class="card-title font-weight-bold mb-4" translate="LBL_MAP">Map</h5>
-          <div id="googleMap" style="width:100%;height:350px;"></div>
+          <a href="https://www.google.com/maps/place/12881+SW+72nd+Terrace+Rd,+Ocala,+FL+34473/@29.0347825,-82.2389683,17.02z/data=!4m5!3m4!1s0x88e87841a78cf9d5:0xd5374978c69efc25!8m2!3d29.0346857!4d-82.2393196?entry=ttu" target="_blank"><img src="content/assets/img/maps/map_p1.png" height="350"/></a>
         </div>
       </div>
 
@@ -176,5 +178,3 @@
 
   <!--/Project -->
 </main>
-
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCfjnln8Zo-VfdmrNhrKci0Pi-z9wcumOM&callback=renderMap"></script>

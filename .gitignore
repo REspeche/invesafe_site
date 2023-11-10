@@ -1,7 +1,9 @@
 
 .DS_Store
 _build_dashboard
+_build_dashboard_DEV
 _build_site
+_build_site_DEV
 _deploy_server
 node_modules
 package-lock.json

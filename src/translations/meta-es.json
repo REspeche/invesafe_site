@@ -5,6 +5,7 @@
     "LBL_ASSETRENOVATIONTARGETYIELD": "Rendimiento neto",
     "LBL_PROJECTSTARTDATE": "Fecha de inicio del proyecto",
     "LBL_SETUPFEE": "Setup-Fee",
+    "LBL_SETUPFEEBYTICKET": "Setup-Fee (Ticket)",
     "LBL_ASSETTICKETPRICE": "Precio del ticket",
     "LBL_ASSETTOTALTOKENS": "Total de tokens",
     "LBL_ASSETPROPERTYTYPE": "Tipo de propiedad",
@@ -19,6 +20,7 @@
     "LBL_GROSSRENTANUAL": "Renta bruta / año",
     "LBL_GROSSRENT": "Alquiler bruto / mes",
     "LBL_CLOSSINGCOSTS": "Costos de Cierre",
+    "LBL_TOTALCLOSSINGCOSTS": "Costos de Cierre Total",
     "LBL_BROKERCOMISSION": "Comisión Broker (6,00%)",
     "LBL_CLOSSING_COST": "Costos de Cierre (2,00%)",
     "LBL_SUCCESSFEE": "Tarifa sobre el Exito (0.5%)",
@@ -31,5 +33,7 @@
     "LBL_UNDERLYINGASSETPRICE": "Precio del activo subyacente",
     "LBL_PLATFORMLISTINGFEE": "Tarifa de publicación de Invesafe (2%)",
     "LBL_ACCOUNTANTFEES": "Gastos de Contador",
-    "LBL_LOTCLOSSINGCOST": "Gastos de Cierre del Lote"
+    "LBL_LOTCLOSSINGCOST": "Gastos de Cierre del Lote",
+    "LBL_INVESTMENT": "Inversión",
+    "LBL_EXPECTEDPROFIT": "Rentabilidad Esperada"
 }

@@ -13,7 +13,7 @@ let connect = require('gulp-connect');
 let del = require('del');
 let series = require('stream-series');
 let environments = require('gulp-environments');
-let headerComment = require('gulp-header-comment');
+//let headerComment = require('gulp-header-comment');
 let argv = require('yargs').argv;
 let dateFormat = require('dateformat');
 let version = require('gulp-version-number');
@@ -22,7 +22,9 @@ sass.compiler = require('node-sass');
 
 let development = environments.development;
 let production = environments.production;
+let folderDEV = "_DEV";
 if (production()) {
+  let folderDEV = "";
   var now = new Date();
   if (argv.type=='site' || !argv.type) {
     var valVersionSite = incrementVersion('site');
@@ -34,8 +36,8 @@ if (production()) {
   }
 }
 
-let pathBuildSite = '_build_site';
-let pathBuildDashboard = '_build_dashboard';
+let pathBuildSite = '_build_site' + folderDEV;
+let pathBuildDashboard = '_build_dashboard' + folderDEV;
 
 const versionConfig = {
   'value': '%TS%',
@@ -190,7 +192,7 @@ function compileSiteCss () {
         .pipe(sass())
         //.pipe(production(cleanCSS({compatibility: 'ie8'})))
         .pipe(production(rev()))
-        .pipe(production(headerComment(textVersionS)))
+        //.pipe(production(headerComment(textVersionS)))
         .pipe(gulp.dest(pathBuildSite+'/content/assets/css'));
 };
 function compileDashboardCss () {
@@ -203,7 +205,7 @@ function compileDashboardCss () {
         .pipe(sass())
         //.pipe(production(cleanCSS({compatibility: 'ie8'})))
         .pipe(production(rev()))
-        .pipe(production(headerComment(textVersionD)))
+        //.pipe(production(headerComment(textVersionD)))
         .pipe(gulp.dest(pathBuildDashboard+'/content/assets/css'));
 };
 
@@ -235,7 +237,7 @@ function compileSiteJs() {
     }).on('error', console.error)))
     */
     //.pipe(production(rev()))
-    .pipe(production(headerComment(textVersionS)))
+    //.pipe(production(headerComment(textVersionS)))
     .pipe(gulp.dest(pathBuildSite+'/content/assets/js'));
 };
 function compileDashboardJs() {
@@ -265,7 +267,7 @@ function compileDashboardJs() {
     }).on('error', console.error)))
     */
     //.pipe(production(rev()))
-    .pipe(production(headerComment(textVersionD)))
+    //.pipe(production(headerComment(textVersionD)))
     .pipe(gulp.dest(pathBuildDashboard+'/content/assets/js'));
 };
 
@@ -283,7 +285,7 @@ function compilePartialSiteJs(done) {
       mangle: false
     }).on('error', console.error)))
     */
-    .pipe(production(headerComment(textVersionS)))
+    //.pipe(production(headerComment(textVersionS)))
     .pipe(gulp.dest(pathBuildSite+'/content/assets/js/partials'));
     done();
 };
@@ -300,7 +302,7 @@ function compilePartialDashboardJs(done) {
       mangle: false
     }).on('error', console.error)))
     */
-    .pipe(production(headerComment(textVersionD)))
+    //.pipe(production(headerComment(textVersionD)))
     .pipe(gulp.dest(pathBuildDashboard+'/content/assets/js/partials'));
   done();
 };
@@ -311,7 +313,7 @@ function compileSiteHtml() {
     'src/**/*.html',
     'src_site/**/*.html'
   ])
-    .pipe(production(headerComment(textVersionS)))
+    //.pipe(production(headerComment(textVersionS)))
     .pipe(gulp.dest(pathBuildSite+"/templates"));
 };
 function compileDashboardHtml() {
@@ -319,7 +321,7 @@ function compileDashboardHtml() {
     'src/**/*.html',
     'src_dashboard/**/*.html'
   ])
-    .pipe(production(headerComment(textVersionD)))
+    //.pipe(production(headerComment(textVersionD)))
     .pipe(gulp.dest(pathBuildDashboard+"/templates"));
 };
 
@@ -358,7 +360,7 @@ function createAssets(done) {
         .pipe(inject(series([sourcesAsssetsSiteJs,compileSiteJs()]), {ignorePath: pathBuildSite, addRootSlash: false}))
         .pipe(production(replace(/(<!--\s*inject:css\s*-->\s*)(\n*)(.*)(\n*)(\s*)(<!--\s*endinject\s*-->)/g, '$3$4$5')))
         .pipe(production(replace(/(<!--\s*inject:js\s*-->\s*)(\n*)(.*)(\n*)(\s*)(<!--\s*endinject\s*-->)/g, '$3$4$5')))
-        .pipe(production(headerComment(textVersionS)))
+        //.pipe(production(headerComment(textVersionS)))
         .pipe(production(version(versionConfig)))
         .pipe(rename('index.html'))
         .pipe(gulp.dest(pathBuildSite));
@@ -382,7 +384,7 @@ function createAssets(done) {
         .pipe(inject(series([sourcesAsssetsDashboardJs,compileDashboardJs()]), {ignorePath: pathBuildDashboard, addRootSlash: false}))
         .pipe(production(replace(/(<!--\s*inject:css\s*-->\s*)(\n*)(.*)(\n*)(\s*)(<!--\s*endinject\s*-->)/g, '$3$4$5')))
         .pipe(production(replace(/(<!--\s*inject:js\s*-->\s*)(\n*)(.*)(\n*)(\s*)(<!--\s*endinject\s*-->)/g, '$3$4$5')))
-        .pipe(production(headerComment(textVersionD)))
+        //.pipe(production(headerComment(textVersionD)))
         .pipe(production(version(versionConfig)))
         .pipe(rename('index.html'))
         .pipe(gulp.dest(pathBuildDashboard));
@@ -424,7 +426,7 @@ function createAssetsSite(done) {
         .pipe(inject(series([sourcesAsssetsSiteJs,compileSiteJs()]), {ignorePath: pathBuildSite, addRootSlash: false}))
         .pipe(production(replace(/(<!--\s*inject:css\s*-->\s*)(\n*)(.*)(\n*)(\s*)(<!--\s*endinject\s*-->)/g, '$3$4$5')))
         .pipe(production(replace(/(<!--\s*inject:js\s*-->\s*)(\n*)(.*)(\n*)(\s*)(<!--\s*endinject\s*-->)/g, '$3$4$5')))
-        .pipe(production(headerComment(textVersionS)))
+        //.pipe(production(headerComment(textVersionS)))
         .pipe(production(version(versionConfig)))
         .pipe(rename('index.html'))
         .pipe(gulp.dest(pathBuildSite));
@@ -466,7 +468,7 @@ function createAssetsDashboard(done) {
         .pipe(inject(series([sourcesAsssetsDashboardJs,compileDashboardJs()]), {ignorePath: pathBuildDashboard, addRootSlash: false}))
         .pipe(production(replace(/(<!--\s*inject:css\s*-->\s*)(\n*)(.*)(\n*)(\s*)(<!--\s*endinject\s*-->)/g, '$3$4$5')))
         .pipe(production(replace(/(<!--\s*inject:js\s*-->\s*)(\n*)(.*)(\n*)(\s*)(<!--\s*endinject\s*-->)/g, '$3$4$5')))
-        .pipe(production(headerComment(textVersionD)))
+        //.pipe(production(headerComment(textVersionD)))
         .pipe(production(version(versionConfig)))
         .pipe(rename('index.html'))
         .pipe(gulp.dest(pathBuildDashboard));
