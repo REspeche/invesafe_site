@@ -149,6 +149,7 @@
   "VAL_MULTI_FAMILY": "Multifamiliar",
   "VAL_SINGLE_FAMILY": "Unifamiliar",
   "VAL_FULLY_RENTED": "Totalmente alquilado",
+  "VAL_FOR_SALE": "Para la venta",
   "VAL_TENANT_PAID": "Pagado por el inquilino",
 
   "LNK_SEND_EMAIL1": "Enviar el email",
@@ -226,7 +227,7 @@
   "INF_BLOCK_PROFILE": "No puedea cargar un nuevo proyecto hasta que completea los datos del perfil",
   "INF_ASSETANNUALRETURN": "<strong> Rendimiento esperado </strong> se expresa como la <a href=\"https://www.investopedia.com/terms/c/capitalizationrate.asp\"> Tasa de capitalización </a> (tasa de capitalización), la relación entre los ingresos operativos netos y el valor actual o el precio de venta de una propiedad. Determina el rendimiento potencial de una inversión.",
   "INF_ASSETSECTION8": "<strong> Sección 8 </strong> es parte del programa de vivienda asequible y vivienda asistida de HUD del gobierno federal de los EE. UU. Para obtener más información, visite <a href = \" https://www.hud.gov / topics / housing_choice_voucher_program_section_8\" target=\"_blank\" rel=\"noopener noreferrer\"> www.HUD.gov </a>.",
-  "INF_ASSETRENTPERTOKEN": "<strong> ¿Alguna vez necesitó mudarse? </strong> Los inquilinos de Invesafe no son diferentes. A veces, la vida pasa. Invesafe administra todas las responsabilidades de mantenimiento y arrendamiento, por lo que usted no tiene que hacerlo. la propiedad.",
+  "INF_SETUPFEE": "<strong> ¿Alguna vez necesitó mudarse? </strong> Los inquilinos de Invesafe no son diferentes. A veces, la vida pasa. Invesafe administra todas las responsabilidades de mantenimiento y arrendamiento, por lo que usted no tiene que hacerlo. la propiedad.",
   "INF_ASSETHASTENANTS": "Cuando no se alquila por completo, es posible que esta propiedad no pague a los titulares de tokens de alquiler completo.",
   "INF_ASSETPRICE": "<strong> Inversión total </strong> se calcula actualmente como <strong> Número de tokens x precio del token. </strong> Como resultado del valor de dos decimales del precio del token, la inversión total normalmente exhiben una discrepancia de unos pocos centavos a unos pocos dólares. ",
   "INF_EMPTY_PORTFOLIO": "Actualmente no posee ningún activo. Para comenzar, visite:",

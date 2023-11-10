@@ -128,6 +128,8 @@ function createStaticFilesSite (done) {
     gulp.src(['framework/files/*']).pipe(gulp.dest(pathBuildSite+'/content/files/'));
     //framework
     gulp.src(['framework/**/*']).pipe(gulp.dest(pathBuildSite+'/content/framework/'));
+    //signatures
+    gulp.src(['signatures/**/*']).pipe(gulp.dest(pathBuildSite+'/signatures/'));
     //others
     gulp.src('src_site/change_control.json').pipe(gulp.dest(pathBuildSite+'/'));
     done();
@@ -152,8 +154,8 @@ function createTranslations (done) {
       .pipe(gulp.dest(pathBuildSite+'/translations/'));
 
     gulp.src([
-        'src_dashboard/translations/dashboard-*.json',
-        'src/translations/general-*.json'
+        'src/translations/*.json',
+        'src_dashboard/translations/dashboard-*.json'
       ])
       .pipe(gulp.dest(pathBuildDashboard+'/translations/'));
     done();

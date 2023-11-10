@@ -37,6 +37,10 @@ mainApp.config(['$translateProvider',
           {
             prefix: '/translations/dashboard-',
             suffix: '.json'
+          },
+          {
+            prefix: '/translations/meta-',
+            suffix: '.json'
           }
         ]
       })

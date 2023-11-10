@@ -25,7 +25,7 @@
                 <th translate="COL_PURCHASE_DATE">Purchase Date</th>
                 <th translate="COL_TITLE">Project</th>
                 <th translate="COL_QUANTITY">Quantity</th>
-                <th translate="COL_TOKEN_PRICE">Token Price</th>
+                <th translate="COL_TICKET_PRICE">Token Price</th>
                 <th class="d-none d-sm-block d-lg-table-cell" translate="COL_SUBTOTAL">Subtotal</th>
             </tr>
         </thead>
@@ -39,16 +39,16 @@
                   ng-click="clickViewDetail(x.projects[0])" data-toggle="tooltip"><i class="fas fa-search-plus"></i></a>
                 </td>
                 <td>{{x.projects[0].tokenPurchase}}</td>
-                <td>{{x.projects[0].assetTokenPrice | customCurrency}}</td>
-                <td class="d-none d-sm-block d-lg-table-cell">{{x.projects[0].tokenPurchase * x.projects[0].assetTokenPrice | customCurrency}}</td>
+                <td>{{x.projects[0].assetTicketPrice | customCurrency}}</td>
+                <td class="d-none d-sm-block d-lg-table-cell">{{x.projects[0].tokenPurchase * x.projects[0].assetTicketPrice | customCurrency}}</td>
             </tr>
             <tr ng-repeat="y in x.projects" ng-if="$index > 0">
                 <td>{{y.project}}<a type="button" class="text-primary ml-2" title="Detalle"
                   ng-click="clickViewDetail(item.projects)" data-toggle="tooltip"><i class="fas fa-search-plus"></i></a>
                 </td>
                 <td>{{y.tokenPurchase}}</td>
-                <td>{{y.assetTokenPrice | customCurrency}}</td>
-                <td class="d-none d-sm-block d-lg-table-cell">{{y.tokenPurchase * y.assetTokenPrice | customCurrency}}</td>
+                <td>{{y.assetTicketPrice | customCurrency}}</td>
+                <td class="d-none d-sm-block d-lg-table-cell">{{y.tokenPurchase * y.assetTicketPrice | customCurrency}}</td>
             </tr>
             <tr ng-if="x.projects.length>1">
                 <td colspan="3" class="text-right" style="background-color: #bbdefb"><span translate="COL_SUBTOTAL">Subtotal</span> #<span>{{x.id}}</span></td>

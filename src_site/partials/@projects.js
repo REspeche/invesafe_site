@@ -1,4 +1,4 @@
-angular.module('mainApp').controller('marketplaceController', ['$scope', 'mainSvc', 'BASE_URL',
+angular.module('mainApp').controller('projectsController', ['$scope', 'mainSvc', 'BASE_URL',
     function ($scope, mainSvc, BASE_URL) {
       $scope.lstProjects = [];
       $scope.loadList = false;

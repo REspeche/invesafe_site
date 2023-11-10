@@ -520,7 +520,7 @@ mainApp.controller('siteController', ['$scope', 'mainSvc', '$rootScope', 'action
 			var retAction = cartSvc.addItemCart({
 				id       	  			: item.id,
 				tokenPurchase			: item.tokenPurchase,
-				assetTokenPrice		: item.assetTokenPrice,
+				assetTicketPrice		: item.assetTicketPrice,
 				fees         			: 0,
 				title		  				: (item.title)?item.title:item.address,
 				image		  				: item.image,

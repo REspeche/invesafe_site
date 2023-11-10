@@ -142,10 +142,10 @@ mainApp.config(['$stateProvider', '$urlRouterProvider', '$ocLazyLoadProvider',
                     title: 'INVESAFE - Accessibility statement'
                 }
             })
-            .state('marketplace', {
-                url: '/marketplace',
-                templateUrl: 'templates/partials/marketplace.html',
-                controller  : 'marketplaceController',
+            .state('projects', {
+                url: '/projects',
+                templateUrl: 'templates/partials/projects.html',
+                controller  : 'projectsController',
                 params: {
                   search: null
                 },
@@ -153,7 +153,7 @@ mainApp.config(['$stateProvider', '$urlRouterProvider', '$ocLazyLoadProvider',
                     deps: ['$ocLazyLoad', function($ocLazyLoad) {
                         return $ocLazyLoad.load([{
                             files: [
-                                'content/assets/js/partials/marketplace.js'
+                                'content/assets/js/partials/projects.js'
                             ]
                         }]);
                     }]

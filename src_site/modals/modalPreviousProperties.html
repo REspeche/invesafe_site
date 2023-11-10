@@ -15,30 +15,16 @@
             </a>
           </div>
           <div class="catalog-column col-3">
-            <div class="catalog-paired-heading" translate="COL_TOKEN_PRICE">Token Price</div>
-            <div class="catalog-paired-value">{{item.assetTokenPrice | customCurrency}}</div>
+            <div class="catalog-paired-heading" translate="COL_TICKET_PRICE">Ticket Price</div>
+            <div class="catalog-paired-value">{{item.assetTicketPrice | customCurrency}}</div>
           </div>
-          <div class="catalog-column col-3">
-            <div class="catalog-paired-heading" translate="COL_TOKENS">Tokens</div>
-            <div class="catalog-paired-value">{{item.assetTotalTokens | number : 0}}</div>
-          </div>
-          <div class="catalog-column col-3">
-            <div class="catalog-paired-heading" translate="COL_TOTAL_PRICE">Total Price</div>
-            <div class="catalog-paired-value">{{item.assetPrice | customCurrency}}</div>
-          </div>
-          <!-- row -->
           <div class="catalog-column col-3">
             <div class="catalog-paired-heading" translate="COL_EXPECTED_YIELD">Expected Yield</div>
             <div class="catalog-paired-value">{{item.assetAnnualReturn | number : 2}}%</div>
           </div>
           <div class="catalog-column col-3">
-            <div class="catalog-paired-heading" translate="COL_RENT_TOKEN">Rent / Token</div>
-            <div class="catalog-paired-value">{{item.netRentMonthly | customCurrency}}</div>
-          </div>
-          <div class="catalog-column col-6">
-            <div class="catalog-paired-value">
-              <a href="https://etherscan.io/token/{{item.etherscanAddress}}" target="_blank" type="button" class="btn btn-outline-info btn-sm" data-mdb-ripple-color="dark" translate="COL_ETHERSCAN">Etherscan</a>
-            </div>
+            <div class="catalog-paired-heading" translate="COL_TOTAL_PRICE">Total Price</div>
+            <div class="catalog-paired-value">{{item.assetPrice | customCurrency}}</div>
           </div>
         </li>
       </ul>

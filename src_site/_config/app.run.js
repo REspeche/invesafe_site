@@ -14,7 +14,7 @@ mainApp.run(['$rootScope', 'authenticationSvc', '$timeout', '$translate', 'setti
           // refresh count items of cart
           cartSvc.getCountCart();
           //llama al servicio de configuracion si es que nunca lo llamo
-          if (!$rootScope.settings || !$rootScope.settings.pull) settingSvc.getSettings();
+          if ((!$rootScope.settings || !$rootScope.settings.pull)) settingSvc.getSettings();
         });
 
         $rootScope.$on("$stateChangeSuccess", function(event, toState, toParams, fromState, fromParams) {

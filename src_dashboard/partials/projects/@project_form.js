@@ -36,8 +36,8 @@ angular.module('mainApp').controller('projectFormController', ['$scope', 'action
               assetAnnualReturn: undefined,
               assetRenovationTargetYield: undefined,
               assetRentStartDate: undefined,
-              assetRentPerToken: undefined,
-              assetTokenPrice: undefined,
+              setupFee: undefined,
+              assetTicketPrice: undefined,
               assetTotalTokens: undefined,
               assetPropertyType: 1, //multi family
               assetConstructionYear: new Date().getFullYear(),
@@ -56,20 +56,20 @@ angular.module('mainApp').controller('projectFormController', ['$scope', 'action
               proId: 0,
               grossRentAnual: undefined,
               grossRent: undefined,
-              monthlyCosts: 0,
-              propertyManagement: 0,
-              platformCost: 0,
-              propertyMaintenance: 0,
+              lotClossingCost: 0,
+              brokerComission: 0,
+              clossingCost: 0,
+              successFee: 0,
               propertyTaxes: 0,
               propertyInsurance: 0,
               propertyUtilities: 1, //tenant paid
-              netRentMonthly: undefined,
-              netRentAnnual: undefined,
+              salePrice: undefined,
+              netProfit: undefined,
               assetPrice: 0,
               underlyingAssetPrice: 0,
               platformListingFee: 0,
-              initMaintenanceReserve: 0,
-              renovationReserve: 0
+              accountantFees: 0,
+              lotClossingCost: 0
             }
           }
         ];
@@ -94,7 +94,8 @@ angular.module('mainApp').controller('projectFormController', ['$scope', 'action
               {id: 1, label: $translate.instant('VAL_COMING_SOON') },
               {id: 2, label: $translate.instant('VAL_PROGRESS') },
               {id: 3, label: $translate.instant('VAL_SOLD_OUT') },
-              {id: 4, label: $translate.instant('VAL_READY_SALE') }
+              {id: 4, label: $translate.instant('VAL_READY_SALE') },
+              {id: 5, label: $translate.instant('VAL_SALED') }
             ];
             $scope.lstStatus =
             ($rootScope.userInfo.role==2)?[
@@ -112,7 +113,8 @@ angular.module('mainApp').controller('projectFormController', ['$scope', 'action
               {id: 2, label: $translate.instant('VAL_SINGLE_FAMILY') }
             ];
             $scope.lstHasTenants = [
-              {id: 1, label: $translate.instant('VAL_FULLY_RENTED') }
+              {id: 1, label: $translate.instant('VAL_FULLY_RENTED') },
+              {id: 2, label: $translate.instant('VAL_FOR_SALE') }
             ];
             $scope.lstMontlyUtilities = [
               {id: 1, label: $translate.instant('VAL_TENANT_PAID') }
@@ -212,8 +214,7 @@ angular.module('mainApp').controller('projectFormController', ['$scope', 'action
           $(document).ready(function() {
             tinymce.remove();
             tinymce.init(Object.assign({
-              height: '540',
-              width : '1110'
+              height: '540'
             }, _tinyMCEDefault, {
               selector: 'textarea.textHtml',
               setup: function(ed) {
@@ -734,13 +735,10 @@ angular.module('mainApp').controller('projectFormController', ['$scope', 'action
 
         $scope.propertyUtilitiesSum = function() {
           let total = 0;
-          total += parseInt(($scope.formMetaData[$scope.formData.catId].financials.propertyManagement)?$scope.formMetaData[$scope.formData.catId].financials.propertyManagement:0);
-          total += parseInt(($scope.formMetaData[$scope.formData.catId].financials.platformCost)?$scope.formMetaData[$scope.formData.catId].financials.platformCost:0);
-          total += parseInt(($scope.formMetaData[$scope.formData.catId].financials.propertyMaintenance)?$scope.formMetaData[$scope.formData.catId].financials.propertyMaintenance:0);
-          total += parseInt(($scope.formMetaData[$scope.formData.catId].financials.propertyTaxes)?$scope.formMetaData[$scope.formData.catId].financials.propertyTaxes:0);
-          total += parseInt(($scope.formMetaData[$scope.formData.catId].financials.propertyInsurance)?$scope.formMetaData[$scope.formData.catId].financials.propertyInsurance:0);
-          total += parseInt(($scope.formMetaData[$scope.formData.catId].financials.propertyUtilities)?$scope.formMetaData[$scope.formData.catId].financials.propertyUtilities:0);
-          $scope.formMetaData[$scope.formData.catId].financials.monthlyCosts = total;
+          total += parseInt(($scope.formMetaData[$scope.formData.catId].financials.brokerComission)?$scope.formMetaData[$scope.formData.catId].financials.brokerComission:0);
+          total += parseInt(($scope.formMetaData[$scope.formData.catId].financials.clossingCost)?$scope.formMetaData[$scope.formData.catId].financials.clossingCost:0);
+          total += parseInt(($scope.formMetaData[$scope.formData.catId].financials.successFee)?$scope.formMetaData[$scope.formData.catId].financials.successFee:0);
+          $scope.formMetaData[$scope.formData.catId].financials.saleClossingCost = total;
           return total;
         }
 
@@ -748,8 +746,8 @@ angular.module('mainApp').controller('projectFormController', ['$scope', 'action
           let total = 0;
           total += parseInt(($scope.formMetaData[$scope.formData.catId].financials.underlyingAssetPrice)?$scope.formMetaData[$scope.formData.catId].financials.underlyingAssetPrice:0);
           total += parseInt(($scope.formMetaData[$scope.formData.catId].financials.platformListingFee)?$scope.formMetaData[$scope.formData.catId].financials.platformListingFee:0);
-          total += parseInt(($scope.formMetaData[$scope.formData.catId].financials.initMaintenanceReserve)?$scope.formMetaData[$scope.formData.catId].financials.initMaintenanceReserve:0);
-          total += parseInt(($scope.formMetaData[$scope.formData.catId].financials.renovationReserve)?$scope.formMetaData[$scope.formData.catId].financials.renovationReserve:0);
+          total += parseInt(($scope.formMetaData[$scope.formData.catId].financials.accountantFees)?$scope.formMetaData[$scope.formData.catId].financials.accountantFees:0);
+          total += parseInt(($scope.formMetaData[$scope.formData.catId].financials.lotClossingCost)?$scope.formMetaData[$scope.formData.catId].financials.lotClossingCost:0);
           $scope.formMetaData[$scope.formData.catId].financials.assetPrice = total;
           return total;
         }
@@ -759,8 +757,8 @@ angular.module('mainApp').controller('projectFormController', ['$scope', 'action
           isEditingForm();
         }
 
-        $scope.changeNetRentMonthly = function() {
-          $scope.formMetaData[$scope.formData.catId].financials.netRentAnnual = 12 * $scope.formMetaData[$scope.formData.catId].financials.netRentMonthly;
+        $scope.changeSalePrice = function() {
+          $scope.formMetaData[$scope.formData.catId].financials.netProfit = $scope.formMetaData[$scope.formData.catId].financials.salePrice - $scope.formMetaData[$scope.formData.catId].financials.assetPrice - $scope.formMetaData[$scope.formData.catId].financials.saleClossingCost;
           isEditingForm();
         }
 

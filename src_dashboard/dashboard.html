@@ -33,7 +33,6 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-    <link rel="manifest" href="/manifest.json">
     <meta name="msapplication-TileColor" content="#ffffff">
     <meta name="msapplication-TileImage" content="/ms-icon-144x144.png">
     <meta name="theme-color" content="#ffffff">
@@ -108,12 +107,12 @@
               <a class="collapsible-header waves-effect arrow-r"><i class="fas fa-cogs"></i><span translate="MNU_GENERAL_SETTINGS">General Settings</span><i class="fa fa-angle-down rotate-icon"></i></a>
               <div class="collapsible-body">
                 <ul class="sub-menu">
-                  <li ng-class="{ 'selected' : itemRoute=='settings/general' }"><a class="waves-effect link-menu" ng-click="clickItemMenu(12)"><i class="fas fa-cog"></i><span translate="MNU_GENERAL">General</span></a></li>
-                  <li ng-class="{ 'selected' : itemRoute=='settings/limits' }"><a class="waves-effect link-menu" ng-click="clickItemMenu(13)"><i class="fas fa-border-style"></i><span translate="MNU_LIMITS">Limits</span></a></li>
-                  <li ng-class="{ 'selected' : itemRoute=='settings/payment' }"><a class="waves-effect link-menu" ng-click="clickItemMenu(14)"><i class="fas fa-credit-card"></i><span translate="MNU_PAYMENT">Payment</span></a></li>
-                  <li ng-class="{ 'selected' : itemRoute=='settings/social' }"><a class="waves-effect link-menu" ng-click="clickItemMenu(15)"><i class="fas fa-share-alt"></i><span translate="MNU_PROFILE_SOCIAL">Profile Social</span></a></li>
-                  <li ng-class="{ 'selected' : itemRoute=='settings/pages' }"><a class="waves-effect link-menu" ng-click="clickItemMenu(16)"><i class="fas fa-file"></i><span translate="MNU_PAGES">Pages</span></a></li>
-                  <li ng-class="{ 'selected' : itemRoute=='settings/sponsors' }"><a class="waves-effect link-menu" ng-click="clickItemMenu(26)"><i class="fas fa-donate"></i><span translate="MNU_SPONSORS">Sponsors</span></a></li>
+                  <li ng-class="{ 'selected' : itemRoute=='settings/general' }"><a class="collapsible-header waves-effect link-menu" ng-click="clickItemMenu(12)"><i class="fas fa-cog"></i><span translate="MNU_GENERAL">General</span></a></li>
+                  <li ng-class="{ 'selected' : itemRoute=='settings/limits' }"><a class="collapsible-header waves-effect link-menu" ng-click="clickItemMenu(13)"><i class="fas fa-arrows-alt"></i><span translate="MNU_LIMITS">Limits</span></a></li>
+                  <li ng-class="{ 'selected' : itemRoute=='settings/payment' }"><a class="collapsible-header waves-effect link-menu" ng-click="clickItemMenu(14)"><i class="fas fa-credit-card"></i><span translate="MNU_PAYMENT">Payment</span></a></li>
+                  <li ng-class="{ 'selected' : itemRoute=='settings/social' }"><a class="collapsible-header waves-effect link-menu" ng-click="clickItemMenu(15)"><i class="fas fa-share-alt"></i><span translate="MNU_PROFILE_SOCIAL">Profile Social</span></a></li>
+                  <li ng-class="{ 'selected' : itemRoute=='settings/pages' }"><a class="collapsible-header waves-effect link-menu" ng-click="clickItemMenu(16)"><i class="fas fa-file"></i><span translate="MNU_PAGES">Pages</span></a></li>
+                  <li ng-class="{ 'selected' : itemRoute=='settings/sponsors' }"><a class="collapsible-header waves-effect link-menu" ng-click="clickItemMenu(26)"><i class="fas fa-donate"></i><span translate="MNU_SPONSORS">Sponsors</span></a></li>
                 </ul>
               </div>
             </li>

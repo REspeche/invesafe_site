@@ -39,7 +39,7 @@ angular.module('mainApp').controller('orderReceivedController', ['$scope', '$sta
         $scope.sumTotalCart = function() {
             let totCart = 0;
             $scope.lstItems.forEach(item => {
-                totCart += (item.assetTokenPrice + item.fees) * item.tokenPurchase;
+                totCart += (item.assetTicketPrice + item.fees) * item.tokenPurchase;
             });
             return totCart;
         };

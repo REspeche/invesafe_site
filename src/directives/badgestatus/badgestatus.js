@@ -61,6 +61,10 @@ mainApp.directive('badgeStatus', function() {
                         $scope.color = 'success';
                         $scope.label = $translate.instant('BUD_READY_SALE');
                         break;
+                      case 5:
+                        $scope.color = 'secondary';
+                        $scope.label = $translate.instant('BUD_SALED');
+                        break;
                     }
                   }
                   else if ($scope.type=='userType') {

@@ -19,17 +19,10 @@ mainApp.controller('dashboardController', [ '$scope', 'actionSvc', 'BASE_URL', '
         };
 
         $scope.loadSideNav = function() {
-          var container = document.querySelector('.custom-scrollbar');
-          var ps = new PerfectScrollbar(container, {
+          var ps = new PerfectScrollbar(document.querySelector('.custom-scrollbar'), {
             wheelSpeed: 2,
             wheelPropagation: true,
             minScrollbarLength: 20
-          });
-          $('ul.collapsible li').on('click', 'a.link-menu', function () {
-            if ($('#sidenav-overlay').is(":visible")) {
-              $('#sidenav-overlay').remove();
-              $('#slide-out').attr('style','display: block; transform: translateX(-100%);');
-            }
           });
         }
 

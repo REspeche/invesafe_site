@@ -162,6 +162,7 @@
   "BUD_PROGRESS": "In Progress",
   "BUD_SOLD_OUT": "Sold Out",
   "BUD_READY_SALE": "Ready for Sale",
+  "BUD_SALED": "Saled",
   "BUD_PERSON": "Visitor",
   "BUD_COMPANY": "Investor",
   "BUD_MENTOR": "Mentor",
@@ -184,6 +185,7 @@
   "VAL_PROGRESS": "Progress",
   "VAL_SOLD_OUT": "Sold Out",
   "VAL_READY_SALE": "Ready for Sale",
+  "VAL_SALED": "Saled",
 
   "BTN_SIGN_IN": "Sign In",
   "BTN_SEND": "Send",
@@ -204,7 +206,7 @@
   "TXT_USA_CITIZEN": "Are you a resident or citizen of the united states or its territories?",
 
   "COL_PRODUCT": "Product",
-  "COL_TOKEN_PRICE": "Token Price",
+  "COL_TICKET_PRICE": "Ticket Price",
   "COL_TOTAL_FEES": "Total Fees",
   "COL_PURCHASE_PRICE": "Purchase Price",
   "COL_QUANTITY": "Quantity",

@@ -9,7 +9,7 @@
                   <h1 class="display-4">{{item.title}}</h1>
                   <p class="mb-3">
                     <span>{{item.subtitle}}</span>
-                    <a href="javascript:void(0)" ng-click="clickFavorite(item)" class="ml-3" ng-class="{'text-muted':(item.isFavorite==0),'text-danger':(item.isFavorite>0)}" alt="Mark like favorite!">
+                    <a href="javascript:void(0)" ng-click="clickFavorite(item)" class="ml-3" ng-class="{'text-muted':(item.isFavorite==0),'text-danger':(item.isFavorite>0)}" alt="Mark like favorite!" ng-show="canInvest">
                       <i class="fa-heart" ng-class="{'far':(item.isFavorite==0),'fas':(item.isFavorite>0)}"></i>
                     </a>
                   </p>
@@ -74,7 +74,7 @@
                           minlength="1" maxlength="3" min="1" max="{{item.maxTokenPurchase}}" step="1"
                           ng-change="quantityChange()" ng-model="item.tokenPurchase"/>
                         <button type="button" class="btn btn-add-cart btn-primary"
-                          ng-click="addCart(item)" data-mdb-ripple-color="dark"><span class="mr-2" translate="BTN_PURCHASE_TOKEN"></span>|<span class="ml-2">${{itemMeta.assetTokenPrice}}</span></button>
+                          ng-click="addCart(item)" data-mdb-ripple-color="dark"><span class="mr-2" translate="BTN_PURCHASE_TOKEN"></span>|<span class="ml-2">${{itemMeta.assetTicketPrice}}</span></button>
                     </div>
                 </div>
                 <div class="row style3">
@@ -108,19 +108,16 @@
 
             <p class="card-text style1"><span class="text-meta" translate="LBL_ASSETANNUALRETURN"></span><span class="value-meta">{{itemMeta.assetAnnualReturn | number : 2}}%</span></p>
             <p class="card-text style2" ng-show="itemMeta.assetRenovationTargetYield"><span class="text-meta" translate="LBL_ASSETRENOVATIONTARGETYIELD"></span><span class="value-meta">{{itemMeta.assetRenovationTargetYield | customCurrency}}%</span></p>
-            <p class="card-text style2"><span class="text-meta" translate="LBL_ASSETRENTSTARTDATE"></span><span class="value-meta">{{itemMeta.strAssetRentStartDate}}</span></p>
-            <p class="card-text"><span class="text-meta" translate="LBL_ASSETRENTPERTOKEN"></span><span class="value-meta">{{itemMeta.assetRentPerToken | customCurrency}} / year</span></p>
-            <p class="card-text"><span class="text-meta" translate="LBL_ASSETTOKENPRICE"></span><span class="value-meta">{{itemMeta.assetTokenPrice | customCurrency}}</span></p>
-            <p class="card-text"><span class="text-meta" translate="LBL_ASSETTOTALTOKENS"></span><span class="value-meta">{{itemMeta.assetTotalTokens | number : 0}}</span></p>
+            <p class="card-text style2"><span class="text-meta" translate="LBL_PROJECTSTARTDATE"></span><span class="value-meta">{{itemMeta.strAssetRentStartDate}}</span></p>
+            <p class="card-text"><span class="text-meta" translate="LBL_ASSETTICKETPRICE"></span><span class="value-meta">{{itemMeta.assetTicketPrice | customCurrency}}</span></p>
+            <p class="card-text"><span class="text-meta" translate="LBL_SETUPFEE"></span><span class="value-meta">{{itemMeta.setupFee}}% ({{itemMeta.assetTicketPrice * itemMeta.setupFee / 100 | customCurrency}})</span></p>
 
             <p class="card-text style1 mt-4"><span class="text-meta" translate="LBL_ASSETPROPERTYTYPE"></span><span class="value-meta">{{itemMeta.assetPropertyType}}</span></p>
             <p class="card-text"><span class="text-meta" translate="LBL_ASSETCONSTRUCTIONYEAR"></span><span class="value-meta">{{itemMeta.assetConstructionYear}}</span></p>
             <p class="card-text"><span class="text-meta" translate="LBL_ASSETNEIGHBORHOOD"></span><span class="value-meta">{{itemMeta.assetNeighborhood}}</span></p>
-            <p class="card-text"><span class="text-meta" translate="LBL_ASSETSQUAREFEET"></span><span class="value-meta">{{itemMeta.assetSquareFeet | number : 0}}</span></p>
-            <p class="card-text"><span class="text-meta" translate="LBL_ASSETLANDSQUAREFEET"></span><span class="value-meta">{{itemMeta.assetLandSquareFeet | number : 0}}</span></p>
-            <p class="card-text"><span class="text-meta" translate="LBL_ASSETTOTALUNITS"></span><span class="value-meta">{{itemMeta.assetTotalUnits | number : 0}} Units</span></p>
+            <p class="card-text"><span class="text-meta" translate="LBL_ASSETSQUAREFEET"></span><span class="value-meta">{{itemMeta.assetSquareFeet | number : 0}} SqFt</span></p>
+            <p class="card-text"><span class="text-meta" translate="LBL_ASSETLANDSQUAREFEET"></span><span class="value-meta">{{itemMeta.assetLandSquareFeet | number : 0}} SqFt</span></p>
             <p class="card-text"><span class="text-meta" translate="LBL_ASSETBEDROOMBATH"></span><span class="value-meta">{{itemMeta.assetBedroomBath}}</span></p>
-            <p class="card-text"><span class="text-meta" translate="LBL_ASSETHASTENANTS"></span><span class="value-meta">{{itemMeta.assetHasTenants}}</span></p>
             <p class="card-text"><span class="text-meta" translate="LBL_ASSETSECTION8"></span><span class="value-meta">{{itemMeta.assetSection8}}</span></p>
 
             <div class="mt-3 refer-info">
@@ -135,17 +132,21 @@
           <div class="card-body mb-2">
             <h5 class="card-title font-weight-bold mb-4" translate="LBL_FINANCIALS"></h5>
 
-            <p class="card-text"><span class="text-meta" translate="LBL_GROSSRENTANUAL"></span><span class="value-meta">{{itemMeta.grossRentAnual | customCurrency}}</span></p>
-            <p class="card-text"><span class="text-meta" translate="LBL_GROSSRENT"></span><span class="value-meta">{{itemMeta.grossRent | customCurrency}}</span></p>
-            <p class="card-text"><span class="text-meta" translate="LBL_MONTHLYCOSTS"></span><span class="value-meta">- {{itemMeta.monthlyCosts | customCurrency}}</span></p>
-            <p class="card-text sum"><span class="text-meta" translate="LBL_NETRENTMONTHLY"></span><span class="value-meta">{{itemMeta.netRentMonthly | customCurrency}}</span></p>
-            <p class="card-text style3"><span class="text-meta" translate="LBL_NETRENTANNUAL"></span><span class="value-meta">{{itemMeta.netRentAnnual| customCurrency}}</span></p>
+            <p class="card-text"><span class="text-meta" translate="LBL_UNDERLYINGASSETPRICE"></span><span class="value-meta">{{itemMeta.underlyingAssetPrice | customCurrency}}</span></p>
+            <p class="card-text"><span class="text-meta" translate="LBL_PLATFORMLISTINGFEE"></span><span class="value-meta">{{itemMeta.platformListingFee | customCurrency}}</span></p>
+            <p class="card-text"><span class="text-meta" translate="LBL_ACCOUNTANTFEES"></span><span class="value-meta">{{itemMeta.accountantFees | customCurrency}}</span></p>
+            <p class="card-text sum"><span class="text-meta" translate="LBL_LOTCLOSSINGCOST"></span><span class="value-meta">{{itemMeta.lotClossingCost | customCurrency}}</span></p>
             <p class="card-text style3"><span class="text-meta" translate="LBL_ASSETPRICE"></span><span class="value-meta">{{itemMeta.assetPrice | customCurrency}}</span></p>
-            <p class="card-text style1"><span class="text-meta" translate="LBL_ASSETANNUALRETURN"></span><span class="value-meta">{{itemMeta.assetAnnualReturn | number : 2}}%</span></p>
-            <p class="card-text style2" ng-show="itemMeta.assetRenovationTargetYield"><span class="text-meta" translate="LBL_ASSETRENOVATIONTARGETYIELD"></span><span class="value-meta">{{itemMeta.assetRenovationTargetYield | customCurrency}}%</span></p>
 
-            <h5 class="card-title font-weight-bold mt-4" translate="LBL_TOKEN_TRACKER"></h5>
-            <a href="https://etherscan.io/token/{{item.etherscanAddress}}" target="_blank" type="button" class="btn btn-outline-info btn-sm mb-0" data-mdb-ripple-color="dark" translate="COL_ETHERSCAN">Etherscan</a>
+            <h5 class="card-title font-weight-bold my-4" translate="LBL_CLOSSINGCOSTS"></h5>
+
+            <p class="card-text"><span class="text-meta" translate="LBL_BROKERCOMISSION"></span><span class="value-meta">{{itemMeta.brokerComission | customCurrency}}</span></p>
+            <p class="card-text"><span class="text-meta" translate="LBL_CLOSSING_COST"></span><span class="value-meta">{{itemMeta.clossingCost | customCurrency}}</span></p>
+            <p class="card-text sum"><span class="text-meta" translate="LBL_SUCCESSFEE"></span><span class="value-meta">{{itemMeta.successFee | customCurrency}}</span></p>
+            <p class="card-text style3"><span class="text-meta" translate="LBL_ASSETPRICE"></span><span class="value-meta">{{itemMeta.saleClossingCost | customCurrency}}</span></p>
+
+            <p class="card-text style1 mt-4"><span class="text-meta" translate="LBL_SALEPRICE"></span><span class="value-meta">{{itemMeta.salePrice | customCurrency}}</span></p>
+            <p class="card-text style2" ng-show="itemMeta.assetRenovationTargetYield"><span class="text-meta" translate="LBL_NETPROFIT"></span><span class="value-meta">{{itemMeta.netProfit | customCurrency}}</span></p>
           </div>
         </div>
 

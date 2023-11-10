@@ -149,6 +149,7 @@
   "VAL_MULTI_FAMILY": "Multi Family",
   "VAL_SINGLE_FAMILY": "Single Family",
   "VAL_FULLY_RENTED": "Fully Rented",
+  "VAL_FOR_SALE": "For Sale",
   "VAL_TENANT_PAID": "Tenant-paid",
 
   "LNK_SEND_EMAIL1": "Send the email",
@@ -226,7 +227,7 @@
   "INF_BLOCK_PROFILE": "You cannot load a new project until you complete the profile data",
   "INF_ASSETANNUALRETURN": "<strong>Expected yield</strong> is expressed as the <a href=\"https://www.investopedia.com/terms/c/capitalizationrate.asp\">Cap Rate</a> (capitalization rate), the ratio of net operating income to the current value or sale price of a property.  It determines the potential return on an investment.",
   "INF_ASSETSECTION8": "<strong>Section 8</strong> is part of the HUD assisted living and affordable housing program of the U.S. Federal Goverment.  For details, visit <a href=\"https://www.hud.gov/topics/housing_choice_voucher_program_section_8\" target=\"_blank\" rel=\"noopener noreferrer\">www.HUD.gov</a>.",
-  "INF_ASSETRENTPERTOKEN": "<strong>Ever needed to move?</strong> Invesafe tenants are no different. Sometimes, life happens. Invesafe manages all maintenance and tenancy responsibilities, so you don’t have to. The cost of property maintenance is paid via the rental income of the property.",
+  "INF_SETUPFEE": "<strong>Ever needed to move?</strong> Invesafe tenants are no different. Sometimes, life happens. Invesafe manages all maintenance and tenancy responsibilities, so you don’t have to. The cost of property maintenance is paid via the rental income of the property.",
   "INF_ASSETHASTENANTS": "When not fully rented, this property may not pay full rent to token holders.",
   "INF_ASSETPRICE": "<strong>Total Investment</strong> is currently calculated as <strong>Number of Tokens x Token Price.</strong>  As a result of the two-decimal value of the Token Price, Total Investment will typically exhibit a discrepancy of a few cents to a few dollars.",
   "INF_EMPTY_PORTFOLIO": "You don't currently own any assets. To get started, visit: ",

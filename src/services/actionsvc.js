@@ -60,7 +60,7 @@ mainApp.factory('actionSvc', ['$state',
 					case 102: retRoute = 'terms-of-use'; break;
 					case 103: retRoute = 'privacy-policy'; break;
 					case 104: retRoute = 'project'; break;
-					case 105: retRoute = 'marketplace'; break;
+					case 105: retRoute = 'projects'; break;
 					case 106: retRoute = 'cart'; break;
 					case 107: retRoute = 'checkout'; break;
 					case 108: retRoute = 'order-received'; break;

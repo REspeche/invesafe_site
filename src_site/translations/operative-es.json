@@ -86,13 +86,13 @@
   "BTN_PAY_CREDIT": "Pagar con crédito o débito",
   "BTN_RETURN_CART": "Volver al carrito",
 
-  "COL_TOKEN_PRICE": "Precio del token",
+  "COL_TICKET_PRICE": "Precio del ticket",
   "COL_TOKENS": "Tokens",
   "COL_TOTAL_PRICE": "Precio total",
   "COL_EXPECTED_YIELD": "Rendimiento esperado",
   "COL_RENT_TOKEN": "Alquiler / Token",
-  "COL_RENT_PER_TOKEN": "Alquiler por Token",
-  "COL_GROSS_RENT": "Renta Bruta",
+  "COL_NET_PROFIT": "Rentabilidad Neta",
+  "COL_SALE_PRICE": "Precio de Venta",
   "COL_ETHERSCAN": "Etherscan",
 
   "INFO_CART_EMPTY": "Tu carrito está actualmente vacío. Ir al <a href=\"/marketplace\">Proyectos</a>."

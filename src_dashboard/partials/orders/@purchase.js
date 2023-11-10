@@ -30,7 +30,7 @@ angular.module('mainApp').controller('purchaseProjectsController', ['$scope', 'm
                     proId: item.proId,
                     project: item.project,
                     tokenPurchase: item.tokenPurchase,
-                    assetTokenPrice: item.assetTokenPrice
+                    assetTicketPrice: item.assetTicketPrice
                   }]
                 });
               }
@@ -38,7 +38,7 @@ angular.module('mainApp').controller('purchaseProjectsController', ['$scope', 'm
                 $scope.orders[$scope.orders.length-1].projects.push({
                   project: item.project,
                   tokenPurchase: item.tokenPurchase,
-                  assetTokenPrice: item.assetTokenPrice
+                  assetTicketPrice: item.assetTicketPrice
                 });
               }
 
@@ -56,7 +56,7 @@ angular.module('mainApp').controller('purchaseProjectsController', ['$scope', 'm
             var total = 0;
             for(var i = 0; i < $scope.itemList.length; i++){
                 var item = $scope.itemList[i];
-                total += (item.tokenPurchase * item.assetTokenPrice);
+                total += (item.tokenPurchase * item.assetTicketPrice);
             }
             return total;
         }

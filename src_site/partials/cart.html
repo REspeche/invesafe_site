@@ -24,7 +24,7 @@
                           <span translate="COL_PRODUCT">Product</span>
                       </div>
                       <div class="col-lg-1">
-                          <span translate="COL_TOKEN_PRICE">Token Price</span>
+                          <span translate="COL_TICKET_PRICE">Token Price</span>
                       </div>
                       <div class="col-lg-1">
                           <span translate="COL_TOTAL_FEES">Total Fees</span>
@@ -64,11 +64,11 @@
                         <div class="col-lg-1">
                             <div class="d-block d-md-none">
                               <span class="header-table">
-                                <span translate="COL_TOKEN_PRICE">Token Price</span>:&nbsp;
+                                <span translate="COL_TICKET_PRICE">Token Price</span>:&nbsp;
                               </span>
-                              <span>{{item.assetTokenPrice | customCurrency}}</span>
+                              <span>{{item.assetTicketPrice | customCurrency}}</span>
                             </div>
-                            <span class="d-none d-md-block">{{item.assetTokenPrice | customCurrency}}</span>
+                            <span class="d-none d-md-block">{{item.assetTicketPrice | customCurrency}}</span>
                         </div>
                         <div class="col-lg-1">
                             <div class="d-block d-md-none">
@@ -88,10 +88,10 @@
                               <span class="header-table">
                                 <span translate="COL_PURCHASE_PRICE">Purchase Price</span>:&nbsp;
                               </span>
-                              <span>{{item.assetTokenPrice + item.fees | customCurrency}}</span>
+                              <span>{{item.assetTicketPrice + item.fees | customCurrency}}</span>
                             </div>
                             <div class="d-none d-md-block">
-                              <span>{{item.assetTokenPrice + item.fees | customCurrency}}</span>
+                              <span>{{item.assetTicketPrice + item.fees | customCurrency}}</span>
                             </div>
                         </div>
                         <div class="col-lg-1">
@@ -115,10 +115,10 @@
                               <span class="header-table">
                                 <span translate="COL_SUBTOTAL">Subtotal</span>:&nbsp;
                               </span>
-                              <span>{{(item.assetTokenPrice + item.fees) * item.tokenPurchase | customCurrency}}</span>
+                              <span>{{(item.assetTicketPrice + item.fees) * item.tokenPurchase | customCurrency}}</span>
                             </div>
                             <div class="d-none d-md-block">
-                              <span>{{(item.assetTokenPrice + item.fees) * item.tokenPurchase | customCurrency}}</span>
+                              <span>{{(item.assetTicketPrice + item.fees) * item.tokenPurchase | customCurrency}}</span>
                             </div>
                         </div>
                         <div class="col-lg-1 icon-cell text-right">

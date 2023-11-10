@@ -26,8 +26,8 @@
     "gulp-sass": "^5.1.0",
     "gulp-uglify-es": "^3.0.0",
     "gulp-version-number": "^0.2.4",
-    "node-sass": "^7.0.1",
-    "sass": "^1.49.7",
+    "node-sass": "^9.0.0",
+    "sass": "^1.69.5",
     "stream-series": "^0.1.1",
     "yargs": "^17.3.1"
   }

@@ -1,4 +1,4 @@
-<main ng-controller="marketplaceController" ng-init="loadMarketplace()">
+<main ng-controller="projectsController" ng-init="loadMarketplace()">
 
   <banner-page title="{{'PROJECTS_SLIDE_TITLE' | translate}}" text="{{'PROJECTS_SLIDE_TEXT' | translate}}" image="back_projects1"/>
 
@@ -24,9 +24,9 @@
               <!-- Project Card-->
               <div class="card mt-3 mb-3 col-12" ng-repeat="item in lstProjects">
                 <div class="row g-0">
-                  <div class="col-12 text-center py-1 text-white font-weight-bold text-uppercase" ng-class="{'bg-info': item.progress==1,'bg-warning': item.progress==2,'bg-danger': item.progress==3,'bg-success': item.progress==4}">
+                  <div class="col-12 text-center py-1 text-white font-weight-bold text-uppercase" ng-class="{'bg-info': item.progress==1,'bg-warning': item.progress==2,'bg-danger': item.progress==3,'bg-success': item.progress==4,'bg-secondary': item.progress==5}">
                     <span title="{{item.estimatedAvailabilityStr}}" data-toggle="tooltip" data-placement="top" ng-show="item.progress==1" translate="VAL_COMING_SOON"></span>
-                    <span ng-hide="item.progress==1">{{ ((item.progress==2)?'VAL_PROGRESS':((item.progress==3)?'VAL_SOLD_OUT':((item.progress==4)?'VAL_READY_SALE':''))) | translate}}</span>
+                    <span ng-hide="item.progress==1">{{ ((item.progress==2)?'VAL_PROGRESS':((item.progress==3)?'VAL_SOLD_OUT':((item.progress==4)?'VAL_READY_SALE':((item.progress==5)?'VAL_SALED':'')))) | translate}}</span>
                     <count-down seconds="{{item.secondsToAvailability}}" ng-if="item.progress==1"></count-down>
                   </div>
                 </div>
@@ -46,27 +46,27 @@
                             <div class="high-paired-value">{{item.assetPrice | customCurrency}}</div>
                         </div>
                         <div class="col-6 col-right">
-                            <div class="high-paired-heading" translate="COL_TOKEN_PRICE">Token Price</div>
-                            <div class="high-paired-value">{{item.assetTokenPrice | customCurrency}}</div>
+                            <div class="high-paired-heading" translate="COL_TICKET_PRICE">Ticket Price</div>
+                            <div class="high-paired-value">{{item.assetTicketPrice | customCurrency}}</div>
                         </div>
                       </div>
                       <div class="row">
                         <div class="col-12 list-row style1">
                             <div class="row">
-                                <div class="list-paired-heading col-6" translate="COL_EXPECTED_YIELD">Expected Yield</div>
-                                <div class="list-paired-value col-6">{{item.assetAnnualReturn | number : 2}}%</div>
+                                <div class="list-paired-heading col-8" translate="COL_EXPECTED_YIELD">Expected Yield</div>
+                                <div class="list-paired-value col-4">{{item.assetAnnualReturn | number : 2}}%</div>
                             </div>
                         </div>
                         <div class="col-12 list-row">
                             <div class="row">
-                                <div class="list-paired-heading col-6" translate="COL_GROSS_RENT">Gross Rent</div>
-                                <div class="list-paired-value col-6">{{item.grossRentAnual | customCurrency : 0}} / year</div>
+                                <div class="list-paired-heading col-6" translate="COL_SALE_PRICE">Sale Price</div>
+                                <div class="list-paired-value col-6">{{item.salePrice | customCurrency : 0}}</div>
                             </div>
                         </div>
                         <div class="col-12 list-row mb-3">
                             <div class="row">
-                                <div class="list-paired-heading col-6" translate="COL_RENT_PER_TOKEN">Rent per Token</div>
-                                <div class="list-paired-value col-6">{{item.assetRentPerToken | customCurrency}} / year</div>
+                                <div class="list-paired-heading col-6" translate="COL_NET_PROFIT">Net Profit</div>
+                                <div class="list-paired-value col-6">{{item.netProfit | customCurrency : 0}}</div>
                             </div>
                         </div>
                       </div>

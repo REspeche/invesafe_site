@@ -89,13 +89,13 @@
   "BTN_PAY_CREDIT": "Pay with Credit or Debit",
   "BTN_RETURN_CART": "Back to the Cart",
 
-  "COL_TOKEN_PRICE": "Token Price",
+  "COL_TICKET_PRICE": "Ticket Price",
   "COL_TOKENS": "Tokens",
   "COL_TOTAL_PRICE": "Total Price",
   "COL_EXPECTED_YIELD": "Expected Yield",
   "COL_RENT_TOKEN": "Rent / Token",
-  "COL_RENT_PER_TOKEN": "Rent per Token",
-  "COL_GROSS_RENT": "Gross Rent",
+  "COL_NET_PROFIT": "Net Profit",
+  "COL_SALE_PRICE": "Sale Price",
   "COL_ETHERSCAN": "Etherscan",
 
   "INFO_CART_EMPTY": "You cart is currently empty. Go to <a href=\"/marketplace\">Projects</a>."
