@@ -24,7 +24,7 @@ let development = environments.development;
 let production = environments.production;
 let folderDEV = "_DEV";
 if (production()) {
-  let folderDEV = "";
+  folderDEV = "";
   var now = new Date();
   if (argv.type=='site' || !argv.type) {
     var valVersionSite = incrementVersion('site');
