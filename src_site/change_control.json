@@ -8,6 +8,24 @@
 				"version": "1.0.15",
 				"date": "11/13/2023"
 			}
+		},
+		"1.1": {
+			"date": "05.01.2023",
+			"title": "Project page enabled",
+			"description": "The projects page was implemented to show their information",
+			"last": {
+				"version": "1.1.05",
+				"date": "06/25/2023"
+			}
+		},
+		"1.2": {
+			"date": "05.30.2023",
+			"title": "Developer space",
+			"description": "We generate a channel so that builders can contact us to evaluate their projects and expand our product portfolio",
+			"last": {
+				"version": "1.2.4",
+				"date": "11/13/2023"
+			}
 		}
 	},
 	"dashboard": {

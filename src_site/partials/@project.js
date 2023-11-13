@@ -45,7 +45,7 @@ angular.module('mainApp').controller('projectController', ['$scope', 'BASE_URL',
             });
             if (response.meta) {
               $scope.itemMeta = angular.copy(response.meta);
-              $scope.itemMeta.strAssetRentStartDate = dateFormat(UnixTimeStampToDate($scope.itemMeta.assetRentStartDate, true),"yyyy-mm-dd");
+              $scope.itemMeta.strAssetRentStartDate = dateFormat(UnixTimeStampToDate($scope.itemMeta.assetRentStartDate, true),"yyyy-dd-mm");
               $scope.item.assetTicketPrice = $scope.itemMeta.assetTicketPrice;
             }
             if ($scope.item.gallery) {
