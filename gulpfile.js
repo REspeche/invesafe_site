@@ -226,16 +226,14 @@ function compileSiteJs() {
       '!src/**/*.dev.js',
       '!src/**/@*.js'
   ])
-    //.pipe(production(concat('assets-site.min.js')))
+    .pipe(production(concat('assets-site.min.js')))
     .pipe(rename(function (path) {
         path.basename = path.basename.replace(development()?'.dev':'.prod','');
     }))
-    /*
     .pipe(production(uglify({
       compress: true,
       mangle: false
     }).on('error', console.error)))
-    */
     //.pipe(production(rev()))
     //.pipe(production(headerComment(textVersionS)))
     .pipe(gulp.dest(pathBuildSite+'/content/assets/js'));
@@ -256,16 +254,14 @@ function compileDashboardJs() {
       '!src/**/*.dev.js',
       '!src/**/@*.js'
   ])
-    //.pipe(production(concat('assets-dashboard.min.js')))
+    .pipe(production(concat('assets-dashboard.min.js')))
     .pipe(rename(function (path) {
         path.basename = path.basename.replace(development()?'.dev':'.prod','');
     }))
-    /*
     .pipe(production(uglify({
       compress: true,
       mangle: false
     }).on('error', console.error)))
-    */
     //.pipe(production(rev()))
     //.pipe(production(headerComment(textVersionD)))
     .pipe(gulp.dest(pathBuildDashboard+'/content/assets/js'));
@@ -279,12 +275,10 @@ function compilePartialSiteJs(done) {
     .pipe(rename(function (path) {
         path.basename = path.basename.replace('@','');
     }))
-    /*
     .pipe(production(uglify({
       compress: true,
       mangle: false
     }).on('error', console.error)))
-    */
     //.pipe(production(headerComment(textVersionS)))
     .pipe(gulp.dest(pathBuildSite+'/content/assets/js/partials'));
     done();
@@ -296,12 +290,10 @@ function compilePartialDashboardJs(done) {
     .pipe(rename(function (path) {
         path.basename = path.basename.replace('@','');
     }))
-    /*
     .pipe(production(uglify({
       compress: true,
       mangle: false
     }).on('error', console.error)))
-    */
     //.pipe(production(headerComment(textVersionD)))
     .pipe(gulp.dest(pathBuildDashboard+'/content/assets/js/partials'));
   done();

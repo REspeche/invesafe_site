@@ -10,7 +10,7 @@ mainApp.config(['$stateProvider', '$urlRouterProvider', '$ocLazyLoadProvider',
                     deps: ['$ocLazyLoad', function($ocLazyLoad) {
                         return $ocLazyLoad.load([{
                             files: [
-                                'content/assets/js/partials/home.js'
+                                'content/assets/js/partials/home.js?v=' + versionBuild
                             ]
                         }]);
                     }]
@@ -41,7 +41,7 @@ mainApp.config(['$stateProvider', '$urlRouterProvider', '$ocLazyLoadProvider',
                     deps: ['$ocLazyLoad', function($ocLazyLoad) {
                         return $ocLazyLoad.load([{
                             files: [
-                                'content/assets/js/partials/changelog.js'
+                                'content/assets/js/partials/changelog.js?v=' + versionBuild
                             ]
                         }]);
                     }]
@@ -58,7 +58,7 @@ mainApp.config(['$stateProvider', '$urlRouterProvider', '$ocLazyLoadProvider',
                     deps: ['$ocLazyLoad', function($ocLazyLoad) {
                         return $ocLazyLoad.load([{
                             files: [
-                                'content/assets/js/partials/contact.js'
+                                'content/assets/js/partials/contact.js?v=' + versionBuild
                             ]
                         }]);
                     }]
@@ -75,7 +75,7 @@ mainApp.config(['$stateProvider', '$urlRouterProvider', '$ocLazyLoadProvider',
                     deps: ['$ocLazyLoad', function($ocLazyLoad) {
                         return $ocLazyLoad.load([{
                             files: [
-                                'content/assets/js/partials/developers.js'
+                                'content/assets/js/partials/developers.js?v=' + versionBuild
                             ]
                         }]);
                     }]
@@ -99,7 +99,7 @@ mainApp.config(['$stateProvider', '$urlRouterProvider', '$ocLazyLoadProvider',
                     deps: ['$ocLazyLoad', function($ocLazyLoad) {
                         return $ocLazyLoad.load([{
                             files: [
-                                'content/assets/js/partials/privacypolicy.js'
+                                'content/assets/js/partials/privacypolicy.js?v=' + versionBuild
                             ]
                         }]);
                     }]
@@ -116,7 +116,7 @@ mainApp.config(['$stateProvider', '$urlRouterProvider', '$ocLazyLoadProvider',
                     deps: ['$ocLazyLoad', function($ocLazyLoad) {
                         return $ocLazyLoad.load([{
                             files: [
-                                'content/assets/js/partials/termsofuse.js'
+                                'content/assets/js/partials/termsofuse.js?v=' + versionBuild
                             ]
                         }]);
                     }]
@@ -133,7 +133,7 @@ mainApp.config(['$stateProvider', '$urlRouterProvider', '$ocLazyLoadProvider',
                     deps: ['$ocLazyLoad', function($ocLazyLoad) {
                         return $ocLazyLoad.load([{
                             files: [
-                                'content/assets/js/partials/accessibilitystatement.js'
+                                'content/assets/js/partials/accessibilitystatement.js?v=' + versionBuild
                             ]
                         }]);
                     }]
@@ -153,7 +153,7 @@ mainApp.config(['$stateProvider', '$urlRouterProvider', '$ocLazyLoadProvider',
                     deps: ['$ocLazyLoad', function($ocLazyLoad) {
                         return $ocLazyLoad.load([{
                             files: [
-                                'content/assets/js/partials/projects.js'
+                                'content/assets/js/partials/projects.js?v=' + versionBuild
                             ]
                         }]);
                     }]
@@ -176,7 +176,7 @@ mainApp.config(['$stateProvider', '$urlRouterProvider', '$ocLazyLoadProvider',
                     deps: ['$ocLazyLoad', function($ocLazyLoad) {
                         return $ocLazyLoad.load([{
                             files: [
-                                'content/assets/js/partials/project.js'
+                                'content/assets/js/partials/project.js?v=' + versionBuild
                             ]
                         }]);
                     }]
@@ -196,7 +196,7 @@ mainApp.config(['$stateProvider', '$urlRouterProvider', '$ocLazyLoadProvider',
                     deps: ['$ocLazyLoad', function($ocLazyLoad) {
                         return $ocLazyLoad.load([{
                             files: [
-                                'content/assets/js/partials/cart.js'
+                                'content/assets/js/partials/cart.js?v=' + versionBuild
                             ]
                         }]);
                     }]
@@ -219,7 +219,7 @@ mainApp.config(['$stateProvider', '$urlRouterProvider', '$ocLazyLoadProvider',
                     deps: ['$ocLazyLoad', function($ocLazyLoad) {
                         return $ocLazyLoad.load([{
                             files: [
-                                'content/assets/js/partials/checkout.js'
+                                'content/assets/js/partials/checkout.js?v=' + versionBuild
                             ]
                         }]);
                     }]
@@ -246,7 +246,7 @@ mainApp.config(['$stateProvider', '$urlRouterProvider', '$ocLazyLoadProvider',
                     deps: ['$ocLazyLoad', function($ocLazyLoad) {
                         return $ocLazyLoad.load([{
                             files: [
-                                'content/assets/js/partials/order-received.js'
+                                'content/assets/js/partials/order-received.js?v=' + versionBuild
                             ]
                         }]);
                     }]
@@ -266,7 +266,7 @@ mainApp.config(['$stateProvider', '$urlRouterProvider', '$ocLazyLoadProvider',
                     deps: ['$ocLazyLoad', function($ocLazyLoad) {
                         return $ocLazyLoad.load([{
                             files: [
-                                'content/assets/js/partials/callback/coinbase.js'
+                                'content/assets/js/partials/callback/coinbase.js?v=' + versionBuild
                             ]
                         }]);
                     }]

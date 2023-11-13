@@ -4,7 +4,7 @@ angular.module('mainApp').controller('changeLogController', ['$scope', 'BASE_URL
 
       $scope.loadChangeLog = function() {
         //Site
-        $.getJSON("/change_control.json", function(data) {
+        $.getJSON("/change_control.json?v=" + versionBuild, function(data) {
           $scope.lstLogs = angular.copy(data);
         });
       };
