@@ -234,7 +234,7 @@ function compileSiteJs() {
       compress: true,
       mangle: false
     }).on('error', console.error)))
-    //.pipe(production(rev()))
+    .pipe(production(rev()))
     //.pipe(production(headerComment(textVersionS)))
     .pipe(gulp.dest(pathBuildSite+'/content/assets/js'));
 };

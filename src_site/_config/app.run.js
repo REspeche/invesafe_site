@@ -29,6 +29,9 @@ mainApp.run(['$rootScope', 'authenticationSvc', '$timeout', '$translate', 'setti
           if (toState.data && angular.isDefined(toState.data.bodyClasses)) {
             $rootScope.bodyClasses = toState.data.bodyClasses;
           }
+          else {
+            $rootScope.bodyClasses = '';
+          };
           $rootScope.isBusy = false;
         });
 

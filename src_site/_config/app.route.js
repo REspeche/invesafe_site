@@ -64,7 +64,7 @@ mainApp.config(['$stateProvider', '$urlRouterProvider', '$ocLazyLoadProvider',
                     }]
                 },
                 metadata: {
-                    title: 'INVESAFE - Contactß us'
+                    title: 'INVESAFE - Contact us'
                 }
             })
             .state('developers', {
