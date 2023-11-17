@@ -66,30 +66,8 @@
 
         <div class="row">
           <div class="col-md-12 col-lg-12 my-1 text-center status-project" ng-class="{'mt-3':item.progress==1}">
-            <section ng-show="item.progress==2">
-              <form name="frmPurchase{{item.id}}">
-                <div class="row">
-                    <div class="col-12 p-0">
-                        <input type="number" class="form-control form-control-lg quantityPurchase"
-                          minlength="1" maxlength="3" min="1" max="{{item.maxTokenPurchase}}" step="1"
-                          ng-change="quantityChange()" ng-model="item.tokenPurchase"/>
-                        <button type="button" class="btn btn-add-cart btn-primary"
-                          ng-click="addCart(item)" data-mdb-ripple-color="dark"><span class="mr-2" translate="BTN_PURCHASE_TOKEN"></span>|<span class="ml-2">${{itemMeta.assetTicketPrice}}</span></button>
-                    </div>
-                </div>
-                <div class="row style3">
-                    <div class="col-12 text-center">
-                      <small class="font-weight-bold"><span translate="LBL_STOCK"></span>: {{itemMeta.tokenStock}}</small>
-                      &nbsp;-&nbsp;
-                      <small><span translate="LBL_MAX_PURCHASE"></span>: {{item.maxTokenPurchase}}</small>
-                    </div>
-                </div>
-              </form>
-            </section>
-            <section ng-hide="item.progress==2">
-              <badge-status id="{{item.progress}}" type="progress"></badge-status>
-              <count-down seconds="{{item.secondsToAvailability}}" ng-if="item.progress==1"></count-down>
-            </section>
+            <badge-status id="{{item.progress}}" type="progress"></badge-status>
+            <count-down seconds="{{item.secondsToAvailability}}" ng-if="item.progress==1"></count-down>
           </div>
         </div>
 
@@ -169,7 +147,7 @@
         </div>
         <div class="col-sm-12 col-md-12 col-lg-6">
           <h5 class="card-title font-weight-bold mb-4" translate="LBL_MAP">Map</h5>
-          <a href="https://www.google.com/maps/place/12881+SW+72nd+Terrace+Rd,+Ocala,+FL+34473/@29.0347825,-82.2389683,17.02z/data=!4m5!3m4!1s0x88e87841a78cf9d5:0xd5374978c69efc25!8m2!3d29.0346857!4d-82.2393196?entry=ttu" target="_blank"><img src="content/assets/img/maps/map_p1.png" height="350"/></a>
+          <a href="https://www.google.com/maps/place/{{item.address}}/@{{itemMeta.gpsLatitude}},{{itemMeta.gpsLongitude}},17z" target="_blank"><img src="content/assets/img/maps/map_p{{item.id}}.png" height="350"/></a>
         </div>
       </div>
 
