@@ -1,11 +1,12 @@
 angular.module('mainApp').controller('projectsController', ['$scope', 'mainSvc', 'BASE_URL',
     function ($scope, mainSvc, BASE_URL) {
       $scope.lstProjects = [];
-      $scope.loadList = false;
+      $scope.loadList = true;
       $scope.pathProject = BASE_URL.api + '/v1/common/viewFile?type=project&file=';
 
       $scope.loadMarketplace = function() {
-
+        return false;
+        
         /* Load list categories */
         mainSvc.callService({
             url: 'project/getProjectsSite',
